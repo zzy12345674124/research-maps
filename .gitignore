@@ -1,0 +1,12 @@
+runtime/
+__pycache__/
+*.py[cod]
+node_modules/
+.env
+.env.*
+!.env.example
+*.log
+docs/backups/
+.openai/
+.DS_Store
+Thumbs.db

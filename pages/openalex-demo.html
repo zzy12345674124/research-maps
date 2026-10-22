@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-workspace-state="loading">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OpenAlex机构合作：边捆绑对照</title>
+  
+  <!-- 功能：首屏先显示加载状态，隐藏原独立演示布局；visibility保留尺寸供SVG布局计算。 -->
+  <style>
+    html[data-workspace-state="loading"] body > :not(#workspace-startup):not(noscript),
+    html[data-workspace-state="error"] body > :not(#workspace-startup):not(noscript){visibility:hidden!important;pointer-events:none!important}
+    #workspace-startup{position:fixed;inset:0;z-index:10000;margin:0;padding:24px;background:#fafcfd;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font:15px/1.8 "Microsoft YaHei",sans-serif;color:#607882;text-align:center;visibility:visible!important}
+    #workspace-startup .startup-mark{width:25px;height:25px;border-radius:50%;background:#267d89;box-shadow:10px -5px 0 -5px #9bc8ac;margin-bottom:10px}
+    #workspace-startup strong{font-size:18px;color:#2e4b58;font-weight:500}#workspace-startup p{max-width:580px;margin:0;overflow-wrap:anywhere}
+    #workspace-startup button{font:inherit;color:#267d89;border:1px solid #bcd7dc;border-radius:4px;background:#edf6f7;padding:7px 18px;cursor:pointer}
+    #workspace-startup button[hidden],html[data-workspace-state="ready"] #workspace-startup{display:none!important}
+  </style>
+  <script src="../scripts/interactions/workspace-startup.js?v=20261021-startup19"></script>
+  <script src="../library/d3/d3.v7.min.js"></script>
+    
+    <link rel="stylesheet" href="../css/common.css?v=20261021-demoentry16">
+  
+<link rel="stylesheet" href="../css/network.css">
+<link rel="stylesheet" href="../css/glass.css?v=20261021-select25">
+</head>
+  <body data-demo="openalex">
+<div id="workspace-startup" role="status" aria-live="polite"><strong>正在加载 OpenAlex 合作网络…</strong><p>正在准备地理坐标与论文证据。</p><button type="button" hidden>重新加载</button></div>
+<noscript><style>#workspace-startup{display:none!important}</style><p>请启用JavaScript。</p></noscript>
+<h2>OpenAlex：气候变化机构合作 · 捆绑对照</h2>
+<div class="note">真实文献署名关系，可切换地理或力导向布局；用于对照普通线与捆绑线，非领域全量样本。</div>
+<div class="toolbar">
+<label>布局 <select id="demo-layout-mode"><option value="geographic">地理位置（经纬度）</option><option value="force">力导向（合作关系）</option></select></label>
+<button id="demo-relayout" type="button" hidden>重新计算布局</button>
+<label>最少共同论文 <input id="demo-edge-min" type="number" value="1" min="1" step="1">篇</label>
+<button id="demo-apply" type="button">应用筛选</button>
+<button id="reset-view" type="button">显示全图</button>
+<button id="demo-restore" type="button">恢复地理位置</button>
+<label><input id="show-all-labels" type="checkbox" style="width:auto!important"> 显示全部机构名称（可能重叠）</label>
+<span class="note">先选择“捆绑连线”观察跨地区通道，再点击机构追踪原有连接。拖动只改变演示位置，可恢复。</span>
+</div>
+<div id="summary"></div><div id="message"></div><div id="empty">没有符合门槛的合作关系，请降低门槛。</div>
+<svg id="network" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-label="OpenAlex气候变化机构合作地理网络"></svg>
+<div id="selection"></div><div id="evidence"></div>
+<div class="legend">
+<div><strong>节点：</strong>机构；大小表示在纳入样本中的发文篇数，颜色区分国家，不表示主题。</div>
+<div><strong>连线：</strong>两机构出现在同一篇样本论文署名中，权重是共同论文数；一篇多机构论文按机构对计数。</div>
+<div><strong>位置：</strong>地理布局按机构经纬度定位；力导向按合作关系排列，位置不代表地理或精确相似度。两种布局共用同一节点与连线；线条不是实际交通路线。</div>
+<div><strong>口径：</strong>climate change 检索、2018–2025年 article、相关性前100篇；为避免超大团队的完全图淹没其余关系，排除单篇超过20机构的8篇，保留92篇。按样本发文数取前160机构，隐藏无连接机构。</div>
+<div><strong>来源：</strong><a href="https://help.openalex.org/how-to/api-recipes/" target="_blank" rel="noopener noreferrer">OpenAlex公开元数据</a>；<a href="../docs/openalex-bundling-selection.json" target="_blank" rel="noopener noreferrer">查询、筛选与候选比较记录</a>。样本为演示选择，不能据此推断领域全貌。</div>
+</div>
+<script src="../scripts/bootstrap.js?v=20261021-select25" data-config='{"data": {"openAlexDemo": "../data/demo/openalex-climate-institutions.json"}, "scripts": ["../scripts/analysis/label-layout.js", "../scripts/interactions/edge-rendering.js", "../scripts/charts/openalex-demo.js", "../scripts/interactions/workspace.js", "../scripts/interactions/liquid-select.js"], "workspace": true}'></script>
+</body></html>

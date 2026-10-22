@@ -1,0 +1,127 @@
+/* 功能：统一浅色玻璃视觉。保留 VOSviewer 两栏与图形颜色；无外部字体、图片或依赖。 */
+:root{--glass-ink:#26394a;--glass-muted:#63758a;--glass-accent:#287b91;--glass-line:rgba(105,132,158,.19);--glass-surface:rgba(255,255,255,.69);--glass-shadow:0 10px 36px rgba(48,76,111,.08),inset 0 1px 0 rgba(255,255,255,.94);color-scheme:light}
+body.workspace,body.glass-demo,body.glass-notes{color:var(--glass-ink);background:radial-gradient(ellipse at 7% 4%,#dcecf6 0,transparent 46%),radial-gradient(ellipse at 96% 12%,#e8e2f5 0,transparent 42%),radial-gradient(ellipse at 65% 100%,#e0f0eb 0,transparent 48%),#eef2f7;background-attachment:fixed;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}
+/* 功能：主要窗格统一磨砂、柔和边缘与高光；保留现有侧栏宽度和拖动分隔条。 */
+.workspace .ws-header,.workspace .ws-sidebar,.workspace .ws-output,.glass-demo>header,.glass-demo>.toolbar,.glass-demo #airline-selection,.glass-notes .page-header,.glass-notes .stat-card,.glass-notes .timeline-section,.glass-notes .usage-section{background:var(--glass-surface);border:1px solid rgba(255,255,255,.85);box-shadow:var(--glass-shadow);-webkit-backdrop-filter:blur(22px) saturate(135%);backdrop-filter:blur(22px) saturate(135%)}
+.workspace .ws-header{border-width:0 0 1px;padding:0 24px;background:rgba(255,255,255,.62)}
+.workspace .ws-brand{color:#30485b;letter-spacing:.1px}.workspace .ws-header small{color:var(--glass-muted)}
+.workspace .ws-mark{background:linear-gradient(145deg,#5aa6b9,#2c7a95);box-shadow:0 2px 7px #376c8730,9px -3px 0 -5px #a1c9bb,-7px 7px 0 -5px #bdc4e1}
+.workspace .ws-layout{box-sizing:border-box;padding:12px;height:calc(100dvh - 54px)}
+.workspace .ws-sidebar,.workspace .ws-output{border-radius:18px;overflow:hidden}
+.workspace .ws-layout:not(.has-divider)>.ws-output{margin-left:12px}
+.workspace .ws-divider{background:transparent;border-radius:8px;margin:12px 0}
+.workspace .ws-divider::after{background:#a9bdce;left:3px;width:2px;border-radius:4px}
+.workspace .ws-divider:hover,.workspace .ws-divider:focus-visible,.workspace.ws-resizing .ws-divider{background:#89aeb630}
+.workspace .ws-tabs{margin:7px 8px 0;padding:4px;height:45px;gap:3px;border:1px solid #ffffffa6;background:#e3eaf04d;border-radius:12px}
+.workspace .ws-tab{font-size:12px;color:#6b7c8e;border-radius:9px;transition:background .15s,box-shadow .15s,color .15s}
+.workspace .ws-tab[aria-selected="true"]{color:#286e85;border:0;background:rgba(255,255,255,.9);box-shadow:0 2px 7px #52688016,inset 0 1px #fff;font-weight:600}
+.workspace .ws-panels{padding:18px 18px 25px;scrollbar-color:#afbfcc80 transparent}
+.workspace .ws-caption{color:#74899c;letter-spacing:1.7px}.workspace .ws-section h3{color:#40576b;font-weight:600}
+.workspace .toolbar{border-bottom-color:var(--glass-line);gap:11px}
+.workspace .toolbar label,.workspace .ws-section label{font-size:12px;color:#5c7084}
+.workspace select,.workspace input:not([type="range"]):not([type="checkbox"]){border:1px solid #b9cbd57d;border-radius:9px;background:#ffffff94;padding:8px 10px;min-height:35px;color:#2c465a;box-shadow:inset 0 1px 2px #59718a07}
+.workspace input[type="checkbox"]{min-height:0;box-shadow:none;background:transparent}
+.workspace select:focus-visible,.workspace input:focus-visible{border-color:#5195b0;outline:3px solid #76b3d225;outline-offset:1px}
+.workspace .toolbar button,.workspace #details button,.workspace .ws-demo-button,.glass-demo button,.glass-demo select,.glass-notes .back-link{border:1px solid #afcbd87d;border-radius:10px;background:linear-gradient(180deg,#ffffffeb,#e9f2f7b5);color:#2e6e85;box-shadow:0 2px 5px #45647c09,inset 0 1px #fff;transition:background .15s,box-shadow .15s;cursor:pointer}
+.workspace .toolbar button{padding:9px 12px;min-height:35px}.workspace .toolbar button:hover,.workspace .ws-demo-button:hover,.glass-demo button:hover{background:#fff;box-shadow:0 3px 10px #45647c18}
+.workspace button:disabled,.glass-demo button:disabled{opacity:.45;cursor:default}
+.workspace .ws-demo-button{padding:7px 12px}.workspace .ws-link{color:#386e88}
+.workspace .note,.workspace .legend,.workspace #color-description{color:#63778b;font-size:12px;line-height:1.85}.workspace #cluster-legend>div{border-bottom-color:#afc5d32b}.workspace #cluster-legend>div:hover{background:#ffffff80}
+.workspace .ws-output{background:rgba(255,255,255,.38)}
+.workspace .ws-output-head{height:49px;border-bottom:1px solid #ffffffb3;background:linear-gradient(110deg,#ffffff94,#ffffff29);padding:0 22px}
+.workspace .ws-output-head h2{color:#40566b;font-weight:600}.workspace .ws-output-label{color:#8193a5}
+/* 功能：绘图区延续玻璃底色。仅设置容器背景，不覆盖 SVG 节点、连线、密度与图例颜色。 */
+.workspace .ws-viewport{background:linear-gradient(135deg,rgba(255,255,255,.70),rgba(247,250,255,.48) 55%,rgba(242,250,247,.57))}
+.workspace .ws-viewport>svg,.workspace .ws-viewport>.chart>svg{background:transparent!important}
+.workspace .ws-viewport>.chart{background:transparent}
+.workspace .ws-tools{right:18px;top:67px;border:1px solid #ffffffeb;border-radius:12px;background:#ffffffb8;box-shadow:0 5px 18px #45647c16;overflow:hidden;backdrop-filter:blur(16px)}
+.workspace .ws-tools button{background:transparent;color:#53748e;border-bottom-color:#b6c9d730;width:35px;height:36px}.workspace .ws-tools button:hover{background:#ffffffbe}
+.workspace .ws-status{background:#ffffff75;border-top:1px solid #ffffffdb;color:#4e657a;padding:10px 20px;font-size:15px}
+.workspace .ws-status #summary,.workspace .ws-status #stats{color:#526a7f}.workspace .ws-status #selection{color:#36738a}
+.workspace .ws-drawer{background:#ffffff85;border-top:1px solid #ffffffd9;font-size:13px}.workspace .ws-drawer>summary{background:#f4f8fce8;color:#4c6b80;font-weight:500;padding:11px 20px}
+.workspace #detail,.workspace #details,.workspace #evidence{font-size:13px;color:#4d6579}.workspace .ws-drawer a{color:#28758d}
+/* 功能：航空页沿用浅色玻璃外壳；图内保留上游深蓝、红线、黄色机场的对照色。 */
+body.glass-demo{height:100dvh;padding:12px;gap:10px;overflow:hidden}
+.glass-demo>header{border-radius:17px;padding:15px 20px}.glass-demo h1{font-size:19px;color:#304b60;margin-bottom:7px}.glass-demo .note{color:#62778b}
+.glass-demo>.toolbar{border-radius:14px;padding:11px 18px;gap:12px}.glass-demo button,.glass-demo select{padding:7px 12px}.glass-demo input[type="checkbox"]{accent-color:#327e98}
+.glass-demo .canvas{border-radius:18px;overflow:hidden;border:1px solid #ffffffd9;box-shadow:var(--glass-shadow);background:#14224d}
+.glass-demo .canvas svg{background:radial-gradient(ellipse at 15% 0%,rgba(108,137,182,.2),transparent 50%),linear-gradient(135deg,rgba(24,37,78,.95),rgba(17,17,85,.96));border-radius:17px}
+.glass-demo #airline-selection{border-radius:12px;padding:10px 18px;color:#4b657b;font-size:13px}
+/* 功能：工程说明同一视觉体系，保留版本时间线与折叠阅读结构。 */
+body.glass-notes{min-height:100vh}.glass-notes .page-header{position:sticky;top:0;z-index:5;border-width:0 0 1px;background:#ffffffa6}
+.glass-notes .brand{color:#30485b}.glass-notes .brand-dot{background:linear-gradient(145deg,#5aa6b9,#2c7a95)}.glass-notes .back-link{padding:7px 13px;font-size:13px}
+.glass-notes main{padding-top:38px}.glass-notes h1{font-weight:650;color:#2e455c}.glass-notes .hero p{color:#62788c}.glass-notes .hero-badge{background:#ffffff83;border-color:#ffffffdc;color:#507b79;box-shadow:inset 0 1px #fff}
+.glass-notes .stat-card,.glass-notes .timeline-section,.glass-notes .usage-section{border-radius:18px}.glass-notes .stat-card.current{background:linear-gradient(130deg,#e5f3f6d6,#ffffff91);border-color:#ffffffeb}
+.glass-notes .release-body{border:1px solid #ffffffd9;background:#ffffff5e;border-radius:13px;box-shadow:0 3px 12px #45647c06}.glass-notes .is-latest .release-body{border-color:#b5d6e1bd;background:linear-gradient(135deg,#ffffffbc,#eaf5f78a)}
+.glass-notes .release-summary,.glass-notes .change-text,.glass-notes pre{color:#566f84}.glass-notes .section-heading,.glass-notes .release-detail{border-color:#9db6c52e}.glass-notes time,.glass-notes .release-meta{color:#708498}
+.glass-notes .loading,.glass-notes .empty,.glass-notes .error{background:#ffffff96;border-color:#ffffffdb;border-radius:14px}.glass-notes .error{color:#a35d42}
+/* 功能：清晰焦点、减少动效和不支持模糊时的高对比降级。 */
+.workspace button:focus-visible,.workspace a:focus-visible,.glass-demo button:focus-visible,.glass-demo a:focus-visible,.glass-demo select:focus-visible{outline:2px solid #3c839e;outline-offset:3px}
+@supports not (backdrop-filter:blur(1px)){.workspace .ws-sidebar,.workspace .ws-header,.workspace .ws-output,.glass-demo>header,.glass-demo>.toolbar,.glass-demo #airline-selection,.glass-notes .page-header,.glass-notes .stat-card,.glass-notes .timeline-section,.glass-notes .usage-section{background:#f8fafdef}}
+@media(prefers-reduced-motion:reduce){.workspace *,.glass-demo *,.glass-notes *{transition:none!important;scroll-behavior:auto!important}}
+@media(max-width:760px){.workspace .ws-layout{padding:6px}.workspace .ws-sidebar,.workspace .ws-output{border-radius:12px}.workspace .ws-layout:not(.has-divider)>.ws-output{margin-left:6px}.workspace .ws-header{padding:0 12px}.workspace .ws-header-actions{gap:8px}.workspace .ws-demo-button{font-size:12px;padding:6px 8px}.workspace .ws-panels{padding:14px 12px}.workspace .ws-output-head{padding:0 12px}.workspace .ws-output-label{display:none}body.glass-demo{padding:7px;gap:7px}.glass-demo>header{padding:12px 14px}.glass-demo>.toolbar{padding:9px 12px}.glass-notes .back-link{font-size:12px}}
+
+/* 功能：加载遮罩沿用同一底色，加载完成仍由原有启动门统一显示。 */
+html #workspace-startup{background:radial-gradient(ellipse at 12% 10%,#dcecf6,transparent 55%),radial-gradient(ellipse at 92% 16%,#e8e2f5,transparent 50%),#eef2f7;color:#526d84}
+html #workspace-startup strong{font-weight:600;color:#344e65}
+html #workspace-startup button{border:1px solid #ffffffd9;border-radius:10px;padding:9px 18px;color:#316d86;background:#ffffffb3;box-shadow:0 4px 15px #45647c12}
+
+/* 功能：从液态玻璃参考提取色调/光泽/内容分层；装饰层不接收事件，不对文字或SVG做扭曲。 */
+:root{--liquid-tint:rgba(255,255,255,.42);--liquid-edge:rgba(255,255,255,.86);--liquid-shadow:0 8px 24px rgba(40,62,90,.10),0 1px 4px rgba(40,62,90,.04),inset 2px 2px 1px rgba(255,255,255,.8),inset -1px -1px 2px rgba(255,255,255,.64)}
+body.workspace,body.glass-demo,body.glass-notes{background:radial-gradient(ellipse at 1% 12%,rgba(150,202,228,.5),transparent 42%),radial-gradient(ellipse at 99% 6%,rgba(195,180,227,.42),transparent 40%),radial-gradient(ellipse at 72% 100%,rgba(160,210,195,.42),transparent 45%),#edf2f7;background-attachment:fixed}
+/* 功能：主要面板提供色调底层与静态边缘反光，内容保持原始尺寸与坐标。 */
+.workspace .ws-header,.workspace .ws-sidebar,.workspace .ws-output,.glass-demo>header,.glass-demo>.toolbar,.glass-demo #airline-selection,.glass-notes .page-header,.glass-notes .stat-card,.glass-notes .timeline-section,.glass-notes .usage-section{position:relative;isolation:isolate;background:var(--liquid-tint);border-color:var(--liquid-edge);box-shadow:var(--liquid-shadow);-webkit-backdrop-filter:blur(18px) saturate(145%);backdrop-filter:blur(18px) saturate(145%)}
+.workspace .ws-sidebar,.workspace .ws-output{border-radius:22px}
+.workspace .ws-header::before,.workspace .ws-sidebar::before,.workspace .ws-output::before,.glass-demo>header::before,.glass-demo>.toolbar::before,.glass-demo #airline-selection::before,.glass-notes .page-header::before,.glass-notes .stat-card::before,.glass-notes .timeline-section::before,.glass-notes .usage-section::before{content:"";position:absolute;inset:0;z-index:-2;border-radius:inherit;pointer-events:none;background:linear-gradient(125deg,rgba(255,255,255,.45),rgba(255,255,255,.06) 36%,rgba(255,255,255,.2) 72%,rgba(255,255,255,.36))}
+.workspace .ws-header::after,.workspace .ws-sidebar::after,.workspace .ws-output::after,.glass-demo>header::after,.glass-demo>.toolbar::after,.glass-demo #airline-selection::after,.glass-notes .page-header::after,.glass-notes .stat-card::after,.glass-notes .timeline-section::after,.glass-notes .usage-section::after{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;box-shadow:inset 2px 2px 1px rgba(255,255,255,.72),inset -1px -1px 2px rgba(255,255,255,.52);background:radial-gradient(ellipse at 5% 0%,rgba(255,255,255,.35),transparent 55%)}
+/* 功能：保持工程说明顶栏的原有固定阅读位置。 */
+.glass-notes .page-header{position:sticky;background:rgba(245,249,253,.76)}
+.workspace .ws-header{background:rgba(255,255,255,.48)}
+.workspace .ws-tabs{border-radius:15px;background:rgba(217,229,239,.3);box-shadow:inset 0 1px 3px rgba(74,99,124,.06)}
+.workspace .ws-tab{border-radius:11px}.workspace .ws-tab[aria-selected="true"]{background:rgba(255,255,255,.72);box-shadow:0 4px 9px rgba(55,85,110,.08),inset 1px 1px 1px white,inset -1px -1px 1px rgba(255,255,255,.72)}
+/* 功能：侧栏参数按原工具栏形成小卡片，保留VOSviewer左右布局和参数隐藏规则。 */
+.workspace .ws-panels{padding:16px 13px 24px}
+.workspace .ws-panel>.toolbar{padding:13px 12px;margin:0 0 13px;gap:10px;border:1px solid rgba(255,255,255,.78);border-radius:16px;background:rgba(255,255,255,.28);box-shadow:inset 1px 1px 1px rgba(255,255,255,.75),0 3px 10px rgba(60,90,120,.025)}
+.workspace .ws-section{padding:4px 5px 0}
+.workspace select,.workspace input:not([type="range"]):not([type="checkbox"]){border-color:rgba(157,183,202,.48);border-radius:11px;background:rgba(255,255,255,.62);box-shadow:inset 1px 1px 1px rgba(255,255,255,.95),0 1px 4px rgba(70,100,125,.025)}
+.workspace .toolbar button,.workspace #details button,.workspace .ws-demo-button,.glass-demo button,.glass-demo select,.glass-notes .back-link{border-radius:12px;background:linear-gradient(155deg,rgba(255,255,255,.9),rgba(255,255,255,.32));border-color:rgba(255,255,255,.9);box-shadow:inset 1px 1px 1px white,inset -1px -1px 1px rgba(255,255,255,.68),0 3px 8px rgba(50,80,110,.08);transition:background .18s ease,box-shadow .18s ease,border-color .18s ease}
+.workspace .ws-demo-button{white-space:nowrap}
+/* 功能：单一强调色向透明过渡，避免把数据编码颜色混合进界面装饰。 */
+.workspace .ws-section h3{background:linear-gradient(90deg,rgba(55,140,170,.1),rgba(55,140,170,0));border-radius:8px;padding:7px 6px;margin-bottom:12px}
+.workspace .ws-caption,.glass-notes .eyebrow{color:#4d7c98}.workspace .ws-output-head h2{font-weight:650}
+.workspace .ws-output-head{background:linear-gradient(115deg,rgba(255,255,255,.61),rgba(255,255,255,.12));border-bottom-color:rgba(255,255,255,.8)}
+.workspace .ws-viewport{background:linear-gradient(135deg,rgba(255,255,255,.7),rgba(249,252,255,.61) 55%,rgba(247,253,250,.65))}
+.workspace .ws-tools{border-radius:15px;background:rgba(255,255,255,.61);box-shadow:var(--liquid-shadow)}
+.workspace .ws-status{background:rgba(255,255,255,.47)}.workspace .ws-drawer{background:rgba(255,255,255,.48)}.workspace .ws-drawer>summary{background:rgba(243,249,253,.94)}
+/* 功能：Bento的层级仅用于已有摘要卡，主图继续占据右侧主要空间。 */
+.glass-notes h1{font-size:clamp(30px,3.1vw,42px);font-weight:700;letter-spacing:-1px}
+.glass-notes .stat-card{border-radius:22px}.glass-notes .stat-card strong{font-size:34px;font-weight:650}.glass-notes .stat-card.current strong{font-size:30px}
+.glass-notes .stat-card.current{background:linear-gradient(135deg,rgba(69,155,179,.12),rgba(69,155,179,0));border-color:rgba(255,255,255,.92)}
+.glass-notes .release-body{background:rgba(255,255,255,.35);box-shadow:inset 1px 1px 1px rgba(255,255,255,.65),0 3px 10px rgba(55,80,110,.025);border-radius:16px}
+.glass-notes .is-latest .release-body{background:linear-gradient(135deg,rgba(61,147,173,.08),rgba(61,147,173,0));border-color:rgba(125,176,195,.45)}
+/* 功能：悬停只调光泽，不改变padding、文字比例或节点画布尺寸，避免指针滑动时跳动。 */
+@media(hover:hover) and (pointer:fine){.workspace .toolbar button:not(:disabled):hover,.workspace .ws-demo-button:hover,.glass-demo button:not(:disabled):hover,.glass-notes .back-link:hover{background:rgba(255,255,255,.87);box-shadow:inset 2px 2px 1px white,inset -1px -1px 1px rgba(255,255,255,.8),0 5px 13px rgba(50,85,115,.14);border-color:white}.workspace .ws-tab:not([aria-selected="true"]):hover{background:rgba(255,255,255,.4)}}
+@media(min-width:1920px){.workspace .ws-layout{padding:16px}.workspace .ws-output-head{padding-inline:28px}.glass-notes main{max-width:1280px}}
+@media(max-width:760px){.workspace .ws-sidebar,.workspace .ws-output{border-radius:15px}.workspace .ws-panel>.toolbar{padding:11px 9px;border-radius:13px}.workspace .ws-panels{padding:13px 10px 20px}.glass-notes .stat-card strong{font-size:28px}.glass-notes .stat-card.current strong{font-size:27px}}
+@supports not (backdrop-filter:blur(1px)){.workspace .ws-sidebar,.workspace .ws-header,.workspace .ws-output,.glass-demo>header,.glass-demo>.toolbar,.glass-demo #airline-selection,.glass-notes .page-header,.glass-notes .stat-card,.glass-notes .timeline-section,.glass-notes .usage-section{background:#f6f9fc}}
+@media(prefers-reduced-motion:reduce){.workspace *,.glass-demo *,.glass-notes *{transition:none!important}}
+@media(prefers-contrast:more){.workspace .ws-sidebar,.workspace .ws-output,.workspace .ws-header,.glass-demo>header,.glass-demo>.toolbar,.glass-notes .stat-card,.glass-notes .timeline-section{background:#f8fafc}.workspace .note,.workspace .legend{color:#40576b}}
+
+/* 功能：自绘下拉控件。原select保留值/事件，浮层放到body，避免侧栏滚动裁切。 */
+.lg-select{position:relative;display:block;min-width:0;width:100%}
+.workspace select.lg-native,select.lg-native{position:absolute!important;width:1px!important;height:1px!important;min-height:0!important;min-width:0!important;padding:0!important;border:0!important;opacity:0!important;pointer-events:none!important;clip-path:inset(50%);overflow:hidden}
+.lg-trigger,.workspace .toolbar .lg-trigger,.workspace .ws-section .lg-trigger{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-width:0;min-height:37px;margin:0;padding:8px 11px;border:1px solid rgba(158,185,205,.5);border-radius:11px;background:linear-gradient(145deg,rgba(255,255,255,.83),rgba(255,255,255,.43));color:#304b60;font:inherit;font-size:13px;line-height:1.5;text-align:left;box-shadow:inset 1px 1px 1px white,0 2px 6px rgba(53,83,111,.04);cursor:pointer;transition:box-shadow .16s,border-color .16s,background .16s}
+.lg-trigger-title{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0}
+.lg-trigger-arrow{width:7px;height:7px;flex:none;margin:0 3px 4px;border:solid #7392a7;border-width:0 1.5px 1.5px 0;transform:rotate(45deg);transition:transform .18s}
+.lg-trigger.is-open .lg-trigger-arrow{transform:translateY(3px) rotate(225deg)}
+.lg-trigger.is-open,.workspace .toolbar .lg-trigger.is-open,.workspace .ws-section .lg-trigger.is-open{border-color:#72a9c0;box-shadow:0 0 0 3px rgba(79,153,184,.1),inset 1px 1px white;background:rgba(255,255,255,.9)}
+.lg-trigger:focus-visible{outline:2px solid #4385a1;outline-offset:3px}.lg-trigger:disabled{opacity:.48;cursor:default}
+.lg-menu{position:fixed;z-index:20000;box-sizing:border-box;overflow:auto;overscroll-behavior:contain;padding:6px;border:1px solid rgba(255,255,255,.98);border-radius:16px;background:rgba(243,249,253,.94);color:#2b455b;box-shadow:0 16px 45px rgba(35,62,88,.19),0 3px 9px rgba(35,62,88,.08),inset 1px 1px 1px white,inset -1px -1px 1px rgba(255,255,255,.72);-webkit-backdrop-filter:blur(24px) saturate(145%);backdrop-filter:blur(24px) saturate(145%);font:13px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;scrollbar-width:thin;scrollbar-color:#9bb4c480 transparent;animation:lg-appear .18s cubic-bezier(.2,.7,.2,1) both}
+.lg-option{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 11px;border:1px solid transparent;border-radius:10px;cursor:pointer;user-select:none;min-height:39px;box-sizing:border-box;overflow-wrap:anywhere}
+.lg-option.is-active{background:rgba(255,255,255,.85);border-color:rgba(255,255,255,.95);box-shadow:0 2px 7px rgba(50,83,110,.06)}
+.lg-option[aria-selected="true"]{color:#286f8c;font-weight:600;background:linear-gradient(110deg,rgba(58,145,177,.13),rgba(58,145,177,.035))}
+.lg-option[aria-disabled="true"]{opacity:.42;cursor:not-allowed}.lg-option-check{width:16px;flex:none;text-align:center;color:#347f9c}
+@keyframes lg-appear{from{opacity:0;transform:translateY(var(--lg-enter-y,-5px)) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(prefers-reduced-motion:reduce){.lg-menu{animation:none}.lg-trigger,.lg-trigger-arrow{transition:none}}
+@supports not (backdrop-filter:blur(1px)){.lg-menu{background:#f3f8fc}}
+@media(prefers-contrast:more){.lg-menu{background:white;border-color:#7a99ae}.lg-option.is-active{outline:1px solid #4d839c}.lg-trigger{background:white}}

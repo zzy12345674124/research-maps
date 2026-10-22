@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-workspace-state="loading">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>人工智能教育：关键词时间线</title>
+
+  <!-- 功能：首屏先显示加载状态，隐藏原独立演示布局；visibility保留尺寸供SVG布局计算。 -->
+  <style>
+    html[data-workspace-state="loading"] body > :not(#workspace-startup):not(noscript),
+    html[data-workspace-state="error"] body > :not(#workspace-startup):not(noscript){visibility:hidden!important;pointer-events:none!important}
+    #workspace-startup{position:fixed;inset:0;z-index:10000;margin:0;padding:24px;background:#fafcfd;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font:15px/1.8 "Microsoft YaHei",sans-serif;color:#607882;text-align:center;visibility:visible!important}
+    #workspace-startup .startup-mark{width:25px;height:25px;border-radius:50%;background:#267d89;box-shadow:10px -5px 0 -5px #9bc8ac;margin-bottom:10px}
+    #workspace-startup strong{font-size:18px;color:#2e4b58;font-weight:500}#workspace-startup p{max-width:580px;margin:0;overflow-wrap:anywhere}
+    #workspace-startup button{font:inherit;color:#267d89;border:1px solid #bcd7dc;border-radius:4px;background:#edf6f7;padding:7px 18px;cursor:pointer}
+    #workspace-startup button[hidden],html[data-workspace-state="ready"] #workspace-startup{display:none!important}
+  </style>
+  <script src="../scripts/interactions/workspace-startup.js?v=20261021-startup19"></script>
+  <script src="../library/d3/d3.v7.min.js"></script>
+  
+  <link rel="stylesheet" href="../css/common.css?v=20261021-demoentry16">
+  
+<link rel="stylesheet" href="../css/timeline.css?v=20261020-zoom6">
+<link rel="stylesheet" href="../css/glass.css?v=20261021-select25">
+</head>
+<body>
+  <div id="workspace-startup" role="status" aria-live="polite"><span class="startup-mark" aria-hidden="true"></span><strong>正在加载文献计量工作台…</strong><p>正在准备图形和参数，请稍候。</p><button type="button" hidden>重新加载</button></div>
+  <noscript><style>#workspace-startup{display:none!important}</style><p>请启用JavaScript后重新打开工作台。</p></noscript>
+
+  <h2>人工智能教育：关键词与群组时间线</h2>
+  <div class="note">同一批OpenAlex 100篇教学样本 · 可按年或月查看分布，也可查看关键词之间的弧形共现关系。</div>
+  <div class="toolbar">
+    <label>开始月份 <input id="start-month" type="month" value="2020-01"></label>
+    <label>结束月份 <input id="end-month" type="month" value="2026-12"></label>
+    <label>时间粒度 <select id="time-granularity"><option value="year">年</option><option value="month" selected>月</option></select></label>
+    <label><input id="exclude-jan-first" type="checkbox"> 排除1月1日记录（精度待核实）</label>
+    <button id="reset-period" type="button">恢复全部时间</button>
+    <span class="note">月份按OpenAlex返回日期筛选，未经逐篇核验。修改后点击“更新图形”；群组、频次与共现关系会按所选时段重新计算。</span>
+  </div>
+  <div class="toolbar">
+    <label>查看方式 <select id="mode"><option value="papers" selected>论文引用时间线（一圆一篇论文）</option><option value="relations">关键词共现关系图（按时间排列）</option><option value="keyword">单个关键词的论文数量时间线</option><option value="cluster">论文主题数量时间线</option></select></label>
+    <label>论文引用图分行 <select id="paper-row-type"><option value="cluster">按论文主主题</option><option value="keyword">按单个关键词</option></select></label>
+    <label>每行最少涉及 <input id="minimum" type="number" min="1" value="2"> 篇</label>
+    <label>最多显示 <input id="top" type="number" min="1" max="417" value="15"> 行</label>
+    <label>弧线最少共现 <input id="edge-min" type="number" min="1" value="1"> 篇</label>
+    <button id="apply">更新图形</button><span id="message"></span>
+  </div>
+  <div id="mode-explanation" class="note"></div>
+  <div class="note">首次打开且无主题结果时先按关键词分行；选择主题分行需先运行主题模型。行名限于左栏，关键词标签自动隐藏重叠项，缩放后重新检测；日期坐标保持不变。</div>
+  <div id="summary"></div>
+  <!-- 功能：画布缩放工具，独立于日期筛选与主题训练。 -->
+  <div class="toolbar timeline-view-tools" aria-label="时间线视图缩放">
+    <button id="timeline-zoom-in" type="button" aria-label="放大时间线">放大 ＋</button>
+    <button id="timeline-zoom-out" type="button" aria-label="缩小时间线">缩小 −</button>
+    <button id="timeline-reset-view" type="button">重置视图</button>
+    <span id="timeline-zoom-level" aria-live="polite">100%</span>
+    <span class="note">滚轮缩放 · 拖动画布平移；切换模式或更新图形后恢复初始视图。</span>
+  </div>
+  <div class="chart"><svg id="timeline" width="1080"></svg></div>
+  <div id="detail">悬停圆查看数值；点击圆查看对应论文。</div>
+  <!-- 功能：主题基于全样本训练，时间筛选只过滤论文，不重训或重排主题编号。 -->
+<div class="toolbar"><strong>主题模型分行</strong>
+<label>模型 <select id="timeline-topic-method"><option value="nmf">NMF（浏览器）</option><option value="lda">LDA（浏览器）</option><option value="bertopic">BERTopic（本机服务）</option></select></label>
+<span id="timeline-bertopic-parameters" hidden><label>最小主题规模 <input id="timeline-bertopic-min-size" type="number" min="2" max="30" value="5"></label><label>语义邻居数 <input id="timeline-bertopic-neighbors" type="number" min="2" max="50" value="15"></label></span>
+<label>主题数 <input id="timeline-topic-count" type="number" min="2" max="12" value="5"></label>
+<label>代表词数 <input id="timeline-topic-words" type="number" min="1" max="30" value="8"></label>
+<label>词语最少出现篇数 <input id="timeline-topic-df" type="number" min="1" value="2"></label>
+<label>训练轮数 <input id="timeline-topic-iterations" type="number" min="10" max="300" value="120"></label>
+<button id="timeline-train-topic" type="button">运行论文主题模型</button>
+<span class="note" id="timeline-topic-status">可复用本标签页网络图最近一次主题模型结果；NMF/LDA按最大权重归入主主题；BERTopic保留未归类论文。模块度已暂时停用。</span></div>
+<div id="groups" class="note"></div>
+  <p class="note">模块度已暂时停用。各模型基于全样本标题与摘要训练，主题名称取模型代表词。每篇论文进入权重最大的一个主主题（BERTopic未归类论文除外）；单关键词分行时仍可能多行出现。时间与展示门槛仅过滤结果，不改变主题编号；主题参数变化需显式重新训练。</p>
+  <p class="note" id="paper-legend">论文引用图：每圆一篇论文、圆大小相同，颜色表示发表时间。按论文主主题分行时，每篇已归类论文仅进一行；按单个关键词分行时，一篇论文可命中多行；各行分别画出本行论文间的引用；同一引用可在多行重复显示，底部唯一引用数不重复计数。双方无共同行时只画一次跨行引用。只画两端均在当前显示范围内的引用，未匹配参考文献、窗口外论文或未入选行的论文不画线。同周期论文仅纵向错开；空白点击清除高亮。</p>
+  <p class="note" id="relation-legend" style="display: none;">弧线模式：每个圆是一个关键词，横向位置为它在所选时段内首次观察到的时间；同周期同组节点纵向错开以避免重叠。圆面积为所选时段内出现次数；圆颜色为首次时间（橙色偏早、浅黄色偏晚）。弧线为所选时段内共现关系，越粗表示共同出现论文越多，无方向，不代表跨年引用。每行按关键词的主题映射主题组织（汇总包含该词的论文主题权重），灰色横线仅为行基线。悬停弧线查看次数，点击圆高亮相关线并列出论文。</p>
+  <p class="note" id="distribution-legend">横轴：按所选粒度显示论文发表年或月。纵向行：关键词或论文主题。圆面积：该词或该组在该周期涉及的去重论文数。虚线：连接同一行的出现年份，不表示引用或共现关系。无圆仅表示所选样本该周期未观察到，不能认定主题消失。</p>
+  
+  
+  <script src="../scripts/analysis/topic-store.js?v=20261020-topics5"></script>
+<script src="../scripts/analysis/topic-model.js"></script>
+<script src="../scripts/analysis/lda-model.js?v=20261020-models8"></script>
+<script src="../scripts/analysis/topic-trainer.js?v=20261020-models8"></script>
+<script src="../scripts/analysis/timeline-period.js"></script>
+  <script src="../scripts/analysis/paper-citation-timeline.js"></script>
+  
+<script src="../scripts/bootstrap.js?v=20261021-select25" data-config='{"data": {"openAlexPapers": "../data/processed/papers.json", "publicationDates": "../data/processed/publication-dates.json", "topicCorpus": "../data/processed/topic-corpus.json"}, "scripts": ["../scripts/analysis/label-layout.js", "../scripts/interactions/edge-rendering.js", "../scripts/charts/timeline.js", "../scripts/interactions/workspace.js", "../scripts/interactions/liquid-select.js"], "workspace": true}'></script>
+</body>
+</html>

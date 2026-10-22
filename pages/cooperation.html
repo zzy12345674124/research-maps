@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-workspace-state="loading">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>人工智能教育：作者与机构合作网络</title>
+  
+  <!-- 功能：首屏先显示加载状态，隐藏原独立演示布局；visibility保留尺寸供SVG布局计算。 -->
+  <style>
+    html[data-workspace-state="loading"] body > :not(#workspace-startup):not(noscript),
+    html[data-workspace-state="error"] body > :not(#workspace-startup):not(noscript){visibility:hidden!important;pointer-events:none!important}
+    #workspace-startup{position:fixed;inset:0;z-index:10000;margin:0;padding:24px;background:#fafcfd;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font:15px/1.8 "Microsoft YaHei",sans-serif;color:#607882;text-align:center;visibility:visible!important}
+    #workspace-startup .startup-mark{width:25px;height:25px;border-radius:50%;background:#267d89;box-shadow:10px -5px 0 -5px #9bc8ac;margin-bottom:10px}
+    #workspace-startup strong{font-size:18px;color:#2e4b58;font-weight:500}#workspace-startup p{max-width:580px;margin:0;overflow-wrap:anywhere}
+    #workspace-startup button{font:inherit;color:#267d89;border:1px solid #bcd7dc;border-radius:4px;background:#edf6f7;padding:7px 18px;cursor:pointer}
+    #workspace-startup button[hidden],html[data-workspace-state="ready"] #workspace-startup{display:none!important}
+  </style>
+  <script src="../scripts/interactions/workspace-startup.js?v=20261021-startup19"></script>
+  <script src="../library/d3/d3.v7.min.js"></script>
+    
+    <link rel="stylesheet" href="../css/common.css?v=20261021-demoentry16">
+  
+<link rel="stylesheet" href="../css/cooperation.css">
+<link rel="stylesheet" href="../css/glass.css?v=20261021-select25">
+</head>
+  <body>
+  <div id="workspace-startup" role="status" aria-live="polite"><span class="startup-mark" aria-hidden="true"></span><strong>正在加载文献计量工作台…</strong><p>正在准备图形和参数，请稍候。</p><button type="button" hidden>重新加载</button></div>
+  <noscript><style>#workspace-startup{display:none!important}</style><p>请启用JavaScript后重新打开工作台。</p></noscript>
+
+    <h2>人工智能教育：作者与机构合作网络</h2>
+    <div class="note">OpenAlex作者署名与所属机构 · 2020–2026年 · 检索相关性前100篇 article · 教学样本，非完整领域样本</div>
+    <!-- 功能：作者/机构类型统一由上方二级导航选择，此处只保留分析参数。 -->
+    <div class="toolbar">
+      <label>实体最少参与 <input id="min-count" type="number" min="1" step="1" value="1"> 篇</label>
+      <label>最少合作 <input id="min-weight" type="number" min="1" step="1" value="1"> 篇</label>
+      <button id="filter-button" type="button">应用筛选</button>
+      <button id="reset-view" type="button">显示全图</button>
+      <span id="filter-message"></span>
+    </div>
+    <div class="toolbar">
+      <input id="keyword-search" type="text" placeholder="搜索英文实体，如 education">
+      <button id="search-button" type="button">查找</button>
+      <span id="search-message"></span>
+    </div>
+    <div class="toolbar">
+      <label for="color-mode">节点颜色：</label>
+      <select id="color-mode">
+        <option value="year" selected>平均发表年份</option>
+        <option value="plain">统一蓝色</option>
+      </select>
+      <span id="color-description" class="note"></span>
+    </div>
+    <div id="year-legend" style="max-width: 360px; margin: 10px 0;">
+      <div id="year-gradient" style="height: 12px; border-radius: 4px;"></div>
+      <div style="display: flex; justify-content: space-between; font-size: 13px;">
+        <span id="year-min"></span><span id="year-max"></span>
+      </div>
+    </div>
+    <div id="summary" aria-live="polite"></div>
+    <div id="empty" role="status">没有达到节点门槛的实体，请降低门槛。</div>
+    <svg id="network" width="900" height="520" viewBox="0 0 900 520" aria-label="作者与机构合作网络"></svg>
+    <div id="selection" aria-live="polite"></div>
+    <div id="evidence" class="note"></div>
+    <div class="legend">
+      <div><strong>计数口径：</strong>按OpenAlex ID识别实体，每篇内去重，同一实体对每篇最多增加一次。机构连线表示同篇署名机构共现，可能包含一人多机构任职，不一定是不同研究团队合作。缺失信息不推断补齐。</div>
+      <div><strong>圆：</strong>作者或机构；面积与样本内出现的论文数成正比。颜色可切换为平均发表年份或统一蓝色，均不代表主题聚类。</div>
+      <div><strong>线：</strong>同一篇论文出现的作者或机构，线宽与共同论文数成正比。</div>
+      <div><strong>年份颜色：</strong>紫色偏早、黄色偏晚；灰色为缺失年份。平均值仅基于当前100篇样本，不是首次出现年份，也不能单独证明研究热度上升。</div>
+      <div><strong>位置：</strong>力导向布局，不表示年份或地理位置；筛选后重新计算布局。</div>
+      <div><strong>操作：</strong>悬停查看数值；点击高亮当前直接邻居；点击空白恢复；拖动节点，滚轮缩放，拖动空白平移。</div>
+    </div>
+    
+    <script src="../scripts/analysis/cooperation.js"></script>
+    
+  <script src="../scripts/bootstrap.js?v=20261021-select25" data-config='{"data": {"openAlexPapers": "../data/processed/papers.json"}, "scripts": ["../scripts/interactions/edge-rendering.js", "../scripts/charts/cooperation.js", "../scripts/interactions/workspace.js", "../scripts/interactions/liquid-select.js"], "workspace": true}'></script>
+</body>
+</html>

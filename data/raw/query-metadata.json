@@ -1,0 +1,50 @@
+{
+  "retrieved_at": "2026-10-13T20:42:31+08:00",
+  "timezone": "Asia/Shanghai",
+  "request_url": "https://api.openalex.org/works?search=artificial+intelligence+in+education&filter=type%3Aarticle%2Cpublication_year%3A2020-2026&sort=relevance_score%3Adesc&per-page=100&page=1",
+  "parameters": {
+    "search": "artificial intelligence in education",
+    "filter": "type:article,publication_year:2020-2026",
+    "sort": "relevance_score:desc",
+    "per-page": "100",
+    "page": "1"
+  },
+  "returned_count": 100,
+  "scope_note": "按检索相关性获取的前100条article记录；教学样本，未经逐篇纳入排除审查，不代表领域全量或随机样本。",
+  "api_meta": {
+    "count": 726451,
+    "db_response_time_ms": 218,
+    "page": 1,
+    "per_page": 100,
+    "groups_count": null,
+    "x_query": {
+      "oql": "get works where full text has (artificial intelligence in education)\n  and published from 2020 through 2026\n  and type is [article](article)",
+      "oqo": {
+        "get_rows": "works",
+        "filter_rows": [
+          {
+            "column_id": "fulltext.search",
+            "value": "artificial intelligence in education",
+            "operator": "has"
+          },
+          {
+            "column_id": "publication_year",
+            "value": 2020,
+            "operator": ">="
+          },
+          {
+            "column_id": "publication_year",
+            "value": 2026,
+            "operator": "<="
+          },
+          {
+            "column_id": "type",
+            "value": "article"
+          }
+        ]
+      },
+      "url": "/works?filter=fulltext.search:artificial intelligence in education,publication_year:2020-2026,type:article&per_page=100&page=1"
+    },
+    "cost_usd": 0.001
+  }
+}

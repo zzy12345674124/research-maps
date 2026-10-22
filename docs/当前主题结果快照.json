@@ -1,0 +1,1958 @@
+{
+  "saved_at": "2026-10-20",
+  "corpus_file_sha256": "ad61b4cd17065ad1ce7a67a6c3020209ab4cc231e1647846db248004cf539fdf",
+  "service_state": {
+    "status": "done",
+    "message": "BERTopic完成：9个主题，23篇未归类",
+    "result": {
+      "model": "BERTopic",
+      "topics": [
+        {
+          "id": 0,
+          "words": [
+            {
+              "word": "ai",
+              "weight": 0.07193375809476905
+            },
+            {
+              "word": "ethical",
+              "weight": 0.071710407791488
+            },
+            {
+              "word": "aied",
+              "weight": 0.04111861764436226
+            },
+            {
+              "word": "education",
+              "weight": 0.04069907949202916
+            },
+            {
+              "word": "educational",
+              "weight": 0.03425273206305097
+            },
+            {
+              "word": "challenges",
+              "weight": 0.03355518450753438
+            },
+            {
+              "word": "learning",
+              "weight": 0.031288857734819694
+            },
+            {
+              "word": "artificial",
+              "weight": 0.029821453662902373
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "words": [
+            {
+              "word": "intelligence",
+              "weight": 0.10681101353554594
+            },
+            {
+              "word": "artificial",
+              "weight": 0.09497988686646826
+            },
+            {
+              "word": "education",
+              "weight": 0.08120212153310194
+            },
+            {
+              "word": "technologies",
+              "weight": 0.05723537485758036
+            },
+            {
+              "word": "ai",
+              "weight": 0.056952789276893935
+            },
+            {
+              "word": "learning",
+              "weight": 0.04716325907651889
+            },
+            {
+              "word": "human",
+              "weight": 0.04512347132059154
+            },
+            {
+              "word": "computer",
+              "weight": 0.032694040001374366
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "words": [
+            {
+              "word": "ai",
+              "weight": 0.08796520393775248
+            },
+            {
+              "word": "education",
+              "weight": 0.061778740720802444
+            },
+            {
+              "word": "human",
+              "weight": 0.04762340480512628
+            },
+            {
+              "word": "policy",
+              "weight": 0.0399905111737511
+            },
+            {
+              "word": "data",
+              "weight": 0.0391624590378379
+            },
+            {
+              "word": "development",
+              "weight": 0.036740725641193094
+            },
+            {
+              "word": "intelligence",
+              "weight": 0.032893706436861396
+            },
+            {
+              "word": "artificial",
+              "weight": 0.03254957771054258
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "words": [
+            {
+              "word": "learning",
+              "weight": 0.08747615221692356
+            },
+            {
+              "word": "ai",
+              "weight": 0.0604332375104819
+            },
+            {
+              "word": "education",
+              "weight": 0.05161475760760725
+            },
+            {
+              "word": "artificial",
+              "weight": 0.039133469565629596
+            },
+            {
+              "word": "intelligence",
+              "weight": 0.03818350938423126
+            },
+            {
+              "word": "students",
+              "weight": 0.037398122815664986
+            },
+            {
+              "word": "personalized",
+              "weight": 0.03730384593134558
+            },
+            {
+              "word": "virtual",
+              "weight": 0.032135969808061486
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "words": [
+            {
+              "word": "artificial",
+              "weight": 0.06574481197280295
+            },
+            {
+              "word": "intelligence",
+              "weight": 0.06414886471331085
+            },
+            {
+              "word": "educational",
+              "weight": 0.060779619736391614
+            },
+            {
+              "word": "using",
+              "weight": 0.05971837658164028
+            },
+            {
+              "word": "teaching",
+              "weight": 0.051457635332491695
+            },
+            {
+              "word": "process",
+              "weight": 0.05095828755734701
+            },
+            {
+              "word": "education",
+              "weight": 0.04910845383087764
+            },
+            {
+              "word": "study",
+              "weight": 0.046623761950772294
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "words": [
+            {
+              "word": "artificial",
+              "weight": 0.11040937133637223
+            },
+            {
+              "word": "intelligence",
+              "weight": 0.10772919736797727
+            },
+            {
+              "word": "teaching",
+              "weight": 0.06694729669888762
+            },
+            {
+              "word": "teachers",
+              "weight": 0.06666678710212531
+            },
+            {
+              "word": "development",
+              "weight": 0.0579655349364484
+            },
+            {
+              "word": "article",
+              "weight": 0.053575196284071404
+            },
+            {
+              "word": "education",
+              "weight": 0.05319429166342333
+            },
+            {
+              "word": "use",
+              "weight": 0.04756594390558322
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "words": [
+            {
+              "word": "artificial",
+              "weight": 0.08291521641513816
+            },
+            {
+              "word": "intelligence",
+              "weight": 0.08090245969050605
+            },
+            {
+              "word": "teachers",
+              "weight": 0.06308609165954912
+            },
+            {
+              "word": "education",
+              "weight": 0.06223758111084459
+            },
+            {
+              "word": "concern",
+              "weight": 0.04735326899514691
+            },
+            {
+              "word": "article",
+              "weight": 0.0463408248757287
+            },
+            {
+              "word": "results",
+              "weight": 0.039530492584812844
+            },
+            {
+              "word": "chatgpt",
+              "weight": 0.03946105749595576
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "words": [
+            {
+              "word": "human",
+              "weight": 0.08652109948282578
+            },
+            {
+              "word": "decisions",
+              "weight": 0.07021313365749053
+            },
+            {
+              "word": "aied",
+              "weight": 0.06520908717545681
+            },
+            {
+              "word": "ai",
+              "weight": 0.06309506036983428
+            },
+            {
+              "word": "intelligence",
+              "weight": 0.054814825869695785
+            },
+            {
+              "word": "learning",
+              "weight": 0.05076537659459797
+            },
+            {
+              "word": "education",
+              "weight": 0.050602300857495834
+            },
+            {
+              "word": "artificial",
+              "weight": 0.04213391502987853
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "words": [
+            {
+              "word": "teaching",
+              "weight": 0.09463236804672585
+            },
+            {
+              "word": "students",
+              "weight": 0.08416968817847875
+            },
+            {
+              "word": "virtual",
+              "weight": 0.0619941251686389
+            },
+            {
+              "word": "administrative",
+              "weight": 0.056049459836090686
+            },
+            {
+              "word": "learning",
+              "weight": 0.054455416083234794
+            },
+            {
+              "word": "concepts",
+              "weight": 0.05186651530693274
+            },
+            {
+              "word": "make",
+              "weight": 0.05166177097386575
+            },
+            {
+              "word": "tasks",
+              "weight": 0.05094407592784053
+            }
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "id": "https://openalex.org/W3017131514",
+          "primary": null,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.0
+        },
+        {
+          "id": "https://openalex.org/W3157202587",
+          "primary": null,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.0
+        },
+        {
+          "id": "https://openalex.org/W4304943299",
+          "primary": 0,
+          "weights": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W4280651558",
+          "primary": 0,
+          "weights": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.8211189501418243
+        },
+        {
+          "id": "https://openalex.org/W3161130779",
+          "primary": 8,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W3017157646",
+          "primary": 2,
+          "weights": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W3171541559",
+          "primary": 2,
+          "weights": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.8881030140802011
+        },
+        {
+          "id": "https://openalex.org/W4362561529",
+          "primary": 2,
+          "weights": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W4312090823",
+          "primary": 3,
+          "weights": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W4362700866",
+          "primary": 6,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W4400467327",
+          "primary": null,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.0
+        },
+        {
+          "id": "https://openalex.org/W4301367111",
+          "primary": 7,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W4403436334",
+          "primary": 6,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W4200613005",
+          "primary": 0,
+          "weights": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.9258929070251357
+        },
+        {
+          "id": "https://openalex.org/W4285687678",
+          "primary": 5,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W3084021717",
+          "primary": 7,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W3134557096",
+          "primary": 1,
+          "weights": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.8674741856584127
+        },
+        {
+          "id": "https://openalex.org/W4309082440",
+          "primary": 2,
+          "weights": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.8881030140802011
+        },
+        {
+          "id": "https://openalex.org/W4392559040",
+          "primary": 0,
+          "weights": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W3048335295",
+          "primary": 0,
+          "weights": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.8952362705859825
+        },
+        {
+          "id": "https://openalex.org/W4206046353",
+          "primary": 8,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W3084223432",
+          "primary": 7,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W3165860937",
+          "primary": null,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.0
+        },
+        {
+          "id": "https://openalex.org/W3196708219",
+          "primary": null,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.0
+        },
+        {
+          "id": "https://openalex.org/W4404816710",
+          "primary": 2,
+          "weights": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W3183729542",
+          "primary": 0,
+          "weights": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.8211189501418243
+        },
+        {
+          "id": "https://openalex.org/W3093424417",
+          "primary": null,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.0
+        },
+        {
+          "id": "https://openalex.org/W4386634686",
+          "primary": null,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.0
+        },
+        {
+          "id": "https://openalex.org/W4385878593",
+          "primary": 3,
+          "weights": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.9239702057182677
+        },
+        {
+          "id": "https://openalex.org/W4388582970",
+          "primary": null,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.0
+        },
+        {
+          "id": "https://openalex.org/W4381982900",
+          "primary": null,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.0
+        },
+        {
+          "id": "https://openalex.org/W4406399779",
+          "primary": 6,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W3199189488",
+          "primary": 0,
+          "weights": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.9258929070251357
+        },
+        {
+          "id": "https://openalex.org/W4281876676",
+          "primary": 2,
+          "weights": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.8881030140802011
+        },
+        {
+          "id": "https://openalex.org/W4401620743",
+          "primary": 7,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W4399332765",
+          "primary": 2,
+          "weights": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W3019964656",
+          "primary": 8,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W4312212874",
+          "primary": 4,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W4220830656",
+          "primary": 5,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W4205434655",
+          "primary": 3,
+          "weights": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W7215253954",
+          "primary": 5,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W4392394652",
+          "primary": null,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.0
+        },
+        {
+          "id": "https://openalex.org/W3119248952",
+          "primary": 2,
+          "weights": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.8881030140802011
+        },
+        {
+          "id": "https://openalex.org/W4383092673",
+          "primary": 0,
+          "weights": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W3036231015",
+          "primary": 3,
+          "weights": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W4383312374",
+          "primary": 4,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W4293036536",
+          "primary": 7,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "membership": 0.9453728996600542
+        },
+        {
+          "id": "https://openalex.org/W4382239093",
+          "primary": 3,
+          "weights": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.9239702057182677
+        },
+        {
+          "id": "https://openalex.org/W4403988127",
+          "primary": 4,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W4407173930",
+          "primary": 3,
+          "weights": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W4385393575",
+          "primary": 1,
+          "weights": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W4402338881",
+          "primary": null,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.0
+        },
+        {
+          "id": "https://openalex.org/W4391736956",
+          "primary": 1,
+          "weights": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.8988250946902193
+        },
+        {
+          "id": "https://openalex.org/W4381736244",
+          "primary": 1,
+          "weights": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W7125699047",
+          "primary": null,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.0
+        },
+        {
+          "id": "https://openalex.org/W3123649662",
+          "primary": 2,
+          "weights": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W4396958077",
+          "primary": 3,
+          "weights": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W4383164169",
+          "primary": 1,
+          "weights": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.9204814049829795
+        },
+        {
+          "id": "https://openalex.org/W4367626063",
+          "primary": 0,
+          "weights": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W4379797486",
+          "primary": 8,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W4401550636",
+          "primary": 8,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W4391874286",
+          "primary": 5,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W4386021471",
+          "primary": null,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.0
+        },
+        {
+          "id": "https://openalex.org/W4397039187",
+          "primary": 1,
+          "weights": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W4410189016",
+          "primary": 4,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W3006837908",
+          "primary": 7,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W4297371803",
+          "primary": 0,
+          "weights": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W4402533058",
+          "primary": 4,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W4396872845",
+          "primary": 0,
+          "weights": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.8947334360092739
+        },
+        {
+          "id": "https://openalex.org/W4401727214",
+          "primary": null,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.0
+        },
+        {
+          "id": "https://openalex.org/W4285255124",
+          "primary": 2,
+          "weights": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W3198340118",
+          "primary": 1,
+          "weights": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.9204814049829795
+        },
+        {
+          "id": "https://openalex.org/W7160523838",
+          "primary": 1,
+          "weights": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.8674741856584127
+        },
+        {
+          "id": "https://openalex.org/W4293086466",
+          "primary": 4,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.9107548725789921
+        },
+        {
+          "id": "https://openalex.org/W4391987277",
+          "primary": 1,
+          "weights": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.9204814049829795
+        },
+        {
+          "id": "https://openalex.org/W3165783357",
+          "primary": 0,
+          "weights": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.8952362705859825
+        },
+        {
+          "id": "https://openalex.org/W4409900343",
+          "primary": 4,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.9107548725789921
+        },
+        {
+          "id": "https://openalex.org/W4400214481",
+          "primary": 0,
+          "weights": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.8211189501418243
+        },
+        {
+          "id": "https://openalex.org/W3138147850",
+          "primary": null,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.0
+        },
+        {
+          "id": "https://openalex.org/W4290608944",
+          "primary": 5,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W7215165402",
+          "primary": 1,
+          "weights": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W7123346957",
+          "primary": 5,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W7220200998",
+          "primary": 1,
+          "weights": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.8674741856584127
+        },
+        {
+          "id": "https://openalex.org/W4390667178",
+          "primary": 6,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W7135207901",
+          "primary": null,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.0
+        },
+        {
+          "id": "https://openalex.org/W4385516365",
+          "primary": null,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.0
+        },
+        {
+          "id": "https://openalex.org/W3181940694",
+          "primary": null,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.0
+        },
+        {
+          "id": "https://openalex.org/W4378084822",
+          "primary": null,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.0
+        },
+        {
+          "id": "https://openalex.org/W4367692649",
+          "primary": null,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.0
+        },
+        {
+          "id": "https://openalex.org/W7217772202",
+          "primary": 6,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W3168922773",
+          "primary": 1,
+          "weights": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W7171171929",
+          "primary": null,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.0
+        },
+        {
+          "id": "https://openalex.org/W4404552125",
+          "primary": 0,
+          "weights": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.9258929070251357
+        },
+        {
+          "id": "https://openalex.org/W4410168395",
+          "primary": 3,
+          "weights": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W3209983902",
+          "primary": 1,
+          "weights": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.8674741856584127
+        },
+        {
+          "id": "https://openalex.org/W4402596113",
+          "primary": 6,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W7118159066",
+          "primary": null,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.0
+        },
+        {
+          "id": "https://openalex.org/W4317927239",
+          "primary": 3,
+          "weights": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        },
+        {
+          "id": "https://openalex.org/W4415422963",
+          "primary": null,
+          "weights": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 0.0
+        },
+        {
+          "id": "https://openalex.org/W4392898352",
+          "primary": 0,
+          "weights": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "membership": 1.0
+        }
+      ],
+      "used": 100,
+      "outliers": 23,
+      "seed": 42,
+      "options": {
+        "minSize": 5,
+        "neighbors": 15,
+        "topWords": 8,
+        "minDf": 2
+      }
+    }
+  },
+  "note": "用户已运行结果的保存副本；服务重启会清空内存，此快照尚未接入网页自动恢复。"
+}

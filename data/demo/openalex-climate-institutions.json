@@ -1,0 +1,5662 @@
+{
+  "metadata": {
+    "title": "气候变化研究：机构合作地理网络",
+    "source": "OpenAlex",
+    "license": "CC0",
+    "retrieved_at": "2026-10-21T13:49:50.447396+00:00",
+    "query": {
+      "search": "climate change",
+      "filter": "type:article,publication_year:2018-2025",
+      "per_page": 100,
+      "select": "id,title,publication_year,doi,authorships,referenced_works,primary_topic,cited_by_count"
+    },
+    "request_url": "https://api.openalex.org/works?search=climate+change&filter=type%3Aarticle%2Cpublication_year%3A2018-2025&per_page=100&select=id%2Ctitle%2Cpublication_year%2Cdoi%2Cauthorships%2Creferenced_works%2Cprimary_topic%2Ccited_by_count",
+    "sample_size": 100,
+    "included_papers": 92,
+    "excluded_large_teams": [
+      {
+        "id": "https://openalex.org/W4308325267",
+        "title": "Scientists' warning on climate change and insects",
+        "institutions": 67
+      },
+      {
+        "id": "https://openalex.org/W3006291201",
+        "title": "The 2025 report of the Lancet Countdown on health and climate change: climate change action offers a lifeline",
+        "institutions": 66
+      },
+      {
+        "id": "https://openalex.org/W2950398529",
+        "title": "Tackling Climate Change with Machine Learning",
+        "institutions": 22
+      },
+      {
+        "id": "https://openalex.org/W4402262878",
+        "title": "Climate change exacerbates the environmental impacts of agriculture",
+        "institutions": 22
+      },
+      {
+        "id": "https://openalex.org/W2900106581",
+        "title": "Compositional response of Amazon forests to climate change",
+        "institutions": 75
+      },
+      {
+        "id": "https://openalex.org/W3022524405",
+        "title": "Monsoons Climate Change Assessment",
+        "institutions": 31
+      },
+      {
+        "id": "https://openalex.org/W4210916416",
+        "title": "Tackling Climate Change with Machine Learning",
+        "institutions": 22
+      },
+      {
+        "id": "https://openalex.org/W4220960159",
+        "title": "Climate change in the Baltic Sea region: a summary",
+        "institutions": 24
+      }
+    ],
+    "maximum_institutions_per_paper": 20,
+    "maximum_nodes": 160,
+    "missing_coordinates": [],
+    "hidden_isolates": [
+      "https://openalex.org/I118746106",
+      "https://openalex.org/I103320735",
+      "https://openalex.org/I1118541",
+      "https://openalex.org/I126345244",
+      "https://openalex.org/I1293035123",
+      "https://openalex.org/I133731052",
+      "https://openalex.org/I143302722",
+      "https://openalex.org/I162148367",
+      "https://openalex.org/I168719708",
+      "https://openalex.org/I180670191",
+      "https://openalex.org/I181343428",
+      "https://openalex.org/I223822909",
+      "https://openalex.org/I23946033",
+      "https://openalex.org/I2802326326"
+    ],
+    "node_count": 146,
+    "edge_count": 399,
+    "country_count": 29,
+    "international_edges": 251,
+    "scope_note": "相关性前100篇article，2018–2025；为演示选择，非领域全量或随机样本。单篇超过20机构的论文排除并记录；其余按样本发文数取前160机构，缺坐标和孤立点不显示。",
+    "relationship_note": "无向边表示两机构出现在同一篇样本论文的署名中；同篇同机构去重，边权为共同论文数，不代表直接沟通或因果关系。",
+    "layout_note": "按OpenAlex机构经纬度定位，未做力导向重排；同城市机构可重合，当前机构地址不是历史迁址轨迹。拖动仅供画法演示，可恢复。"
+  },
+  "nodes": [
+    {
+      "name": "https://openalex.org/I78577930",
+      "label": "Columbia University",
+      "count": 6,
+      "country": "US",
+      "city": "New York",
+      "latitude": 40.71427,
+      "longitude": -74.00597,
+      "paperIds": [
+        "https://openalex.org/W4309924944",
+        "https://openalex.org/W2802674596",
+        "https://openalex.org/W3008870444",
+        "https://openalex.org/W3001653539",
+        "https://openalex.org/W4321225268",
+        "https://openalex.org/W4322624932"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I909854389",
+      "label": "London School of Economics and Political Science",
+      "count": 4,
+      "country": "GB",
+      "city": "London",
+      "latitude": 51.50853,
+      "longitude": -0.12574,
+      "paperIds": [
+        "https://openalex.org/W3154807984",
+        "https://openalex.org/W2804677512",
+        "https://openalex.org/W4321225268",
+        "https://openalex.org/W2914388185"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I151808059",
+      "label": "Colorado School of Public Health",
+      "count": 3,
+      "country": "US",
+      "city": "Aurora",
+      "latitude": 39.72943,
+      "longitude": -104.83192,
+      "paperIds": [
+        "https://openalex.org/W3092358196",
+        "https://openalex.org/W2949104016",
+        "https://openalex.org/W3198221850"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I152304114",
+      "label": "Lamont-Doherty Earth Observatory",
+      "count": 3,
+      "country": "US",
+      "city": "Sparkill",
+      "latitude": 41.03121,
+      "longitude": -73.92708,
+      "paperIds": [
+        "https://openalex.org/W2802674596",
+        "https://openalex.org/W3008870444",
+        "https://openalex.org/W3001653539"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I165779595",
+      "label": "The University of Melbourne",
+      "count": 3,
+      "country": "AU",
+      "city": "Melbourne",
+      "latitude": -37.814,
+      "longitude": 144.96332,
+      "paperIds": [
+        "https://openalex.org/W2797881053",
+        "https://openalex.org/W3008870444",
+        "https://openalex.org/W2805155961"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I201448701",
+      "label": "University of Washington",
+      "count": 3,
+      "country": "US",
+      "city": "Seattle",
+      "latitude": 47.60621,
+      "longitude": -122.33207,
+      "paperIds": [
+        "https://openalex.org/W3092358196",
+        "https://openalex.org/W3159693981",
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I32971472",
+      "label": "Yale University",
+      "count": 3,
+      "country": "US",
+      "city": "New Haven",
+      "latitude": 41.30815,
+      "longitude": -72.92816,
+      "paperIds": [
+        "https://openalex.org/W3092358196",
+        "https://openalex.org/W4214836379",
+        "https://openalex.org/W2947439144"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I71209653",
+      "label": "Bocconi University",
+      "count": 3,
+      "country": "IT",
+      "city": "Milan",
+      "latitude": 45.464271545410156,
+      "longitude": 9.189510345458984,
+      "paperIds": [
+        "https://openalex.org/W3023799773",
+        "https://openalex.org/W4322624932",
+        "https://openalex.org/W2925259354"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I97018004",
+      "label": "Stanford University",
+      "count": 3,
+      "country": "US",
+      "city": "Stanford",
+      "latitude": 37.42411,
+      "longitude": -122.16608,
+      "paperIds": [
+        "https://openalex.org/W3020926882",
+        "https://openalex.org/W4399974829",
+        "https://openalex.org/W4224221455"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I107766831",
+      "label": "NSF National Center for Atmospheric Research",
+      "count": 2,
+      "country": "US",
+      "city": "Boulder",
+      "latitude": 40.01499,
+      "longitude": -105.27055,
+      "paperIds": [
+        "https://openalex.org/W2936023010",
+        "https://openalex.org/W2801677017"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I114457229",
+      "label": "University of Geneva",
+      "count": 2,
+      "country": "CH",
+      "city": "Geneva",
+      "latitude": 46.20222,
+      "longitude": 6.14569,
+      "paperIds": [
+        "https://openalex.org/W2795439002",
+        "https://openalex.org/W2976372744"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I117965899",
+      "label": "University of Hawaiʻi at Mānoa",
+      "count": 2,
+      "country": "US",
+      "city": "Honolulu",
+      "latitude": 21.30694,
+      "longitude": -157.85833,
+      "paperIds": [
+        "https://openalex.org/W2949104016",
+        "https://openalex.org/W4224221455"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I127251866",
+      "label": "Alfred-Wegener-Institut Helmholtz-Zentrum für Polar- und Meeresforschung",
+      "count": 2,
+      "country": "DE",
+      "city": "Bremerhaven",
+      "latitude": 53.53615188598633,
+      "longitude": 8.59298038482666,
+      "paperIds": [
+        "https://openalex.org/W2936023010",
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I1292875679",
+      "label": "Commonwealth Scientific and Industrial Research Organisation",
+      "count": 2,
+      "country": "AU",
+      "city": "Canberra",
+      "latitude": -35.28346,
+      "longitude": 149.12807,
+      "paperIds": [
+        "https://openalex.org/W2977631046",
+        "https://openalex.org/W3108498161"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I1294671590",
+      "label": "Centre National de la Recherche Scientifique",
+      "count": 2,
+      "country": "FR",
+      "city": "Paris",
+      "latitude": 48.85341,
+      "longitude": 2.3488,
+      "paperIds": [
+        "https://openalex.org/W3046602060",
+        "https://openalex.org/W2953584228"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I134113660",
+      "label": "University of Nevada, Reno",
+      "count": 2,
+      "country": "US",
+      "city": "Reno",
+      "latitude": 39.52963,
+      "longitude": -119.8138,
+      "paperIds": [
+        "https://openalex.org/W3120704587",
+        "https://openalex.org/W2906188550"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I134820265",
+      "label": "Consejo Superior de Investigaciones Científicas",
+      "count": 2,
+      "country": "ES",
+      "city": "Madrid",
+      "latitude": 40.4165,
+      "longitude": -3.70256,
+      "paperIds": [
+        "https://openalex.org/W2883967485",
+        "https://openalex.org/W4200339548"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I135310074",
+      "label": "University of Wisconsin–Madison",
+      "count": 2,
+      "country": "US",
+      "city": "Madison",
+      "latitude": 43.07305,
+      "longitude": -89.40123,
+      "paperIds": [
+        "https://openalex.org/W4200339548",
+        "https://openalex.org/W3001653539"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I136199984",
+      "label": "Harvard University",
+      "count": 2,
+      "country": "US",
+      "city": "Cambridge",
+      "latitude": 42.3751,
+      "longitude": -71.10561,
+      "paperIds": [
+        "https://openalex.org/W3103603843",
+        "https://openalex.org/W4399569145"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I145311948",
+      "label": "Johns Hopkins University",
+      "count": 2,
+      "country": "US",
+      "city": "Baltimore",
+      "latitude": 39.29038,
+      "longitude": -76.61219,
+      "paperIds": [
+        "https://openalex.org/W3159693981",
+        "https://openalex.org/W4224221455"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I145608581",
+      "label": "University of Miami",
+      "count": 2,
+      "country": "US",
+      "city": "Coral Gables",
+      "latitude": 25.72149,
+      "longitude": -80.26838,
+      "paperIds": [
+        "https://openalex.org/W4322624932",
+        "https://openalex.org/W4376618280"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I148283060",
+      "label": "Lawrence Berkeley National Laboratory",
+      "count": 2,
+      "country": "US",
+      "city": "Berkeley",
+      "latitude": 37.87158966064453,
+      "longitude": -122.27275085449219,
+      "paperIds": [
+        "https://openalex.org/W3008870444",
+        "https://openalex.org/W4224221455"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I151746483",
+      "label": "University of Waterloo",
+      "count": 2,
+      "country": "CA",
+      "city": "Waterloo",
+      "latitude": 43.4668,
+      "longitude": -80.51639,
+      "paperIds": [
+        "https://openalex.org/W3129037874",
+        "https://openalex.org/W2925259354"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I170897317",
+      "label": "Duke University",
+      "count": 2,
+      "country": "US",
+      "city": "Durham",
+      "latitude": 35.99403,
+      "longitude": -78.89862,
+      "paperIds": [
+        "https://openalex.org/W2977631046",
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I178535277",
+      "label": "University of the West of England",
+      "count": 2,
+      "country": "GB",
+      "city": "Bristol",
+      "latitude": 51.455230712890625,
+      "longitude": -2.5966498851776123,
+      "paperIds": [
+        "https://openalex.org/W2754240787",
+        "https://openalex.org/W2804677512"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I186903577",
+      "label": "University of Luxembourg",
+      "count": 2,
+      "country": "LU",
+      "city": "Luxembourg",
+      "latitude": 49.60982,
+      "longitude": 6.13268,
+      "paperIds": [
+        "https://openalex.org/W2953584228",
+        "https://openalex.org/W2976372744"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I192619145",
+      "label": "University of the Witwatersrand",
+      "count": 2,
+      "country": "ZA",
+      "city": "Johannesburg",
+      "latitude": -26.20227,
+      "longitude": 28.04363,
+      "paperIds": [
+        "https://openalex.org/W4221087878",
+        "https://openalex.org/W3093882677"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I19820366",
+      "label": "Chinese Academy of Sciences",
+      "count": 2,
+      "country": "CN",
+      "city": "Beijing",
+      "latitude": 39.9075,
+      "longitude": 116.39723,
+      "paperIds": [
+        "https://openalex.org/W2922633580",
+        "https://openalex.org/W2800485765"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I20089843",
+      "label": "Princeton University",
+      "count": 2,
+      "country": "US",
+      "city": "Princeton",
+      "latitude": 40.34872,
+      "longitude": -74.65905,
+      "paperIds": [
+        "https://openalex.org/W3008870444",
+        "https://openalex.org/W2952032746"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I20231570",
+      "label": "Peking University",
+      "count": 2,
+      "country": "CN",
+      "city": "Beijing",
+      "latitude": 39.9075,
+      "longitude": 116.39723,
+      "paperIds": [
+        "https://openalex.org/W2922633580",
+        "https://openalex.org/W2800485765"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I205783295",
+      "label": "Cornell University",
+      "count": 2,
+      "country": "US",
+      "city": "Ithaca",
+      "latitude": 42.44063,
+      "longitude": -76.49661,
+      "paperIds": [
+        "https://openalex.org/W2800267705",
+        "https://openalex.org/W4200339548"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I23923803",
+      "label": "University of Exeter",
+      "count": 2,
+      "country": "GB",
+      "city": "Exeter",
+      "latitude": 50.72359848022461,
+      "longitude": -3.527509927749634,
+      "paperIds": [
+        "https://openalex.org/W3001653539",
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I2613432",
+      "label": "University of South Florida",
+      "count": 2,
+      "country": "US",
+      "city": "Tampa",
+      "latitude": 27.94752,
+      "longitude": -82.45843,
+      "paperIds": [
+        "https://openalex.org/W2936023010",
+        "https://openalex.org/W2790716069"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I2802905149",
+      "label": "Federal Reserve Board of Governors",
+      "count": 2,
+      "country": "US",
+      "city": "Washington D.C.",
+      "latitude": 38.896690368652344,
+      "longitude": -77.04039001464844,
+      "paperIds": [
+        "https://openalex.org/W4328094166",
+        "https://openalex.org/W3138288500"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I3018134672",
+      "label": "Helmholtz Munich",
+      "count": 2,
+      "country": "DE",
+      "city": "Munich",
+      "latitude": 48.13743,
+      "longitude": 11.57549,
+      "paperIds": [
+        "https://openalex.org/W3103603843",
+        "https://openalex.org/W4281684813"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I35440088",
+      "label": "ETH Zurich",
+      "count": 2,
+      "country": "CH",
+      "city": "Zurich",
+      "latitude": 47.36667,
+      "longitude": 8.55,
+      "paperIds": [
+        "https://openalex.org/W2795439002",
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I40120149",
+      "label": "University of Oxford",
+      "count": 2,
+      "country": "GB",
+      "city": "Oxford",
+      "latitude": 51.75222,
+      "longitude": -1.25596,
+      "paperIds": [
+        "https://openalex.org/W2883967485",
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I4210089966",
+      "label": "London School of Hygiene & Tropical Medicine",
+      "count": 2,
+      "country": "GB",
+      "city": "London",
+      "latitude": 51.50853,
+      "longitude": -0.12574,
+      "paperIds": [
+        "https://openalex.org/W3092358196",
+        "https://openalex.org/W3159693981"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I4210095222",
+      "label": "RFF-CMCC European Institute on Economics and the Environment",
+      "count": 2,
+      "country": "IT",
+      "city": "Milan",
+      "latitude": 45.464271545410156,
+      "longitude": 9.189510345458984,
+      "paperIds": [
+        "https://openalex.org/W2953584228",
+        "https://openalex.org/W2925259354"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I4210158097",
+      "label": "Institute of Botany",
+      "count": 2,
+      "country": "CN",
+      "city": "Beijing",
+      "latitude": 39.9075,
+      "longitude": 116.39723,
+      "paperIds": [
+        "https://openalex.org/W2922633580",
+        "https://openalex.org/W2800485765"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I4210160793",
+      "label": "Institute of Geographic Sciences and Natural Resources Research",
+      "count": 2,
+      "country": "CN",
+      "city": "Beijing",
+      "latitude": 39.9075,
+      "longitude": 116.39723,
+      "paperIds": [
+        "https://openalex.org/W2922633580",
+        "https://openalex.org/W2800485765"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I45129253",
+      "label": "University College London",
+      "count": 2,
+      "country": "GB",
+      "city": "London",
+      "latitude": 51.50853,
+      "longitude": -0.12574,
+      "paperIds": [
+        "https://openalex.org/W3198221850",
+        "https://openalex.org/W2804677512"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I51713134",
+      "label": "University of Colorado Anschutz",
+      "count": 2,
+      "country": "US",
+      "city": "Aurora",
+      "latitude": 39.72943,
+      "longitude": -104.83192,
+      "paperIds": [
+        "https://openalex.org/W2949104016",
+        "https://openalex.org/W3198221850"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I57206974",
+      "label": "New York University",
+      "count": 2,
+      "country": "US",
+      "city": "New York",
+      "latitude": 40.71427,
+      "longitude": -74.00597,
+      "paperIds": [
+        "https://openalex.org/W4214836379",
+        "https://openalex.org/W4322624932"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I68435313",
+      "label": "Australian Psychological Society",
+      "count": 2,
+      "country": "AU",
+      "city": "Melbourne",
+      "latitude": -37.81617736816406,
+      "longitude": 144.96572875976562,
+      "paperIds": [
+        "https://openalex.org/W2797881053",
+        "https://openalex.org/W2805155961"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I71052956",
+      "label": "University of Reading",
+      "count": 2,
+      "country": "GB",
+      "city": "Reading",
+      "latitude": 51.45624923706055,
+      "longitude": -0.9711300134658813,
+      "paperIds": [
+        "https://openalex.org/W3046602060",
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I72951846",
+      "label": "Washington State University",
+      "count": 2,
+      "country": "US",
+      "city": "Pullman",
+      "latitude": 46.73127,
+      "longitude": -117.17962,
+      "paperIds": [
+        "https://openalex.org/W4200339548",
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I76835614",
+      "label": "University of Missouri",
+      "count": 2,
+      "country": "US",
+      "city": "Columbia",
+      "latitude": 38.95171,
+      "longitude": -92.33407,
+      "paperIds": [
+        "https://openalex.org/W2978070827",
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I90326151",
+      "label": "Ecole des Hautes Etudes Commerciales du Nord",
+      "count": 2,
+      "country": "FR",
+      "city": "Roubaix",
+      "latitude": 50.69421,
+      "longitude": 3.17456,
+      "paperIds": [
+        "https://openalex.org/W3023799773",
+        "https://openalex.org/W4210287977"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I92446798",
+      "label": "Colorado State University",
+      "count": 2,
+      "country": "US",
+      "city": "Fort Collins",
+      "latitude": 40.58526,
+      "longitude": -105.08442,
+      "paperIds": [
+        "https://openalex.org/W2803466701",
+        "https://openalex.org/W2922633580"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I99065089",
+      "label": "Tsinghua University",
+      "count": 2,
+      "country": "CN",
+      "city": "Beijing",
+      "latitude": 39.9075,
+      "longitude": 116.39723,
+      "paperIds": [
+        "https://openalex.org/W4403074858",
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I102248843",
+      "label": "Vienna University of Economics and Business",
+      "count": 1,
+      "country": "AT",
+      "city": "Vienna",
+      "latitude": 48.20849,
+      "longitude": 16.37208,
+      "paperIds": [
+        "https://openalex.org/W2804677512"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I102322142",
+      "label": "Rutgers, The State University of New Jersey",
+      "count": 1,
+      "country": "US",
+      "city": "New Brunswick",
+      "latitude": 40.48622,
+      "longitude": -74.45182,
+      "paperIds": [
+        "https://openalex.org/W2925259354"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I103031861",
+      "label": "Plekhanov Russian University of Economics",
+      "count": 1,
+      "country": "RU",
+      "city": "Moscow",
+      "latitude": 55.75204,
+      "longitude": 37.61781,
+      "paperIds": [
+        "https://openalex.org/W3036045166"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I107672454",
+      "label": "Dartmouth College",
+      "count": 1,
+      "country": "US",
+      "city": "Hanover",
+      "latitude": 43.70229,
+      "longitude": -72.28954,
+      "paperIds": [
+        "https://openalex.org/W2802674596"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I111088046",
+      "label": "Boston University",
+      "count": 1,
+      "country": "US",
+      "city": "Boston",
+      "latitude": 42.35843,
+      "longitude": -71.05977,
+      "paperIds": [
+        "https://openalex.org/W2949104016"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I115891769",
+      "label": "Universidade dos Açores",
+      "count": 1,
+      "country": "PT",
+      "city": "Ponta Delgada",
+      "latitude": 37.73952,
+      "longitude": -25.66874,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I118347636",
+      "label": "Australian National University",
+      "count": 1,
+      "country": "AU",
+      "city": "Canberra",
+      "latitude": -35.28346,
+      "longitude": 149.12807,
+      "paperIds": [
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I118564535",
+      "label": "University of Bern",
+      "count": 1,
+      "country": "CH",
+      "city": "Bern",
+      "latitude": 46.94809,
+      "longitude": 7.44744,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I119454577",
+      "label": "Nanjing Agricultural University",
+      "count": 1,
+      "country": "CN",
+      "city": "Nanjing",
+      "latitude": 32.061668395996094,
+      "longitude": 118.77777862548828,
+      "paperIds": [
+        "https://openalex.org/W2800485765"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I11986463",
+      "label": "Università Iuav di Venezia",
+      "count": 1,
+      "country": "IT",
+      "city": "Venice",
+      "latitude": 45.437129974365234,
+      "longitude": 12.332650184631348,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I119942576",
+      "label": "University of the Pacific",
+      "count": 1,
+      "country": "US",
+      "city": "Stockton",
+      "latitude": 37.9577,
+      "longitude": -121.29078,
+      "paperIds": [
+        "https://openalex.org/W2797881053"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I121748325",
+      "label": "Universidad Complutense de Madrid",
+      "count": 1,
+      "country": "ES",
+      "city": "Madrid",
+      "latitude": 40.4165,
+      "longitude": -3.70256,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I123387679",
+      "label": "Uppsala University",
+      "count": 1,
+      "country": "SE",
+      "city": "Uppsala",
+      "latitude": 59.85882,
+      "longitude": 17.63889,
+      "paperIds": [
+        "https://openalex.org/W3080089062"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I124357947",
+      "label": "University of London",
+      "count": 1,
+      "country": "GB",
+      "city": "London",
+      "latitude": 51.50853,
+      "longitude": -0.12574,
+      "paperIds": [
+        "https://openalex.org/W2754240787"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I1279858714",
+      "label": "Center for Economic and Policy Research",
+      "count": 1,
+      "country": "US",
+      "city": "Washington",
+      "latitude": 38.89511,
+      "longitude": -77.03637,
+      "paperIds": [
+        "https://openalex.org/W4214836379"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I1280367701",
+      "label": "Canadian Forest Service",
+      "count": 1,
+      "country": "CA",
+      "city": "Ottawa",
+      "latitude": 45.411170959472656,
+      "longitude": -75.6981201171875,
+      "paperIds": [
+        "https://openalex.org/W2799473280"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I1281735042",
+      "label": "Natural Resources Canada",
+      "count": 1,
+      "country": "CA",
+      "city": "Ottawa",
+      "latitude": 45.41117,
+      "longitude": -75.69812,
+      "paperIds": [
+        "https://openalex.org/W2799473280"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I12834331",
+      "label": "University of Wyoming",
+      "count": 1,
+      "country": "US",
+      "city": "Laramie",
+      "latitude": 41.31137,
+      "longitude": -105.5911,
+      "paperIds": [
+        "https://openalex.org/W3001653539"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I1288198617",
+      "label": "American Cancer Society",
+      "count": 1,
+      "country": "US",
+      "city": "Atlanta",
+      "latitude": 33.749,
+      "longitude": -84.38798,
+      "paperIds": [
+        "https://openalex.org/W4376618280"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I1288882113",
+      "label": "Boston Children's Hospital",
+      "count": 1,
+      "country": "US",
+      "city": "Boston",
+      "latitude": 42.35843,
+      "longitude": -71.05977,
+      "paperIds": [
+        "https://openalex.org/W4399569145"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I129628643",
+      "label": "Université Joseph Ki-Zerbo",
+      "count": 1,
+      "country": "BF",
+      "city": "Ouagadougou",
+      "latitude": 12.365659713745117,
+      "longitude": -1.5338799953460693,
+      "paperIds": [
+        "https://openalex.org/W3138940549"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I129801699",
+      "label": "University of Tasmania",
+      "count": 1,
+      "country": "AU",
+      "city": "Hobart",
+      "latitude": -42.87936,
+      "longitude": 147.32941,
+      "paperIds": [
+        "https://openalex.org/W3092358196"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I1299204452",
+      "label": "Oeschger Centre for Climate Change Research",
+      "count": 1,
+      "country": "CH",
+      "city": "Bern",
+      "latitude": 46.95048904418945,
+      "longitude": 7.438118934631348,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I1302211766",
+      "label": "Queensland Health",
+      "count": 1,
+      "country": "AU",
+      "city": "Brisbane",
+      "latitude": -27.46794,
+      "longitude": 153.02809,
+      "paperIds": [
+        "https://openalex.org/W3159693981"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I1302368450",
+      "label": "Environmental Protection Agency",
+      "count": 1,
+      "country": "US",
+      "city": "Washington",
+      "latitude": 38.89511,
+      "longitude": -77.03637,
+      "paperIds": [
+        "https://openalex.org/W4399569145"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I130359222",
+      "label": "Université Abdou Moumouni",
+      "count": 1,
+      "country": "NE",
+      "city": "Niamey",
+      "latitude": 13.51366,
+      "longitude": 2.1098,
+      "paperIds": [
+        "https://openalex.org/W3138940549"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I130480701",
+      "label": "Dongbei University of Finance and Economics",
+      "count": 1,
+      "country": "CN",
+      "city": "Dalian",
+      "latitude": 38.91222,
+      "longitude": 121.60222,
+      "paperIds": [
+        "https://openalex.org/W4322624932"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I1306266525",
+      "label": "Goddard Space Flight Center",
+      "count": 1,
+      "country": "US",
+      "city": "Greenbelt",
+      "latitude": 39.00455,
+      "longitude": -76.87553,
+      "paperIds": [
+        "https://openalex.org/W2936023010"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I130769515",
+      "label": "Pennsylvania State University",
+      "count": 1,
+      "country": "US",
+      "city": "State College",
+      "latitude": 40.79339,
+      "longitude": -77.86,
+      "paperIds": [
+        "https://openalex.org/W4224221455"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I1308126019",
+      "label": "National Oceanic and Atmospheric Administration",
+      "count": 1,
+      "country": "US",
+      "city": "Washington",
+      "latitude": 38.89511,
+      "longitude": -77.03637,
+      "paperIds": [
+        "https://openalex.org/W3008870444"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I1308548392",
+      "label": "Santa Fe Institute",
+      "count": 1,
+      "country": "US",
+      "city": "Santa Fe",
+      "latitude": 35.686981201171875,
+      "longitude": -105.93779754638672,
+      "paperIds": [
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I1313323035",
+      "label": "Russian Academy of Sciences",
+      "count": 1,
+      "country": "RU",
+      "city": "Moscow",
+      "latitude": 55.75204,
+      "longitude": 37.61781,
+      "paperIds": [
+        "https://openalex.org/W3036045166"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I1316535847",
+      "label": "Beth Israel Deaconess Medical Center",
+      "count": 1,
+      "country": "US",
+      "city": "Boston",
+      "latitude": 42.339786529541016,
+      "longitude": -71.10518646240234,
+      "paperIds": [
+        "https://openalex.org/W4399569145"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I1317239608",
+      "label": "Federal Reserve",
+      "count": 1,
+      "country": "US",
+      "city": "Washington",
+      "latitude": 38.89511,
+      "longitude": -77.03637,
+      "paperIds": [
+        "https://openalex.org/W3138288500"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I1320745970",
+      "label": "Food and Agriculture Organization of the United Nations",
+      "count": 1,
+      "country": "IT",
+      "city": "Rome",
+      "latitude": 41.89193,
+      "longitude": 12.51133,
+      "paperIds": [
+        "https://openalex.org/W2953584228"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I1321305853",
+      "label": "National Bureau of Economic Research",
+      "count": 1,
+      "country": "US",
+      "city": "Cambridge",
+      "latitude": 42.3751,
+      "longitude": -71.10561,
+      "paperIds": [
+        "https://openalex.org/W4214836379"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I1334329717",
+      "label": "World Bank",
+      "count": 1,
+      "country": "US",
+      "city": "Washington",
+      "latitude": 38.895111083984375,
+      "longitude": -77.03636932373047,
+      "paperIds": [
+        "https://openalex.org/W2803466701"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I1334627681",
+      "label": "Jet Propulsion Laboratory",
+      "count": 1,
+      "country": "US",
+      "city": "Pasadena",
+      "latitude": 34.14778,
+      "longitude": -118.14452,
+      "paperIds": [
+        "https://openalex.org/W2936023010"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I1336856363",
+      "label": "Natural History Museum",
+      "count": 1,
+      "country": "GB",
+      "city": "London",
+      "latitude": 51.50852966308594,
+      "longitude": -0.12574000656604767,
+      "paperIds": [
+        "https://openalex.org/W3093882677"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I13511017",
+      "label": "Texas State University",
+      "count": 1,
+      "country": "US",
+      "city": "San Marcos",
+      "latitude": 29.88327,
+      "longitude": -97.94139,
+      "paperIds": [
+        "https://openalex.org/W3120704587"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I137479271",
+      "label": "Helmholtz Centre for Environmental Research",
+      "count": 1,
+      "country": "DE",
+      "city": "Leipzig",
+      "latitude": 51.33962,
+      "longitude": 12.37129,
+      "paperIds": [
+        "https://openalex.org/W3003242941"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I137902535",
+      "label": "North Carolina State University",
+      "count": 1,
+      "country": "US",
+      "city": "Raleigh",
+      "latitude": 35.7721,
+      "longitude": -78.63861,
+      "paperIds": [
+        "https://openalex.org/W2800485765"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I138006243",
+      "label": "University of Arizona",
+      "count": 1,
+      "country": "US",
+      "city": "Tucson",
+      "latitude": 32.22174,
+      "longitude": -110.92648,
+      "paperIds": [
+        "https://openalex.org/W2802674596"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I138689650",
+      "label": "University of Padua",
+      "count": 1,
+      "country": "IT",
+      "city": "Padua",
+      "latitude": 45.40797,
+      "longitude": 11.88586,
+      "paperIds": [
+        "https://openalex.org/W2799473280"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I139264467",
+      "label": "Seoul National University",
+      "count": 1,
+      "country": "KR",
+      "city": "Seoul",
+      "latitude": 37.566,
+      "longitude": 126.9784,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I140172145",
+      "label": "University of Connecticut",
+      "count": 1,
+      "country": "US",
+      "city": "Storrs",
+      "latitude": 41.80843,
+      "longitude": -72.24952,
+      "paperIds": [
+        "https://openalex.org/W4405056744"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I141472210",
+      "label": "University of Alaska Fairbanks",
+      "count": 1,
+      "country": "US",
+      "city": "Fairbanks",
+      "latitude": 64.83778381347656,
+      "longitude": -147.7163848876953,
+      "paperIds": [
+        "https://openalex.org/W2800485765"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I141596103",
+      "label": "University of Lisbon",
+      "count": 1,
+      "country": "PT",
+      "city": "Lisbon",
+      "latitude": 38.72509,
+      "longitude": -9.1498,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I14243506",
+      "label": "Hong Kong Polytechnic University",
+      "count": 1,
+      "country": "HK",
+      "city": "Hong Kong",
+      "latitude": 22.27832,
+      "longitude": 114.17469,
+      "paperIds": [
+        "https://openalex.org/W2922633580"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I142606810",
+      "label": "Pacific Northwest National Laboratory",
+      "count": 1,
+      "country": "US",
+      "city": "Richland",
+      "latitude": 46.28569,
+      "longitude": -119.28446,
+      "paperIds": [
+        "https://openalex.org/W4200339548"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I144428437",
+      "label": "German Institute of Development and Sustainability",
+      "count": 1,
+      "country": "DE",
+      "city": "Bonn",
+      "latitude": 50.73438,
+      "longitude": 7.09549,
+      "paperIds": [
+        "https://openalex.org/W2953584228"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I146655781",
+      "label": "University of Liverpool",
+      "count": 1,
+      "country": "GB",
+      "city": "Liverpool",
+      "latitude": 53.41058,
+      "longitude": -2.97794,
+      "paperIds": [
+        "https://openalex.org/W4221087878"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I149213910",
+      "label": "University of Antwerp",
+      "count": 1,
+      "country": "BE",
+      "city": "Antwerp",
+      "latitude": 51.22047,
+      "longitude": 4.40026,
+      "paperIds": [
+        "https://openalex.org/W2922633580"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I150209017",
+      "label": "Scripps Institution of Oceanography",
+      "count": 1,
+      "country": "US",
+      "city": "La Jolla",
+      "latitude": 32.84727,
+      "longitude": -117.2742,
+      "paperIds": [
+        "https://openalex.org/W3159693981"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I154570441",
+      "label": "University of California, Santa Barbara",
+      "count": 1,
+      "country": "US",
+      "city": "Santa Barbara",
+      "latitude": 34.42083,
+      "longitude": -119.69819,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I158818660",
+      "label": "University of Puerto Rico, Medical Sciences Campus",
+      "count": 1,
+      "country": "PR",
+      "city": "San Juan",
+      "latitude": 18.46632957458496,
+      "longitude": -66.10572052001953,
+      "paperIds": [
+        "https://openalex.org/W4376618280"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I158937107",
+      "label": "Swiss Tropical and Public Health Institute",
+      "count": 1,
+      "country": "CH",
+      "city": "Allschwil",
+      "latitude": 47.55073928833008,
+      "longitude": 7.535990238189697,
+      "paperIds": [
+        "https://openalex.org/W2795439002"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I159176309",
+      "label": "Universität Hamburg",
+      "count": 1,
+      "country": "DE",
+      "city": "Hamburg",
+      "latitude": 53.55073,
+      "longitude": 9.99302,
+      "paperIds": [
+        "https://openalex.org/W3046602060"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I161318765",
+      "label": "University of California, Los Angeles",
+      "count": 1,
+      "country": "US",
+      "city": "Los Angeles",
+      "latitude": 34.05223,
+      "longitude": -118.24368,
+      "paperIds": [
+        "https://openalex.org/W3046602060"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I162608824",
+      "label": "University of Sussex",
+      "count": 1,
+      "country": "GB",
+      "city": "Brighton",
+      "latitude": 50.8283805847168,
+      "longitude": -0.13946999609470367,
+      "paperIds": [
+        "https://openalex.org/W2953584228"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I164389053",
+      "label": "Fordham University",
+      "count": 1,
+      "country": "US",
+      "city": "New York",
+      "latitude": 40.71427,
+      "longitude": -74.00597,
+      "paperIds": [
+        "https://openalex.org/W3094792917"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I1648549",
+      "label": "Universidad del Zulia",
+      "count": 1,
+      "country": "VE",
+      "city": "Maracaibo",
+      "latitude": 10.64232,
+      "longitude": -71.61089,
+      "paperIds": [
+        "https://openalex.org/W2949104016"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I165143802",
+      "label": "The University of Queensland",
+      "count": 1,
+      "country": "AU",
+      "city": "Brisbane",
+      "latitude": -27.46794,
+      "longitude": 153.02809,
+      "paperIds": [
+        "https://openalex.org/W3159693981"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I165339363",
+      "label": "Universidad de Oviedo",
+      "count": 1,
+      "country": "ES",
+      "city": "Oviedo",
+      "latitude": 43.36029,
+      "longitude": -5.84476,
+      "paperIds": [
+        "https://openalex.org/W3080089062"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I165733156",
+      "label": "University of Georgia",
+      "count": 1,
+      "country": "US",
+      "city": "Athens",
+      "latitude": 33.96095,
+      "longitude": -83.37794,
+      "paperIds": [
+        "https://openalex.org/W3094792917"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I166825849",
+      "label": "Tampere University",
+      "count": 1,
+      "country": "FI",
+      "city": "Tampere",
+      "latitude": 61.49911,
+      "longitude": 23.78712,
+      "paperIds": [
+        "https://openalex.org/W3154807984"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I167994656",
+      "label": "German Institute for Global and Area Studies",
+      "count": 1,
+      "country": "DE",
+      "city": "Hamburg",
+      "latitude": 53.55073165893555,
+      "longitude": 9.993020057678223,
+      "paperIds": [
+        "https://openalex.org/W2953584228"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I177725633",
+      "label": "Chinese University of Hong Kong",
+      "count": 1,
+      "country": "HK",
+      "city": "Hong Kong",
+      "latitude": 22.27832,
+      "longitude": 114.17469,
+      "paperIds": [
+        "https://openalex.org/W4322624932"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I179225836",
+      "label": "University of Augsburg",
+      "count": 1,
+      "country": "DE",
+      "city": "Augsburg",
+      "latitude": 48.37154,
+      "longitude": 10.89851,
+      "paperIds": [
+        "https://openalex.org/W4281684813"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I180437899",
+      "label": "University of Bremen",
+      "count": 1,
+      "country": "DE",
+      "city": "Bremen",
+      "latitude": 53.07582,
+      "longitude": 8.80717,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I184942183",
+      "label": "University of Oslo",
+      "count": 1,
+      "country": "NO",
+      "city": "Oslo",
+      "latitude": 59.91273,
+      "longitude": 10.74609,
+      "paperIds": [
+        "https://openalex.org/W3093882677"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I1850255",
+      "label": "University of Basel",
+      "count": 1,
+      "country": "CH",
+      "city": "Basel",
+      "latitude": 47.55839,
+      "longitude": 7.57327,
+      "paperIds": [
+        "https://openalex.org/W2795439002"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I185261750",
+      "label": "University of Toronto",
+      "count": 1,
+      "country": "CA",
+      "city": "Toronto",
+      "latitude": 43.70643,
+      "longitude": -79.39864,
+      "paperIds": [
+        "https://openalex.org/W2805155961"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I191217947",
+      "label": "NOAA Geophysical Fluid Dynamics Laboratory",
+      "count": 1,
+      "country": "US",
+      "city": "Princeton",
+      "latitude": 40.34872055053711,
+      "longitude": -74.65904998779297,
+      "paperIds": [
+        "https://openalex.org/W3008870444"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I193662353",
+      "label": "Utrecht University",
+      "count": 1,
+      "country": "NL",
+      "city": "Utrecht",
+      "latitude": 52.09083,
+      "longitude": 5.12222,
+      "paperIds": [
+        "https://openalex.org/W4328094166"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I194184283",
+      "label": "University of East Sarajevo",
+      "count": 1,
+      "country": "BA",
+      "city": "Lukavica",
+      "latitude": 44.76451873779297,
+      "longitude": 18.16887092590332,
+      "paperIds": [
+        "https://openalex.org/W3138940549"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I195460627",
+      "label": "University of Aberdeen",
+      "count": 1,
+      "country": "GB",
+      "city": "Aberdeen",
+      "latitude": 57.14369,
+      "longitude": -2.09814,
+      "paperIds": [
+        "https://openalex.org/W4405056744"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I196679689",
+      "label": "Joint Genome Institute",
+      "count": 1,
+      "country": "US",
+      "city": "Berkeley",
+      "latitude": 37.87158966064453,
+      "longitude": -122.27275085449219,
+      "paperIds": [
+        "https://openalex.org/W4224221455"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I196817621",
+      "label": "Carnegie Institution for Science",
+      "count": 1,
+      "country": "US",
+      "city": "Washington",
+      "latitude": 38.89511,
+      "longitude": -77.03637,
+      "paperIds": [
+        "https://openalex.org/W2925259354"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I197097402",
+      "label": "Universidad Peruana Cayetano Heredia",
+      "count": 1,
+      "country": "PE",
+      "city": "Lima",
+      "latitude": -12.04318,
+      "longitude": -77.02824,
+      "paperIds": [
+        "https://openalex.org/W2795439002"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I199691007",
+      "label": "Brazilian Agricultural Research Corporation",
+      "count": 1,
+      "country": "BR",
+      "city": "Brasília",
+      "latitude": -15.77972,
+      "longitude": -47.92972,
+      "paperIds": [
+        "https://openalex.org/W3003242941"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I200399037",
+      "label": "University of Puerto Rico System",
+      "count": 1,
+      "country": "PR",
+      "city": "San Juan",
+      "latitude": 18.46633,
+      "longitude": -66.10572,
+      "paperIds": [
+        "https://openalex.org/W4376618280"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I202697423",
+      "label": "University of Zurich",
+      "count": 1,
+      "country": "CH",
+      "city": "Zurich",
+      "latitude": 47.36667,
+      "longitude": 8.55,
+      "paperIds": [
+        "https://openalex.org/W4322624932"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I211738395",
+      "label": "Financial University",
+      "count": 1,
+      "country": "RU",
+      "city": "Moscow",
+      "latitude": 55.75204,
+      "longitude": 37.61781,
+      "paperIds": [
+        "https://openalex.org/W3036045166"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I217937681",
+      "label": "QIMR Berghofer Medical Research Institute",
+      "count": 1,
+      "country": "AU",
+      "city": "Brisbane",
+      "latitude": -27.467939376831055,
+      "longitude": 153.02809143066406,
+      "paperIds": [
+        "https://openalex.org/W3159693981"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I22675022",
+      "label": "Williams College",
+      "count": 1,
+      "country": "US",
+      "city": "Williamstown",
+      "latitude": 42.71202,
+      "longitude": -73.20372,
+      "paperIds": [
+        "https://openalex.org/W2925259354"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I241749",
+      "label": "University of Cambridge",
+      "count": 1,
+      "country": "GB",
+      "city": "Cambridge",
+      "latitude": 52.2,
+      "longitude": 0.11667,
+      "paperIds": [
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I24943067",
+      "label": "Fudan University",
+      "count": 1,
+      "country": "CN",
+      "city": "Shanghai",
+      "latitude": 31.22222,
+      "longitude": 121.45806,
+      "paperIds": [
+        "https://openalex.org/W2977631046"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I25254941",
+      "label": "Beijing Normal University",
+      "count": 1,
+      "country": "CN",
+      "city": "Beijing",
+      "latitude": 39.9075,
+      "longitude": 116.39723,
+      "paperIds": [
+        "https://openalex.org/W2922633580"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I2607685603",
+      "label": "Institut für Arbeitsmarkt und Berufsforschung",
+      "count": 1,
+      "country": "DE",
+      "city": "Nuremberg",
+      "latitude": 49.45421,
+      "longitude": 11.07752,
+      "paperIds": [
+        "https://openalex.org/W2976372744"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I2746051580",
+      "label": "Université Paris Sciences et Lettres",
+      "count": 1,
+      "country": "FR",
+      "city": "Paris",
+      "latitude": 48.85341,
+      "longitude": 2.3488,
+      "paperIds": [
+        "https://openalex.org/W3046602060"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I27804330",
+      "label": "Brown University",
+      "count": 1,
+      "country": "US",
+      "city": "Providence",
+      "latitude": 41.82399,
+      "longitude": -71.41283,
+      "paperIds": [
+        "https://openalex.org/W2925259354"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I2801030728",
+      "label": "German Centre for Integrative Biodiversity Research",
+      "count": 1,
+      "country": "DE",
+      "city": "Leipzig",
+      "latitude": 51.33962,
+      "longitude": 12.37129,
+      "paperIds": [
+        "https://openalex.org/W3003242941"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I2802007660",
+      "label": "University Hospital Augsburg",
+      "count": 1,
+      "country": "DE",
+      "city": "Augsburg",
+      "latitude": 48.37154,
+      "longitude": 10.89851,
+      "paperIds": [
+        "https://openalex.org/W4281684813"
+      ]
+    },
+    {
+      "name": "https://openalex.org/I2802076133",
+      "label": "University of Koblenz and Landau",
+      "count": 1,
+      "country": "DE",
+      "city": "Mainz",
+      "latitude": 49.98419,
+      "longitude": 8.2791,
+      "paperIds": [
+        "https://openalex.org/W3036045166"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "https://openalex.org/I134113660",
+      "target": "https://openalex.org/I13511017",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3120704587"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1280367701",
+      "target": "https://openalex.org/I1281735042",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2799473280"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1280367701",
+      "target": "https://openalex.org/I138689650",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2799473280"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1281735042",
+      "target": "https://openalex.org/I138689650",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2799473280"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1294671590",
+      "target": "https://openalex.org/I159176309",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3046602060"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1294671590",
+      "target": "https://openalex.org/I161318765",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3046602060"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1294671590",
+      "target": "https://openalex.org/I2746051580",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3046602060"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1294671590",
+      "target": "https://openalex.org/I71052956",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3046602060"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I159176309",
+      "target": "https://openalex.org/I161318765",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3046602060"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I159176309",
+      "target": "https://openalex.org/I2746051580",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3046602060"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I159176309",
+      "target": "https://openalex.org/I71052956",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3046602060"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I161318765",
+      "target": "https://openalex.org/I2746051580",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3046602060"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I161318765",
+      "target": "https://openalex.org/I71052956",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3046602060"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I2746051580",
+      "target": "https://openalex.org/I71052956",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3046602060"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I140172145",
+      "target": "https://openalex.org/I195460627",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4405056744"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I71209653",
+      "target": "https://openalex.org/I90326151",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3023799773"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I114457229",
+      "target": "https://openalex.org/I158937107",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2795439002"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I114457229",
+      "target": "https://openalex.org/I1850255",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2795439002"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I114457229",
+      "target": "https://openalex.org/I197097402",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2795439002"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I114457229",
+      "target": "https://openalex.org/I35440088",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2795439002"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I158937107",
+      "target": "https://openalex.org/I1850255",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2795439002"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I158937107",
+      "target": "https://openalex.org/I197097402",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2795439002"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I158937107",
+      "target": "https://openalex.org/I35440088",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2795439002"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1850255",
+      "target": "https://openalex.org/I197097402",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2795439002"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1850255",
+      "target": "https://openalex.org/I35440088",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2795439002"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I197097402",
+      "target": "https://openalex.org/I35440088",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2795439002"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I107766831",
+      "target": "https://openalex.org/I127251866",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2936023010"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I107766831",
+      "target": "https://openalex.org/I1306266525",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2936023010"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I107766831",
+      "target": "https://openalex.org/I1334627681",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2936023010"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I107766831",
+      "target": "https://openalex.org/I2613432",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2936023010"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I127251866",
+      "target": "https://openalex.org/I1306266525",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2936023010"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I127251866",
+      "target": "https://openalex.org/I1334627681",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2936023010"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I127251866",
+      "target": "https://openalex.org/I2613432",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2936023010"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1306266525",
+      "target": "https://openalex.org/I1334627681",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2936023010"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1306266525",
+      "target": "https://openalex.org/I2613432",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2936023010"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1334627681",
+      "target": "https://openalex.org/I2613432",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2936023010"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1294671590",
+      "target": "https://openalex.org/I1320745970",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2953584228"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1294671590",
+      "target": "https://openalex.org/I144428437",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2953584228"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1294671590",
+      "target": "https://openalex.org/I162608824",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2953584228"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1294671590",
+      "target": "https://openalex.org/I167994656",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2953584228"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1294671590",
+      "target": "https://openalex.org/I186903577",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2953584228"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1294671590",
+      "target": "https://openalex.org/I4210095222",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2953584228"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1320745970",
+      "target": "https://openalex.org/I144428437",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2953584228"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1320745970",
+      "target": "https://openalex.org/I162608824",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2953584228"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1320745970",
+      "target": "https://openalex.org/I167994656",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2953584228"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1320745970",
+      "target": "https://openalex.org/I186903577",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2953584228"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1320745970",
+      "target": "https://openalex.org/I4210095222",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2953584228"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I144428437",
+      "target": "https://openalex.org/I162608824",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2953584228"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I144428437",
+      "target": "https://openalex.org/I167994656",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2953584228"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I144428437",
+      "target": "https://openalex.org/I186903577",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2953584228"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I144428437",
+      "target": "https://openalex.org/I4210095222",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2953584228"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I162608824",
+      "target": "https://openalex.org/I167994656",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2953584228"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I162608824",
+      "target": "https://openalex.org/I186903577",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2953584228"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I162608824",
+      "target": "https://openalex.org/I4210095222",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2953584228"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I167994656",
+      "target": "https://openalex.org/I186903577",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2953584228"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I167994656",
+      "target": "https://openalex.org/I4210095222",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2953584228"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I186903577",
+      "target": "https://openalex.org/I4210095222",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2953584228"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I166825849",
+      "target": "https://openalex.org/I909854389",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3154807984"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I119942576",
+      "target": "https://openalex.org/I165779595",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2797881053"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I119942576",
+      "target": "https://openalex.org/I68435313",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2797881053"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I165779595",
+      "target": "https://openalex.org/I68435313",
+      "weight": 2,
+      "paperIds": [
+        "https://openalex.org/W2797881053",
+        "https://openalex.org/W2805155961"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I124357947",
+      "target": "https://openalex.org/I178535277",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2754240787"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1334329717",
+      "target": "https://openalex.org/I92446798",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2803466701"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I129801699",
+      "target": "https://openalex.org/I151808059",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3092358196"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I129801699",
+      "target": "https://openalex.org/I201448701",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3092358196"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I129801699",
+      "target": "https://openalex.org/I32971472",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3092358196"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I129801699",
+      "target": "https://openalex.org/I4210089966",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3092358196"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I151808059",
+      "target": "https://openalex.org/I201448701",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3092358196"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I151808059",
+      "target": "https://openalex.org/I32971472",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3092358196"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I151808059",
+      "target": "https://openalex.org/I4210089966",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3092358196"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I201448701",
+      "target": "https://openalex.org/I32971472",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3092358196"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I201448701",
+      "target": "https://openalex.org/I4210089966",
+      "weight": 2,
+      "paperIds": [
+        "https://openalex.org/W3092358196",
+        "https://openalex.org/W3159693981"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I32971472",
+      "target": "https://openalex.org/I4210089966",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3092358196"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I107672454",
+      "target": "https://openalex.org/I138006243",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2802674596"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I107672454",
+      "target": "https://openalex.org/I152304114",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2802674596"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I107672454",
+      "target": "https://openalex.org/I78577930",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2802674596"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I138006243",
+      "target": "https://openalex.org/I152304114",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2802674596"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I138006243",
+      "target": "https://openalex.org/I78577930",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2802674596"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I152304114",
+      "target": "https://openalex.org/I78577930",
+      "weight": 3,
+      "paperIds": [
+        "https://openalex.org/W2802674596",
+        "https://openalex.org/W3008870444",
+        "https://openalex.org/W3001653539"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1302211766",
+      "target": "https://openalex.org/I145311948",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3159693981"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1302211766",
+      "target": "https://openalex.org/I150209017",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3159693981"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1302211766",
+      "target": "https://openalex.org/I165143802",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3159693981"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1302211766",
+      "target": "https://openalex.org/I201448701",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3159693981"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1302211766",
+      "target": "https://openalex.org/I217937681",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3159693981"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1302211766",
+      "target": "https://openalex.org/I4210089966",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3159693981"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I145311948",
+      "target": "https://openalex.org/I150209017",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3159693981"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I145311948",
+      "target": "https://openalex.org/I165143802",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3159693981"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I145311948",
+      "target": "https://openalex.org/I201448701",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3159693981"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I145311948",
+      "target": "https://openalex.org/I217937681",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3159693981"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I145311948",
+      "target": "https://openalex.org/I4210089966",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3159693981"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I150209017",
+      "target": "https://openalex.org/I165143802",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3159693981"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I150209017",
+      "target": "https://openalex.org/I201448701",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3159693981"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I150209017",
+      "target": "https://openalex.org/I217937681",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3159693981"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I150209017",
+      "target": "https://openalex.org/I4210089966",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3159693981"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I165143802",
+      "target": "https://openalex.org/I201448701",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3159693981"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I165143802",
+      "target": "https://openalex.org/I217937681",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3159693981"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I165143802",
+      "target": "https://openalex.org/I4210089966",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3159693981"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I201448701",
+      "target": "https://openalex.org/I217937681",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3159693981"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I217937681",
+      "target": "https://openalex.org/I4210089966",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3159693981"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I146655781",
+      "target": "https://openalex.org/I192619145",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4221087878"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I118564535",
+      "target": "https://openalex.org/I121748325",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I118564535",
+      "target": "https://openalex.org/I1299204452",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I118564535",
+      "target": "https://openalex.org/I134820265",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I118564535",
+      "target": "https://openalex.org/I139264467",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I118564535",
+      "target": "https://openalex.org/I35440088",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I118564535",
+      "target": "https://openalex.org/I40120149",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I118564535",
+      "target": "https://openalex.org/I71052956",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I118564535",
+      "target": "https://openalex.org/I76835614",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I121748325",
+      "target": "https://openalex.org/I1299204452",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I121748325",
+      "target": "https://openalex.org/I134820265",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I121748325",
+      "target": "https://openalex.org/I139264467",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I121748325",
+      "target": "https://openalex.org/I35440088",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I121748325",
+      "target": "https://openalex.org/I40120149",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I121748325",
+      "target": "https://openalex.org/I71052956",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I121748325",
+      "target": "https://openalex.org/I76835614",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1299204452",
+      "target": "https://openalex.org/I134820265",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1299204452",
+      "target": "https://openalex.org/I139264467",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1299204452",
+      "target": "https://openalex.org/I35440088",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1299204452",
+      "target": "https://openalex.org/I40120149",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1299204452",
+      "target": "https://openalex.org/I71052956",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1299204452",
+      "target": "https://openalex.org/I76835614",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I134820265",
+      "target": "https://openalex.org/I139264467",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I134820265",
+      "target": "https://openalex.org/I35440088",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I134820265",
+      "target": "https://openalex.org/I40120149",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I134820265",
+      "target": "https://openalex.org/I71052956",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I134820265",
+      "target": "https://openalex.org/I76835614",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I139264467",
+      "target": "https://openalex.org/I35440088",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I139264467",
+      "target": "https://openalex.org/I40120149",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I139264467",
+      "target": "https://openalex.org/I71052956",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I139264467",
+      "target": "https://openalex.org/I76835614",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I35440088",
+      "target": "https://openalex.org/I40120149",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I35440088",
+      "target": "https://openalex.org/I71052956",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I35440088",
+      "target": "https://openalex.org/I76835614",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I40120149",
+      "target": "https://openalex.org/I71052956",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I40120149",
+      "target": "https://openalex.org/I76835614",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I71052956",
+      "target": "https://openalex.org/I76835614",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2883967485"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1279858714",
+      "target": "https://openalex.org/I1321305853",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4214836379"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1279858714",
+      "target": "https://openalex.org/I32971472",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4214836379"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1279858714",
+      "target": "https://openalex.org/I57206974",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4214836379"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1321305853",
+      "target": "https://openalex.org/I32971472",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4214836379"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1321305853",
+      "target": "https://openalex.org/I57206974",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4214836379"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I32971472",
+      "target": "https://openalex.org/I57206974",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4214836379"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1308126019",
+      "target": "https://openalex.org/I148283060",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3008870444"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1308126019",
+      "target": "https://openalex.org/I152304114",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3008870444"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1308126019",
+      "target": "https://openalex.org/I165779595",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3008870444"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1308126019",
+      "target": "https://openalex.org/I191217947",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3008870444"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1308126019",
+      "target": "https://openalex.org/I20089843",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3008870444"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1308126019",
+      "target": "https://openalex.org/I78577930",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3008870444"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I148283060",
+      "target": "https://openalex.org/I152304114",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3008870444"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I148283060",
+      "target": "https://openalex.org/I165779595",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3008870444"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I148283060",
+      "target": "https://openalex.org/I191217947",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3008870444"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I148283060",
+      "target": "https://openalex.org/I20089843",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3008870444"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I148283060",
+      "target": "https://openalex.org/I78577930",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3008870444"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I152304114",
+      "target": "https://openalex.org/I165779595",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3008870444"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I152304114",
+      "target": "https://openalex.org/I191217947",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3008870444"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I152304114",
+      "target": "https://openalex.org/I20089843",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3008870444"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I165779595",
+      "target": "https://openalex.org/I191217947",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3008870444"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I165779595",
+      "target": "https://openalex.org/I20089843",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3008870444"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I165779595",
+      "target": "https://openalex.org/I78577930",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3008870444"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I191217947",
+      "target": "https://openalex.org/I20089843",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3008870444"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I191217947",
+      "target": "https://openalex.org/I78577930",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3008870444"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I20089843",
+      "target": "https://openalex.org/I78577930",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3008870444"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I111088046",
+      "target": "https://openalex.org/I117965899",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2949104016"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I111088046",
+      "target": "https://openalex.org/I151808059",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2949104016"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I111088046",
+      "target": "https://openalex.org/I1648549",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2949104016"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I111088046",
+      "target": "https://openalex.org/I51713134",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2949104016"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I117965899",
+      "target": "https://openalex.org/I151808059",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2949104016"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I117965899",
+      "target": "https://openalex.org/I1648549",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2949104016"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I117965899",
+      "target": "https://openalex.org/I51713134",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2949104016"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I151808059",
+      "target": "https://openalex.org/I1648549",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2949104016"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I151808059",
+      "target": "https://openalex.org/I51713134",
+      "weight": 2,
+      "paperIds": [
+        "https://openalex.org/W2949104016",
+        "https://openalex.org/W3198221850"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1648549",
+      "target": "https://openalex.org/I51713134",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2949104016"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I136199984",
+      "target": "https://openalex.org/I3018134672",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3103603843"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1288882113",
+      "target": "https://openalex.org/I1302368450",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4399569145"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1288882113",
+      "target": "https://openalex.org/I1316535847",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4399569145"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1288882113",
+      "target": "https://openalex.org/I136199984",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4399569145"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1302368450",
+      "target": "https://openalex.org/I1316535847",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4399569145"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1302368450",
+      "target": "https://openalex.org/I136199984",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4399569145"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1316535847",
+      "target": "https://openalex.org/I136199984",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4399569145"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I129628643",
+      "target": "https://openalex.org/I130359222",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3138940549"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I129628643",
+      "target": "https://openalex.org/I194184283",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3138940549"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I130359222",
+      "target": "https://openalex.org/I194184283",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3138940549"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I123387679",
+      "target": "https://openalex.org/I165339363",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3080089062"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I134820265",
+      "target": "https://openalex.org/I135310074",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4200339548"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I134820265",
+      "target": "https://openalex.org/I142606810",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4200339548"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I134820265",
+      "target": "https://openalex.org/I205783295",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4200339548"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I134820265",
+      "target": "https://openalex.org/I72951846",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4200339548"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I135310074",
+      "target": "https://openalex.org/I142606810",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4200339548"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I135310074",
+      "target": "https://openalex.org/I205783295",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4200339548"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I135310074",
+      "target": "https://openalex.org/I72951846",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4200339548"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I142606810",
+      "target": "https://openalex.org/I205783295",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4200339548"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I142606810",
+      "target": "https://openalex.org/I72951846",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4200339548"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I205783295",
+      "target": "https://openalex.org/I72951846",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4200339548"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1292875679",
+      "target": "https://openalex.org/I170897317",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2977631046"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1292875679",
+      "target": "https://openalex.org/I24943067",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2977631046"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I170897317",
+      "target": "https://openalex.org/I24943067",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2977631046"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I103031861",
+      "target": "https://openalex.org/I1313323035",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3036045166"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I103031861",
+      "target": "https://openalex.org/I211738395",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3036045166"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I103031861",
+      "target": "https://openalex.org/I2802076133",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3036045166"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1313323035",
+      "target": "https://openalex.org/I211738395",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3036045166"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1313323035",
+      "target": "https://openalex.org/I2802076133",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3036045166"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I211738395",
+      "target": "https://openalex.org/I2802076133",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3036045166"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I151808059",
+      "target": "https://openalex.org/I45129253",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3198221850"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I45129253",
+      "target": "https://openalex.org/I51713134",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3198221850"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I179225836",
+      "target": "https://openalex.org/I2802007660",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4281684813"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I179225836",
+      "target": "https://openalex.org/I3018134672",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4281684813"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I2802007660",
+      "target": "https://openalex.org/I3018134672",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4281684813"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I12834331",
+      "target": "https://openalex.org/I135310074",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3001653539"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I12834331",
+      "target": "https://openalex.org/I152304114",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3001653539"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I12834331",
+      "target": "https://openalex.org/I23923803",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3001653539"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I12834331",
+      "target": "https://openalex.org/I78577930",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3001653539"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I135310074",
+      "target": "https://openalex.org/I152304114",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3001653539"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I135310074",
+      "target": "https://openalex.org/I23923803",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3001653539"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I135310074",
+      "target": "https://openalex.org/I78577930",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3001653539"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I152304114",
+      "target": "https://openalex.org/I23923803",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3001653539"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I23923803",
+      "target": "https://openalex.org/I78577930",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3001653539"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I102248843",
+      "target": "https://openalex.org/I178535277",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2804677512"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I102248843",
+      "target": "https://openalex.org/I45129253",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2804677512"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I102248843",
+      "target": "https://openalex.org/I909854389",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2804677512"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I178535277",
+      "target": "https://openalex.org/I45129253",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2804677512"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I178535277",
+      "target": "https://openalex.org/I909854389",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2804677512"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I45129253",
+      "target": "https://openalex.org/I909854389",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2804677512"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I193662353",
+      "target": "https://openalex.org/I2802905149",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4328094166"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1317239608",
+      "target": "https://openalex.org/I2802905149",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3138288500"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I115891769",
+      "target": "https://openalex.org/I11986463",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I115891769",
+      "target": "https://openalex.org/I127251866",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I115891769",
+      "target": "https://openalex.org/I141596103",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I115891769",
+      "target": "https://openalex.org/I154570441",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I115891769",
+      "target": "https://openalex.org/I170897317",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I115891769",
+      "target": "https://openalex.org/I180437899",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I115891769",
+      "target": "https://openalex.org/I97018004",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I11986463",
+      "target": "https://openalex.org/I127251866",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I11986463",
+      "target": "https://openalex.org/I141596103",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I11986463",
+      "target": "https://openalex.org/I154570441",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I11986463",
+      "target": "https://openalex.org/I170897317",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I11986463",
+      "target": "https://openalex.org/I180437899",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I11986463",
+      "target": "https://openalex.org/I97018004",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I127251866",
+      "target": "https://openalex.org/I141596103",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I127251866",
+      "target": "https://openalex.org/I154570441",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I127251866",
+      "target": "https://openalex.org/I170897317",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I127251866",
+      "target": "https://openalex.org/I180437899",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I127251866",
+      "target": "https://openalex.org/I97018004",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I141596103",
+      "target": "https://openalex.org/I154570441",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I141596103",
+      "target": "https://openalex.org/I170897317",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I141596103",
+      "target": "https://openalex.org/I180437899",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I141596103",
+      "target": "https://openalex.org/I97018004",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I154570441",
+      "target": "https://openalex.org/I170897317",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I154570441",
+      "target": "https://openalex.org/I180437899",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I154570441",
+      "target": "https://openalex.org/I97018004",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I170897317",
+      "target": "https://openalex.org/I180437899",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I170897317",
+      "target": "https://openalex.org/I97018004",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I180437899",
+      "target": "https://openalex.org/I97018004",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3020926882"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I78577930",
+      "target": "https://openalex.org/I909854389",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4321225268"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I137479271",
+      "target": "https://openalex.org/I199691007",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3003242941"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I137479271",
+      "target": "https://openalex.org/I2801030728",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3003242941"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I199691007",
+      "target": "https://openalex.org/I2801030728",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3003242941"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1336856363",
+      "target": "https://openalex.org/I184942183",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3093882677"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1336856363",
+      "target": "https://openalex.org/I192619145",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3093882677"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I184942183",
+      "target": "https://openalex.org/I192619145",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3093882677"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I130480701",
+      "target": "https://openalex.org/I145608581",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4322624932"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I130480701",
+      "target": "https://openalex.org/I177725633",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4322624932"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I130480701",
+      "target": "https://openalex.org/I202697423",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4322624932"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I130480701",
+      "target": "https://openalex.org/I57206974",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4322624932"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I130480701",
+      "target": "https://openalex.org/I71209653",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4322624932"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I130480701",
+      "target": "https://openalex.org/I78577930",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4322624932"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I145608581",
+      "target": "https://openalex.org/I177725633",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4322624932"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I145608581",
+      "target": "https://openalex.org/I202697423",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4322624932"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I145608581",
+      "target": "https://openalex.org/I57206974",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4322624932"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I145608581",
+      "target": "https://openalex.org/I71209653",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4322624932"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I145608581",
+      "target": "https://openalex.org/I78577930",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4322624932"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I177725633",
+      "target": "https://openalex.org/I202697423",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4322624932"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I177725633",
+      "target": "https://openalex.org/I57206974",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4322624932"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I177725633",
+      "target": "https://openalex.org/I71209653",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4322624932"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I177725633",
+      "target": "https://openalex.org/I78577930",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4322624932"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I202697423",
+      "target": "https://openalex.org/I57206974",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4322624932"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I202697423",
+      "target": "https://openalex.org/I71209653",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4322624932"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I202697423",
+      "target": "https://openalex.org/I78577930",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4322624932"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I57206974",
+      "target": "https://openalex.org/I71209653",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4322624932"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I57206974",
+      "target": "https://openalex.org/I78577930",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4322624932"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I71209653",
+      "target": "https://openalex.org/I78577930",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4322624932"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1288198617",
+      "target": "https://openalex.org/I145608581",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4376618280"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1288198617",
+      "target": "https://openalex.org/I158818660",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4376618280"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1288198617",
+      "target": "https://openalex.org/I200399037",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4376618280"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I145608581",
+      "target": "https://openalex.org/I158818660",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4376618280"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I145608581",
+      "target": "https://openalex.org/I200399037",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4376618280"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I158818660",
+      "target": "https://openalex.org/I200399037",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4376618280"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I14243506",
+      "target": "https://openalex.org/I149213910",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2922633580"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I14243506",
+      "target": "https://openalex.org/I19820366",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2922633580"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I14243506",
+      "target": "https://openalex.org/I20231570",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2922633580"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I14243506",
+      "target": "https://openalex.org/I25254941",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2922633580"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I14243506",
+      "target": "https://openalex.org/I4210158097",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2922633580"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I14243506",
+      "target": "https://openalex.org/I4210160793",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2922633580"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I14243506",
+      "target": "https://openalex.org/I92446798",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2922633580"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I149213910",
+      "target": "https://openalex.org/I19820366",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2922633580"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I149213910",
+      "target": "https://openalex.org/I20231570",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2922633580"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I149213910",
+      "target": "https://openalex.org/I25254941",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2922633580"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I149213910",
+      "target": "https://openalex.org/I4210158097",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2922633580"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I149213910",
+      "target": "https://openalex.org/I4210160793",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2922633580"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I149213910",
+      "target": "https://openalex.org/I92446798",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2922633580"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I19820366",
+      "target": "https://openalex.org/I20231570",
+      "weight": 2,
+      "paperIds": [
+        "https://openalex.org/W2922633580",
+        "https://openalex.org/W2800485765"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I19820366",
+      "target": "https://openalex.org/I25254941",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2922633580"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I19820366",
+      "target": "https://openalex.org/I4210158097",
+      "weight": 2,
+      "paperIds": [
+        "https://openalex.org/W2922633580",
+        "https://openalex.org/W2800485765"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I19820366",
+      "target": "https://openalex.org/I4210160793",
+      "weight": 2,
+      "paperIds": [
+        "https://openalex.org/W2922633580",
+        "https://openalex.org/W2800485765"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I19820366",
+      "target": "https://openalex.org/I92446798",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2922633580"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I20231570",
+      "target": "https://openalex.org/I25254941",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2922633580"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I20231570",
+      "target": "https://openalex.org/I4210158097",
+      "weight": 2,
+      "paperIds": [
+        "https://openalex.org/W2922633580",
+        "https://openalex.org/W2800485765"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I20231570",
+      "target": "https://openalex.org/I4210160793",
+      "weight": 2,
+      "paperIds": [
+        "https://openalex.org/W2922633580",
+        "https://openalex.org/W2800485765"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I20231570",
+      "target": "https://openalex.org/I92446798",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2922633580"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I25254941",
+      "target": "https://openalex.org/I4210158097",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2922633580"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I25254941",
+      "target": "https://openalex.org/I4210160793",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2922633580"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I25254941",
+      "target": "https://openalex.org/I92446798",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2922633580"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I4210158097",
+      "target": "https://openalex.org/I4210160793",
+      "weight": 2,
+      "paperIds": [
+        "https://openalex.org/W2922633580",
+        "https://openalex.org/W2800485765"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I4210158097",
+      "target": "https://openalex.org/I92446798",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2922633580"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I4210160793",
+      "target": "https://openalex.org/I92446798",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2922633580"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I165779595",
+      "target": "https://openalex.org/I185261750",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2805155961"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I185261750",
+      "target": "https://openalex.org/I68435313",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2805155961"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I114457229",
+      "target": "https://openalex.org/I186903577",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2976372744"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I114457229",
+      "target": "https://openalex.org/I2607685603",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2976372744"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I186903577",
+      "target": "https://openalex.org/I2607685603",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2976372744"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I119454577",
+      "target": "https://openalex.org/I137902535",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2800485765"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I119454577",
+      "target": "https://openalex.org/I141472210",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2800485765"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I119454577",
+      "target": "https://openalex.org/I19820366",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2800485765"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I119454577",
+      "target": "https://openalex.org/I20231570",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2800485765"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I119454577",
+      "target": "https://openalex.org/I4210158097",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2800485765"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I119454577",
+      "target": "https://openalex.org/I4210160793",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2800485765"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I137902535",
+      "target": "https://openalex.org/I141472210",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2800485765"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I137902535",
+      "target": "https://openalex.org/I19820366",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2800485765"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I137902535",
+      "target": "https://openalex.org/I20231570",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2800485765"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I137902535",
+      "target": "https://openalex.org/I4210158097",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2800485765"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I137902535",
+      "target": "https://openalex.org/I4210160793",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2800485765"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I141472210",
+      "target": "https://openalex.org/I19820366",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2800485765"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I141472210",
+      "target": "https://openalex.org/I20231570",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2800485765"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I141472210",
+      "target": "https://openalex.org/I4210158097",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2800485765"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I141472210",
+      "target": "https://openalex.org/I4210160793",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2800485765"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I117965899",
+      "target": "https://openalex.org/I130769515",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4224221455"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I117965899",
+      "target": "https://openalex.org/I145311948",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4224221455"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I117965899",
+      "target": "https://openalex.org/I148283060",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4224221455"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I117965899",
+      "target": "https://openalex.org/I196679689",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4224221455"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I117965899",
+      "target": "https://openalex.org/I97018004",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4224221455"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I130769515",
+      "target": "https://openalex.org/I145311948",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4224221455"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I130769515",
+      "target": "https://openalex.org/I148283060",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4224221455"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I130769515",
+      "target": "https://openalex.org/I196679689",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4224221455"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I130769515",
+      "target": "https://openalex.org/I97018004",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4224221455"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I145311948",
+      "target": "https://openalex.org/I148283060",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4224221455"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I145311948",
+      "target": "https://openalex.org/I196679689",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4224221455"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I145311948",
+      "target": "https://openalex.org/I97018004",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4224221455"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I148283060",
+      "target": "https://openalex.org/I196679689",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4224221455"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I148283060",
+      "target": "https://openalex.org/I97018004",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4224221455"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I196679689",
+      "target": "https://openalex.org/I97018004",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4224221455"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I102322142",
+      "target": "https://openalex.org/I151746483",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2925259354"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I102322142",
+      "target": "https://openalex.org/I196817621",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2925259354"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I102322142",
+      "target": "https://openalex.org/I22675022",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2925259354"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I102322142",
+      "target": "https://openalex.org/I27804330",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2925259354"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I102322142",
+      "target": "https://openalex.org/I4210095222",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2925259354"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I102322142",
+      "target": "https://openalex.org/I71209653",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2925259354"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I151746483",
+      "target": "https://openalex.org/I196817621",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2925259354"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I151746483",
+      "target": "https://openalex.org/I22675022",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2925259354"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I151746483",
+      "target": "https://openalex.org/I27804330",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2925259354"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I151746483",
+      "target": "https://openalex.org/I4210095222",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2925259354"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I151746483",
+      "target": "https://openalex.org/I71209653",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2925259354"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I196817621",
+      "target": "https://openalex.org/I22675022",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2925259354"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I196817621",
+      "target": "https://openalex.org/I27804330",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2925259354"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I196817621",
+      "target": "https://openalex.org/I4210095222",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2925259354"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I196817621",
+      "target": "https://openalex.org/I71209653",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2925259354"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I22675022",
+      "target": "https://openalex.org/I27804330",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2925259354"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I22675022",
+      "target": "https://openalex.org/I4210095222",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2925259354"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I22675022",
+      "target": "https://openalex.org/I71209653",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2925259354"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I27804330",
+      "target": "https://openalex.org/I4210095222",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2925259354"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I27804330",
+      "target": "https://openalex.org/I71209653",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2925259354"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I4210095222",
+      "target": "https://openalex.org/I71209653",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W2925259354"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I118347636",
+      "target": "https://openalex.org/I1308548392",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I118347636",
+      "target": "https://openalex.org/I201448701",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I118347636",
+      "target": "https://openalex.org/I23923803",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I118347636",
+      "target": "https://openalex.org/I241749",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I118347636",
+      "target": "https://openalex.org/I40120149",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I118347636",
+      "target": "https://openalex.org/I72951846",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I118347636",
+      "target": "https://openalex.org/I99065089",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1308548392",
+      "target": "https://openalex.org/I201448701",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1308548392",
+      "target": "https://openalex.org/I23923803",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1308548392",
+      "target": "https://openalex.org/I241749",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1308548392",
+      "target": "https://openalex.org/I40120149",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1308548392",
+      "target": "https://openalex.org/I72951846",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I1308548392",
+      "target": "https://openalex.org/I99065089",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I201448701",
+      "target": "https://openalex.org/I23923803",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I201448701",
+      "target": "https://openalex.org/I241749",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I201448701",
+      "target": "https://openalex.org/I40120149",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I201448701",
+      "target": "https://openalex.org/I72951846",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I201448701",
+      "target": "https://openalex.org/I99065089",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I23923803",
+      "target": "https://openalex.org/I241749",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I23923803",
+      "target": "https://openalex.org/I40120149",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I23923803",
+      "target": "https://openalex.org/I72951846",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I23923803",
+      "target": "https://openalex.org/I99065089",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I241749",
+      "target": "https://openalex.org/I40120149",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I241749",
+      "target": "https://openalex.org/I72951846",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I241749",
+      "target": "https://openalex.org/I99065089",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I40120149",
+      "target": "https://openalex.org/I72951846",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I40120149",
+      "target": "https://openalex.org/I99065089",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I72951846",
+      "target": "https://openalex.org/I99065089",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W4289262061"
+      ]
+    },
+    {
+      "source": "https://openalex.org/I164389053",
+      "target": "https://openalex.org/I165733156",
+      "weight": 1,
+      "paperIds": [
+        "https://openalex.org/W3094792917"
+      ]
+    }
+  ],
+  "papers": [
+    {
+      "id": "https://openalex.org/W3037450747",
+      "title": "Climate anxiety: Psychological responses to climate change",
+      "publication_year": 2020,
+      "doi": "https://doi.org/10.1016/j.janxdis.2020.102263"
+    },
+    {
+      "id": "https://openalex.org/W3120704587",
+      "title": "Insects and recent climate change",
+      "publication_year": 2021,
+      "doi": "https://doi.org/10.1073/pnas.2002543117"
+    },
+    {
+      "id": "https://openalex.org/W2799473280",
+      "title": "Forest Insects and Climate Change",
+      "publication_year": 2018,
+      "doi": "https://doi.org/10.1007/s40725-018-0075-6"
+    },
+    {
+      "id": "https://openalex.org/W3046602060",
+      "title": "The physics of climate variability and climate change",
+      "publication_year": 2020,
+      "doi": "https://doi.org/10.1103/revmodphys.92.035002"
+    },
+    {
+      "id": "https://openalex.org/W4210804141",
+      "title": "Climate change and phenology",
+      "publication_year": 2022,
+      "doi": "https://doi.org/10.1002/wcc.764"
+    },
+    {
+      "id": "https://openalex.org/W4405056744",
+      "title": "Climate change extinctions",
+      "publication_year": 2024,
+      "doi": "https://doi.org/10.1126/science.adp4461"
+    },
+    {
+      "id": "https://openalex.org/W3097022586",
+      "title": "Cancer and climate change",
+      "publication_year": 2020,
+      "doi": "https://doi.org/10.1016/s1470-2045(20)30448-4"
+    },
+    {
+      "id": "https://openalex.org/W3023799773",
+      "title": "Climate change and credit risk",
+      "publication_year": 2020,
+      "doi": "https://doi.org/10.1016/j.jclepro.2020.121634"
+    },
+    {
+      "id": "https://openalex.org/W2795439002",
+      "title": "Climate change and One Health",
+      "publication_year": 2018,
+      "doi": "https://doi.org/10.1093/femsle/fny085"
+    },
+    {
+      "id": "https://openalex.org/W2936023010",
+      "title": "Contributions of GRACE to understanding climate change",
+      "publication_year": 2019,
+      "doi": "https://doi.org/10.1038/s41558-019-0456-2"
+    },
+    {
+      "id": "https://openalex.org/W2953584228",
+      "title": "Human Migration in the Era of Climate Change",
+      "publication_year": 2019,
+      "doi": "https://doi.org/10.1093/reep/rez008"
+    },
+    {
+      "id": "https://openalex.org/W3023790717",
+      "title": "Climate Justice in a Climate Changed World",
+      "publication_year": 2020,
+      "doi": "https://doi.org/10.1080/14649357.2020.1748959"
+    },
+    {
+      "id": "https://openalex.org/W4210588784",
+      "title": "Climate Change 2021—The Physical Science Basis",
+      "publication_year": 2021,
+      "doi": "https://doi.org/10.1515/ci-2021-0407"
+    },
+    {
+      "id": "https://openalex.org/W3118937154",
+      "title": "Climate Change and Mental Health",
+      "publication_year": 2021,
+      "doi": "https://doi.org/10.1007/s40572-020-00303-3"
+    },
+    {
+      "id": "https://openalex.org/W4309924944",
+      "title": "Climate Change and Vectorborne Diseases",
+      "publication_year": 2022,
+      "doi": "https://doi.org/10.1056/nejmra2200092"
+    },
+    {
+      "id": "https://openalex.org/W3154807984",
+      "title": "Climate change and insurance",
+      "publication_year": 2021,
+      "doi": "https://doi.org/10.1080/03085147.2021.1903771"
+    },
+    {
+      "id": "https://openalex.org/W2797881053",
+      "title": "The Psychological Effects of Climate Change on Children",
+      "publication_year": 2018,
+      "doi": "https://doi.org/10.1007/s11920-018-0896-9"
+    },
+    {
+      "id": "https://openalex.org/W2979927275",
+      "title": "Psychology and climate change",
+      "publication_year": 2019,
+      "doi": "https://doi.org/10.1016/j.cub.2019.07.017"
+    },
+    {
+      "id": "https://openalex.org/W2754240787",
+      "title": "Climate Change, Financial Stability and Monetary Policy",
+      "publication_year": 2018,
+      "doi": "https://doi.org/10.1016/j.ecolecon.2018.05.011"
+    },
+    {
+      "id": "https://openalex.org/W2803466701",
+      "title": "Poverty and climate change: introduction",
+      "publication_year": 2018,
+      "doi": "https://doi.org/10.1017/s1355770x18000141"
+    },
+    {
+      "id": "https://openalex.org/W3092358196",
+      "title": "Wildfires, Global Climate Change, and Human Health",
+      "publication_year": 2020,
+      "doi": "https://doi.org/10.1056/nejmsr2028985"
+    },
+    {
+      "id": "https://openalex.org/W4283027359",
+      "title": "Mental health and climate change in Africa",
+      "publication_year": 2022,
+      "doi": "https://doi.org/10.1192/bji.2022.14"
+    },
+    {
+      "id": "https://openalex.org/W2800267705",
+      "title": "Twitter and climate change",
+      "publication_year": 2018,
+      "doi": "https://doi.org/10.1111/soc4.12587"
+    },
+    {
+      "id": "https://openalex.org/W2978070827",
+      "title": "Pricing Uncertainty Induced by Climate Change",
+      "publication_year": 2019,
+      "doi": "https://doi.org/10.1093/rfs/hhz144"
+    },
+    {
+      "id": "https://openalex.org/W3162877622",
+      "title": "The Impact of Climate Change on Agricultural Insect Pests",
+      "publication_year": 2021,
+      "doi": "https://doi.org/10.3390/insects12050440"
+    },
+    {
+      "id": "https://openalex.org/W2802674596",
+      "title": "Climate Change and Drought: From Past to Future",
+      "publication_year": 2018,
+      "doi": "https://doi.org/10.1007/s40641-018-0093-2"
+    },
+    {
+      "id": "https://openalex.org/W3159693981",
+      "title": "Climate Change and Mental Health: A Scoping Review",
+      "publication_year": 2021,
+      "doi": "https://doi.org/10.3390/ijerph18094486"
+    },
+    {
+      "id": "https://openalex.org/W4221087878",
+      "title": "The response of ants to climate change",
+      "publication_year": 2022,
+      "doi": "https://doi.org/10.1111/gcb.16140"
+    },
+    {
+      "id": "https://openalex.org/W2883967485",
+      "title": "Blocking and its Response to Climate Change",
+      "publication_year": 2018,
+      "doi": "https://doi.org/10.1007/s40641-018-0108-z"
+    },
+    {
+      "id": "https://openalex.org/W4214836379",
+      "title": "Hedging Climate Change News",
+      "publication_year": 2019,
+      "doi": "https://doi.org/10.1093/rfs/hhz072"
+    },
+    {
+      "id": "https://openalex.org/W4206044308",
+      "title": "Climate Change and Livestock Production: A Literature Review",
+      "publication_year": 2022,
+      "doi": "https://doi.org/10.3390/atmos13010140"
+    },
+    {
+      "id": "https://openalex.org/W2801677017",
+      "title": "Climate Change and Drought: a Perspective on Drought Indices",
+      "publication_year": 2018,
+      "doi": "https://doi.org/10.1007/s40641-018-0098-x"
+    },
+    {
+      "id": "https://openalex.org/W2910823310",
+      "title": "Climate Change — A Health Emergency",
+      "publication_year": 2019,
+      "doi": "https://doi.org/10.1056/nejmp1817067"
+    },
+    {
+      "id": "https://openalex.org/W4381734056",
+      "title": "Climate change: Strategies for mitigation and adaptation",
+      "publication_year": 2023,
+      "doi": "https://doi.org/10.59717/j.xinn-geo.2023.100015"
+    },
+    {
+      "id": "https://openalex.org/W3008870444",
+      "title": "Tropical cyclones and climate change",
+      "publication_year": 2019,
+      "doi": "https://doi.org/10.1016/j.tcrr.2020.01.004"
+    },
+    {
+      "id": "https://openalex.org/W3175630919",
+      "title": "The Impact of Climate Change on the Cost of Bank Loans",
+      "publication_year": 2020,
+      "doi": "https://doi.org/10.1016/j.jcorpfin.2021.102019"
+    },
+    {
+      "id": "https://openalex.org/W4210287977",
+      "title": "The finance of climate change",
+      "publication_year": 2022,
+      "doi": "https://doi.org/10.1016/j.jcorpfin.2022.102162"
+    },
+    {
+      "id": "https://openalex.org/W4403074858",
+      "title": "Climate Change and Hydrological Extremes",
+      "publication_year": 2024,
+      "doi": "https://doi.org/10.1007/s40641-024-00198-4"
+    },
+    {
+      "id": "https://openalex.org/W2883666593",
+      "title": "The tropical forest carbon cycle and climate change",
+      "publication_year": 2018,
+      "doi": "https://doi.org/10.1038/s41586-018-0300-2"
+    },
+    {
+      "id": "https://openalex.org/W2949104016",
+      "title": "Climate Change and the Kidney",
+      "publication_year": 2019,
+      "doi": "https://doi.org/10.1159/000500344"
+    },
+    {
+      "id": "https://openalex.org/W3103603843",
+      "title": "Cardiovascular risks of climate change",
+      "publication_year": 2020,
+      "doi": "https://doi.org/10.1038/s41569-020-00473-5"
+    },
+    {
+      "id": "https://openalex.org/W4399569145",
+      "title": "Climate Change and Cardiovascular Health",
+      "publication_year": 2024,
+      "doi": "https://doi.org/10.1001/jamacardio.2024.1321"
+    },
+    {
+      "id": "https://openalex.org/W3138940549",
+      "title": "CLIMATE CHANGE AND FOOD SECURITY",
+      "publication_year": 2020,
+      "doi": "https://doi.org/10.17707/agricultforest.66.3.16"
+    },
+    {
+      "id": "https://openalex.org/W3080089062",
+      "title": "Climate change and ageing in ectotherms",
+      "publication_year": 2020,
+      "doi": "https://doi.org/10.1111/gcb.15305"
+    },
+    {
+      "id": "https://openalex.org/W4200339548",
+      "title": "Biochar in climate change mitigation",
+      "publication_year": 2021,
+      "doi": "https://doi.org/10.1038/s41561-021-00852-8"
+    },
+    {
+      "id": "https://openalex.org/W2977631046",
+      "title": "Climate Change, Human Impacts, and Coastal Ecosystems in the Anthropocene",
+      "publication_year": 2019,
+      "doi": "https://doi.org/10.1016/j.cub.2019.08.042"
+    },
+    {
+      "id": "https://openalex.org/W3036045166",
+      "title": "Global climate change and greenhouse effect",
+      "publication_year": 2020,
+      "doi": "https://doi.org/10.9770/jesi.2020.7.4(21)"
+    },
+    {
+      "id": "https://openalex.org/W2911294427",
+      "title": "Big Data and Climate Change",
+      "publication_year": 2019,
+      "doi": "https://doi.org/10.3390/bdcc3010012"
+    },
+    {
+      "id": "https://openalex.org/W2952070778",
+      "title": "An Inconvenient Cost: The Effects of Climate Change on Municipal Bonds",
+      "publication_year": 2018,
+      "doi": "https://doi.org/10.1016/j.jfineco.2019.06.006"
+    },
+    {
+      "id": "https://openalex.org/W2998555897",
+      "title": "Climate Change and Harmful Algal Blooms: Insights and perspective",
+      "publication_year": 2019,
+      "doi": "https://doi.org/10.1016/j.hal.2019.101731"
+    },
+    {
+      "id": "https://openalex.org/W3198221850",
+      "title": "Climate change and nephrology",
+      "publication_year": 2021,
+      "doi": "https://doi.org/10.1093/ndt/gfab258"
+    },
+    {
+      "id": "https://openalex.org/W4281684813",
+      "title": "Climate change and allergies",
+      "publication_year": 2022,
+      "doi": "https://doi.org/10.1007/s40629-022-00212-x"
+    },
+    {
+      "id": "https://openalex.org/W4200225514",
+      "title": "Sport and climate change—how will climate change affect sport?",
+      "publication_year": 2021,
+      "doi": "https://doi.org/10.1007/s12662-021-00786-8"
+    },
+    {
+      "id": "https://openalex.org/W2931602354",
+      "title": "An overview of climate change in Iran: facts and statistics",
+      "publication_year": 2019,
+      "doi": "https://doi.org/10.1186/s40068-019-0135-3"
+    },
+    {
+      "id": "https://openalex.org/W2952032746",
+      "title": "Role of greenhouse gas in climate change",
+      "publication_year": 2019,
+      "doi": "https://doi.org/10.1080/16000870.2019.1620078"
+    },
+    {
+      "id": "https://openalex.org/W3108498161",
+      "title": "Climate change and disease in plant communities",
+      "publication_year": 2020,
+      "doi": "https://doi.org/10.1371/journal.pbio.3000949"
+    },
+    {
+      "id": "https://openalex.org/W3001653539",
+      "title": "Climate change, ecosystems and abrupt change: science priorities",
+      "publication_year": 2020,
+      "doi": "https://doi.org/10.1098/rstb.2019.0105"
+    },
+    {
+      "id": "https://openalex.org/W2804677512",
+      "title": "Climate change challenges for central banks and financial regulators",
+      "publication_year": 2018,
+      "doi": "https://doi.org/10.1038/s41558-018-0175-0"
+    },
+    {
+      "id": "https://openalex.org/W4328094166",
+      "title": "Climate Change, Firm Performance, and Investor Surprises",
+      "publication_year": 2023,
+      "doi": "https://doi.org/10.1287/mnsc.2023.4685"
+    },
+    {
+      "id": "https://openalex.org/W3214801802",
+      "title": "Cities and Climate Change",
+      "publication_year": 2021,
+      "doi": "https://doi.org/10.3390/earth2040061"
+    },
+    {
+      "id": "https://openalex.org/W3138288500",
+      "title": "Climate Change and Financial Stability",
+      "publication_year": 2021,
+      "doi": "https://doi.org/10.17016/2380-7172.2893"
+    },
+    {
+      "id": "https://openalex.org/W4316928440",
+      "title": "The effects of climate change on mental health",
+      "publication_year": 2023,
+      "doi": "https://doi.org/10.3238/arztebl.m2022.0403"
+    },
+    {
+      "id": "https://openalex.org/W3020926882",
+      "title": "Integrating climate change in ocean planning",
+      "publication_year": 2020,
+      "doi": "https://doi.org/10.1038/s41893-020-0513-x"
+    },
+    {
+      "id": "https://openalex.org/W4321225268",
+      "title": "Climate change and growth",
+      "publication_year": 2023,
+      "doi": "https://doi.org/10.1093/icc/dtad008"
+    },
+    {
+      "id": "https://openalex.org/W4399974829",
+      "title": "Climate change and inequality",
+      "publication_year": 2024,
+      "doi": "https://doi.org/10.1038/s41390-024-03153-z"
+    },
+    {
+      "id": "https://openalex.org/W2906188550",
+      "title": "Climate Change and Eutrophication: A Short Review",
+      "publication_year": 2018,
+      "doi": "https://doi.org/10.48084/etasr.2392"
+    },
+    {
+      "id": "https://openalex.org/W3009280600",
+      "title": "The Impact of Climate Change on Mental Health: A Systematic Descriptive Review",
+      "publication_year": 2020,
+      "doi": "https://doi.org/10.3389/fpsyt.2020.00074"
+    },
+    {
+      "id": "https://openalex.org/W2947439144",
+      "title": "Climate Change: The Ultimate Challenge for Economics",
+      "publication_year": 2019,
+      "doi": "https://doi.org/10.1257/aer.109.6.1991"
+    },
+    {
+      "id": "https://openalex.org/W3003242941",
+      "title": "Climate change effects on earthworms - a review",
+      "publication_year": 2019,
+      "doi": "https://doi.org/10.25674/so91iss3pp114"
+    },
+    {
+      "id": "https://openalex.org/W4225283372",
+      "title": "Climate change and its impact on biodiversity and human welfare",
+      "publication_year": 2022,
+      "doi": "https://doi.org/10.1007/s43538-022-00073-6"
+    },
+    {
+      "id": "https://openalex.org/W3093882677",
+      "title": "Ordovician palaeogeography and climate change",
+      "publication_year": 2020,
+      "doi": "https://doi.org/10.1016/j.gr.2020.09.008"
+    },
+    {
+      "id": "https://openalex.org/W2961738736",
+      "title": "Coal and climate change",
+      "publication_year": 2019,
+      "doi": "https://doi.org/10.1002/wcc.607"
+    },
+    {
+      "id": "https://openalex.org/W4322624932",
+      "title": "Firm‐Level Climate Change Exposure",
+      "publication_year": 2023,
+      "doi": "https://doi.org/10.1111/jofi.13219"
+    },
+    {
+      "id": "https://openalex.org/W4376618280",
+      "title": "Climate Change and Cancer",
+      "publication_year": 2023,
+      "doi": "https://doi.org/10.1158/1055-9965.epi-22-1234"
+    },
+    {
+      "id": "https://openalex.org/W3034651556",
+      "title": "Climate change and plant virus epidemiology",
+      "publication_year": 2020,
+      "doi": "https://doi.org/10.1016/j.virusres.2020.198059"
+    },
+    {
+      "id": "https://openalex.org/W2922633580",
+      "title": "Plant phenology and global climate change: Current progresses and challenges",
+      "publication_year": 2019,
+      "doi": "https://doi.org/10.1111/gcb.14619"
+    },
+    {
+      "id": "https://openalex.org/W3193631946",
+      "title": "Implications of climate change for railway infrastructure",
+      "publication_year": 2021,
+      "doi": "https://doi.org/10.1002/wcc.728"
+    },
+    {
+      "id": "https://openalex.org/W2805155961",
+      "title": "Climate change and mental health: risks, impacts and priority actions",
+      "publication_year": 2018,
+      "doi": "https://doi.org/10.1186/s13033-018-0210-6"
+    },
+    {
+      "id": "https://openalex.org/W2976372744",
+      "title": "Climate Change, Inequality, and Human Migration",
+      "publication_year": 2019,
+      "doi": "https://doi.org/10.1093/jeea/jvab054"
+    },
+    {
+      "id": "https://openalex.org/W2800485765",
+      "title": "Climate change, human impacts, and carbon sequestration in China",
+      "publication_year": 2018,
+      "doi": "https://doi.org/10.1073/pnas.1700304115"
+    },
+    {
+      "id": "https://openalex.org/W3087951340",
+      "title": "Financial Stability and Climate Change",
+      "publication_year": 2020,
+      "doi": "https://doi.org/10.2478/jcbtp-2020-0034"
+    },
+    {
+      "id": "https://openalex.org/W2790716069",
+      "title": "A global synthesis of animal phenological responses to climate change",
+      "publication_year": 2018,
+      "doi": "https://doi.org/10.1038/s41558-018-0067-3"
+    },
+    {
+      "id": "https://openalex.org/W4224221455",
+      "title": "Microbes and Climate Change: a Research Prospectus for the Future",
+      "publication_year": 2022,
+      "doi": "https://doi.org/10.1128/mbio.00800-22"
+    },
+    {
+      "id": "https://openalex.org/W4200539287",
+      "title": "Political Legitimacy, Authoritarianism, and Climate Change",
+      "publication_year": 2021,
+      "doi": "https://doi.org/10.1017/s0003055421001301"
+    },
+    {
+      "id": "https://openalex.org/W3129037874",
+      "title": "Sustainable Tourism and the Grand Challenge of Climate Change",
+      "publication_year": 2021,
+      "doi": "https://doi.org/10.3390/su13041966"
+    },
+    {
+      "id": "https://openalex.org/W4320922831",
+      "title": "Collective responsibility for climate change",
+      "publication_year": 2023,
+      "doi": "https://doi.org/10.1002/wcc.830"
+    },
+    {
+      "id": "https://openalex.org/W2925259354",
+      "title": "The impact of climate change on fertility*",
+      "publication_year": 2019,
+      "doi": "https://doi.org/10.1088/1748-9326/ab0843"
+    },
+    {
+      "id": "https://openalex.org/W2948417456",
+      "title": "Climate change and tropical cyclone trend",
+      "publication_year": 2019,
+      "doi": "https://doi.org/10.1038/s41586-019-1222-3"
+    },
+    {
+      "id": "https://openalex.org/W4289262061",
+      "title": "Climate Endgame: Exploring catastrophic climate change scenarios",
+      "publication_year": 2022,
+      "doi": "https://doi.org/10.1073/pnas.2108146119"
+    },
+    {
+      "id": "https://openalex.org/W2914388185",
+      "title": "The Sociology of Climate Change as a Sociology of Loss",
+      "publication_year": 2018,
+      "doi": "https://doi.org/10.1017/s0003975618000152"
+    },
+    {
+      "id": "https://openalex.org/W2795496428",
+      "title": "Climate change and gender equality in developing states",
+      "publication_year": 2018,
+      "doi": "https://doi.org/10.1016/j.worlddev.2018.02.021"
+    },
+    {
+      "id": "https://openalex.org/W3094792917",
+      "title": "Climate change alters plant–herbivore interactions",
+      "publication_year": 2020,
+      "doi": "https://doi.org/10.1111/nph.17036"
+    }
+  ]
+}

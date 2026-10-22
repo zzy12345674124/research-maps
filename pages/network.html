@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-workspace-state="loading">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>人工智能教育：关键词共现网络</title>
+  
+  <!-- 功能：首屏先显示加载状态，隐藏原独立演示布局；visibility保留尺寸供SVG布局计算。 -->
+  <style>
+    html[data-workspace-state="loading"] body > :not(#workspace-startup):not(noscript),
+    html[data-workspace-state="error"] body > :not(#workspace-startup):not(noscript){visibility:hidden!important;pointer-events:none!important}
+    #workspace-startup{position:fixed;inset:0;z-index:10000;margin:0;padding:24px;background:#fafcfd;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font:15px/1.8 "Microsoft YaHei",sans-serif;color:#607882;text-align:center;visibility:visible!important}
+    #workspace-startup .startup-mark{width:25px;height:25px;border-radius:50%;background:#267d89;box-shadow:10px -5px 0 -5px #9bc8ac;margin-bottom:10px}
+    #workspace-startup strong{font-size:18px;color:#2e4b58;font-weight:500}#workspace-startup p{max-width:580px;margin:0;overflow-wrap:anywhere}
+    #workspace-startup button{font:inherit;color:#267d89;border:1px solid #bcd7dc;border-radius:4px;background:#edf6f7;padding:7px 18px;cursor:pointer}
+    #workspace-startup button[hidden],html[data-workspace-state="ready"] #workspace-startup{display:none!important}
+  </style>
+  <script src="../scripts/interactions/workspace-startup.js?v=20261021-startup19"></script>
+  <script src="../library/d3/d3.v7.min.js"></script>
+    
+    <link rel="stylesheet" href="../css/common.css?v=20261021-demoentry16">
+  
+<link rel="stylesheet" href="../css/network.css">
+<link rel="stylesheet" href="../css/glass.css?v=20261021-select25">
+</head>
+  <body>
+  <div id="workspace-startup" role="status" aria-live="polite"><span class="startup-mark" aria-hidden="true"></span><strong>正在加载文献计量工作台…</strong><p>正在准备图形和参数，请稍候。</p><button type="button" hidden>重新加载</button></div>
+  <noscript><style>#workspace-startup{display:none!important}</style><p>请启用JavaScript后重新打开工作台。</p></noscript>
+
+    <h2>人工智能教育：关键词共现网络</h2>
+    <div class="note">OpenAlex 自动标注关键词 · 2020–2026年 · 检索相关性前100篇 article · 教学样本，非完整领域样本</div>
+    <div class="toolbar">
+      <label>关键词最少出现 <input id="min-count" type="number" min="1" step="1" value="2"> 篇</label>
+      <label>最少共现 <input id="min-weight" type="number" min="1" step="1" value="1"> 篇</label>
+      <button id="filter-button" type="button">应用筛选</button>
+      <button id="reset-view" type="button">显示全图</button>
+      <span id="filter-message"></span>
+    </div>
+    <div class="toolbar">
+      <input id="keyword-search" type="text" placeholder="搜索英文关键词，如 education">
+      <button id="search-button" type="button">查找</button>
+      <span id="search-message"></span>
+    </div>
+    <div class="toolbar">
+      <label for="color-mode">节点颜色：</label>
+      <select id="color-mode">
+        <option value="year" selected>平均发表年份</option>
+        <option value="cluster" disabled>共现社区（模块度，暂时停用）</option>
+        <option value="topic" id="topic-color-option" disabled>论文主题（模型映射）</option>
+        <option value="plain">统一蓝色</option>
+      </select>
+      <span id="color-description" class="note"></span>
+    </div>
+    <!-- 功能：只改变图形可见性，不删除数据、不改变社区划分或布局受力。 -->
+    <div class="toolbar">
+      <label><input id="show-all-labels" type="checkbox" style="width:auto!important;padding:0;accent-color:#327884"> 显示全部标签（可能重叠）</label>
+      <label><input id="show-links" type="checkbox" checked style="width:auto!important;padding:0;accent-color:#327884"> 显示连线</label>
+      <span class="note">默认按词频优先显示不重叠的标签，显示数量随画面自适应；点击节点优先显示所选词，点击空白恢复。</span>
+    </div>
+    <div id="year-legend" style="max-width: 360px; margin: 10px 0;">
+      <div id="year-gradient" style="height: 12px; border-radius: 4px;"></div>
+      <div style="display: flex; justify-content: space-between; font-size: 13px;">
+        <span id="year-min"></span><span id="year-max"></span>
+      </div>
+    </div>
+    <div id="cluster-legend" class="note" style="display:none; max-width:420px; line-height:2;"></div>
+    <div class="toolbar">
+      <label>展示方式 <select id="view-mode"><option value="network">网络 / 年份叠加</option><option value="density">关键词密度</option></select></label>
+      <label>密度权重 <select id="density-weight"><option value="frequency">关键词论文数</option><option value="equal">每个节点等权</option></select></label>
+      <label>平滑范围 <input id="bandwidth" type="range" min="15" max="100" value="45"> <span id="bandwidth-value">45</span></label>
+    </div>
+    <div class="toolbar">
+      <label>布局 <select id="layout-mode">
+        <option value="force" selected>力导向（整片）</option>
+        <option value="community" disabled>按模块度群组分开（暂时停用）</option>
+        <option value="topic" id="topic-layout-option" disabled>按论文主题聚拢</option>
+      </select></label>
+      <label>关联归一化 <select id="weight-mode" aria-describedby="weight-mode-help">
+        <option value="strength" selected>关联强度（抵消高频）</option>
+        <option value="raw">原始共现次数</option>
+      </select></label>
+      <!-- 功能：在权重选项旁解释归一化目的、实际公式与作用范围。 -->
+      <div id="weight-mode-help" class="note">
+        <strong>关联归一化是什么？</strong>像比较两个人是否经常结伴：本来就到处活动的人，碰面的次数自然更多。归一化会考虑每个词本身有多常见，让不同词对更便于比较。<br>
+        <strong>关联强度（抵消高频）：</strong>两词共同出现的论文数 ÷（词A出现篇数 × 词B出现篇数），减轻高频词天然容易共现的影响。<br>
+        <strong>原始共现次数：</strong>直接用两词共同出现的论文数，不做上述调整。<br>
+        这里仅用于调整布局中的连线拉力；线宽、共现篇数和论文证据仍使用原始计数，不改变主题模型结果。
+      </div>
+      <button id="relayout" type="button">重新布局</button>
+    </div>
+    <div class="toolbar" id="community-controls">
+      <label>群落吸引 <input id="community-attraction" type="range" min="0.05" max="1.2" step="0.05" value="0.35"> <span id="community-attraction-value">0.35</span></label>
+      <label>群落分离 <input id="community-separation" type="range" min="100" max="4000" step="50" value="900"> <span id="community-separation-value">900</span></label>
+    </div>
+    <!-- 功能：独立的NMF训练参数；训练使用全样本标题与摘要，网络门槛只筛选显示节点。 -->
+    <div class="toolbar" id="topic-panel">
+      <strong>论文主题模型</strong>
+      <label>模型 <select id="topic-method"><option value="nmf">NMF（浏览器）</option><option value="lda">LDA（浏览器）</option><option value="bertopic">BERTopic（本机服务）</option></select></label>
+      <label>主题数 <input id="topic-count" type="number" min="2" max="12" step="1" value="5"></label>
+      <label>每主题代表词 <input id="topic-words" type="number" min="1" max="30" step="1" value="8"></label>
+      <label>词语最少出现 <input id="topic-min-df" type="number" min="1" step="1" value="2"> 篇</label>
+      <label>训练轮数 <input id="topic-iterations" type="number" min="10" max="300" step="1" value="120"></label>
+      <button id="run-topic" type="button">运行NMF</button>
+      <!-- 功能：BERTopic采用自动密度聚类，最小主题规模不等于指定主题数。 -->
+      <div id="bertopic-parameters" hidden>
+        <label>最小主题规模 <input id="bertopic-min-size" type="number" min="2" max="30" value="5"> 篇</label>
+        <label>语义邻居数 <input id="bertopic-neighbors" type="number" min="2" max="50" value="15"></label>
+        <p class="note">自动确定主题数；部分论文可未归类。词频门槛作用于聚合后的主题文本，不等同于NMF/LDA文档频次。</p>
+      </div>
+      <div id="topic-status" class="note" role="status">尚未运行。标题＋摘要提取论文主题，模块度分组已暂时停用；当前仅支持英文文本。通用研究词及人工智能教育检索词已停用。</div>
+      <div id="topic-results" class="note" style="width:100%;overflow-wrap:anywhere"></div>
+    </div>
+    <div id="density-legend" class="note" style="display:none;">
+      <div style="width:280px;height:12px;background:linear-gradient(to right,#ffffcc,#fd8d3c,#800026);"></div>
+      低密度 → 高密度（当前布局内相对值）；点击热区查看附近关键词。密度受布局、权重和范围影响，不表示年份或质量。
+    </div>
+    <div id="summary" aria-live="polite"></div>
+    <div id="empty" role="status">没有达到节点门槛的关键词，请降低门槛。</div>
+    <svg id="network" width="900" height="520" viewBox="0 0 900 520" aria-label="关键词共现网络"></svg>
+    <div id="selection" aria-live="polite"></div>
+    <!-- 功能：关键词选择对应的论文证据，由公共工作台放入底部证据抽屉。 -->
+    <div id="evidence">选中关键词节点后，这里列出包含该词的样本论文。</div>
+    <div class="legend">
+      <div><strong>圆：</strong>关键词；面积与样本内出现的论文数成正比。颜色可切换为平均发表年份、论文主题或统一蓝色；模块度选项暂时停用。</div>
+      <div><strong>线：</strong>同篇论文中的关键词共现；线宽按次数平方根增加，最大3像素（画布坐标），悬停查看原始次数。原始共现次数越多，连线越清晰；隐藏连线只影响显示，不删除关系或改变分组。共现不代表因果。</div>
+      <div><strong>年份颜色：</strong>紫色偏早、黄色偏晚；灰色为缺失年份。平均值仅基于当前100篇样本，不是首次出现年份，也不能单独证明研究热度上升。</div>
+      <div><strong>群组颜色：</strong>在当前节点门槛与共现门槛下，按共现拓扑做贪心模块度划分；改门槛会改变分组，因此颜色随筛选重算。这是结构上的抱团，<strong>不是主题模型的语义主题</strong>，组名需人工解释；当前无连线的词显示为灰色。点击图例中的群组可单独高亮该组；组数较多时颜色可能接近，请结合G编号和成员列表辨认。</div>
+      <div><strong>密度视图：</strong>浅黄到深红表示当前图内密度递增；关闭圆线只保留词标签。等权关注节点数量，论文数权重同时考虑高频词。不能将热点解释为增长趋势。</div>
+      <div><strong>位置：</strong>力导向布局，不表示年份、地理位置或主题相似度；“按群组分开”只是把同组画到一起，团块之间的距离和方位没有含义。筛选后重新计算布局。</div>
+      <div><strong>布局选项：</strong>“关联归一化”把共现次数换成 共现次数/(两端词频相乘)，抵消高频词天然的高共现偏置，让稀疏但真实强关联的词对不被枢纽词淹没；原始共现次数始终用于线宽和悬停提示。“按群组分开”在力导向之外加一层群落引力（本组质心吸引、他组质心排斥），把各群组排成独立的团。</div>
+      <div><strong>操作：</strong>悬停查看数值；点击高亮当前直接邻居；点击空白恢复；可拖动单个节点，滚轮缩放，拖动空白平移。</div>
+    </div>
+    
+    
+    <script src="../scripts/analysis/topic-store.js?v=20261020-topics5"></script>
+<script src="../scripts/analysis/topic-model.js"></script>
+<script src="../scripts/analysis/lda-model.js?v=20261020-models8"></script>
+<script src="../scripts/analysis/topic-trainer.js?v=20261020-models8"></script>
+    <script src="../scripts/analysis/clustering.js"></script>
+    <script src="../scripts/analysis/network-layout.js"></script>
+    
+    
+  <script src="../scripts/bootstrap.js?v=20261021-select25" data-config='{"data": {"openAlexPapers": "../data/processed/papers.json", "topicCorpus": "../data/processed/topic-corpus.json"}, "scripts": ["../scripts/analysis/label-layout.js", "../scripts/interactions/edge-rendering.js", "../scripts/charts/network.js", "../scripts/interactions/topic-panel.js", "../scripts/interactions/workspace.js", "../scripts/interactions/liquid-select.js"], "workspace": true}'></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+/* 功能：dual-map页面专用样式。 */
+
+/* 功能：分区展示学科底图、引用曲线、覆盖信息和论文证据。 */
+body{max-width:1250px;margin:24px auto;padding:0 20px;font-family:"Microsoft YaHei",sans-serif;color:#23394e}h2{margin-bottom:8px}.note,#stats{color:#596a79;font-size:14px;line-height:1.9}.toolbar{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0;align-items:center}input,select,button{font:inherit;padding:7px;border:1px solid #bdcbd6;border-radius:4px}input{width:70px}button{cursor:pointer;background:#edf4fa}.chart{border:1px solid #d8e2eb;overflow:auto;background:#fbfdff}svg{display:block;min-width:850px;width:100%;height:auto}#details{background:#f1f5f8;padding:15px;margin-top:16px;line-height:1.8}li{margin-bottom:9px}.warning{background:#fff7e6;padding:10px;margin:10px 0;font-size:14px;line-height:1.8}
+
+/* 功能：画布手势用于缩放和平移，保留节点自身的点击指针。 */
+#dual-map { cursor: grab; touch-action: none; }
+#dual-map:active { cursor: grabbing; }
+#dual-map-zoom-level { min-width: 3.5em; font-variant-numeric: tabular-nums; }

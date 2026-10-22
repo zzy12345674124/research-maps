@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-workspace-state="loading">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>人工智能教育：期刊双图叠加</title>
+
+  <!-- 功能：首屏先显示加载状态，隐藏原独立演示布局；visibility保留尺寸供SVG布局计算。 -->
+  <style>
+    html[data-workspace-state="loading"] body > :not(#workspace-startup):not(noscript),
+    html[data-workspace-state="error"] body > :not(#workspace-startup):not(noscript){visibility:hidden!important;pointer-events:none!important}
+    #workspace-startup{position:fixed;inset:0;z-index:10000;margin:0;padding:24px;background:#fafcfd;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font:15px/1.8 "Microsoft YaHei",sans-serif;color:#607882;text-align:center;visibility:visible!important}
+    #workspace-startup .startup-mark{width:25px;height:25px;border-radius:50%;background:#267d89;box-shadow:10px -5px 0 -5px #9bc8ac;margin-bottom:10px}
+    #workspace-startup strong{font-size:18px;color:#2e4b58;font-weight:500}#workspace-startup p{max-width:580px;margin:0;overflow-wrap:anywhere}
+    #workspace-startup button{font:inherit;color:#267d89;border:1px solid #bcd7dc;border-radius:4px;background:#edf6f7;padding:7px 18px;cursor:pointer}
+    #workspace-startup button[hidden],html[data-workspace-state="ready"] #workspace-startup{display:none!important}
+  </style>
+  <script src="../scripts/interactions/workspace-startup.js?v=20261021-startup19"></script>
+<script src="../library/d3/d3.v7.min.js"></script>
+
+  <link rel="stylesheet" href="../css/common.css?v=20261021-demoentry16">
+  
+<link rel="stylesheet" href="../css/dual-map.css?v=20261020-dualzoom7">
+<link rel="stylesheet" href="../css/glass.css?v=20261021-select25">
+</head>
+<body>
+  <div id="workspace-startup" role="status" aria-live="polite"><span class="startup-mark" aria-hidden="true"></span><strong>正在加载文献计量工作台…</strong><p>正在准备图形和参数，请稍候。</p><button type="button" hidden>重新加载</button></div>
+  <noscript><style>#workspace-startup{display:none!important}</style><p>请启用JavaScript后重新打开工作台。</p></noscript>
+
+<h2>人工智能教育：期刊双图叠加（学科分区原型）</h2>
+<div class="note">左侧：引用方期刊学科 · 右侧：被引用方期刊学科 · 曲线：从左向右的引用路径</div>
+<div class="warning">期刊分类改用OpenAlex期刊自身的主题画像：按API返回主题的计数汇总到学科，取最高者。同一期刊两侧归类一致；不是官方期刊单标签或CiteSpace原始底图。多学科期刊的单一归类仍有局限。</div>
+<div class="toolbar">
+<label>突出前几条路径 <input id="major-paths" type="number" min="1" max="50" value="5"></label>
+<label>期刊排斥强度 <input id="journal-charge" type="range" min="0.1" max="3" step="0.1" value="0.7"></label>
+<button id="relayout" type="button">重新排布期刊</button>
+<label>最少引用 <input id="minimum" type="number" min="1" step="1" value="1"> 次</label>
+<label>引用方学科 <select id="left-filter"></select></label>
+<label>被引方学科 <select id="right-filter"></select></label>
+<button id="apply">应用筛选</button><button id="reset">恢复全部</button>
+</div>
+<div id="stats"></div><div id="message" class="note"></div>
+<!-- 功能：双图视图操作独立于筛选与期刊重新排布。 -->
+<div class="toolbar" aria-label="期刊双图视图缩放">
+<button id="dual-map-zoom-in" type="button" aria-label="放大期刊双图">放大 ＋</button>
+<button id="dual-map-zoom-out" type="button" aria-label="缩小期刊双图">缩小 −</button>
+<button id="dual-map-reset-view" type="button">重置视图</button>
+<span id="dual-map-zoom-level" aria-live="polite">100%</span>
+<span class="note">滚轮缩放 · 拖动画布平移；筛选和重新排布保留当前视角。</span>
+</div>
+<div class="chart"><svg id="dual-map" width="1200" role="img" aria-label="期刊学科引用路径"></svg></div>
+<div class="note">粗实线突出当前引用量最高的路径，细淡线保留背景关系；颜色区分引用方学科，不表示年份。椭圆中的每个点代表一个真实期刊，点位由受椭圆边界约束的力导向排布，不表示相似度；椭圆越大表示涉及期刊越多。点击学科可查看期刊与分类依据。点击椭圆高亮路径，点击曲线查看论文证据，点击空白清除高亮。学科区域采用受约束的错落排版，距离不表示学科相似度；筛选不改变底图位置。</div>
+<div id="details">点击曲线查看真实引用论文对。</div>
+
+<script src="../scripts/analysis/constrained-journal-layout.js"></script>
+<script src="../scripts/analysis/discipline-layout.js"></script>
+
+<script src="../scripts/bootstrap.js?v=20261021-select25" data-config='{"data": {"dualMapData": "../data/processed/dual-map.json"}, "scripts": ["../scripts/interactions/edge-rendering.js", "../scripts/charts/dual-map.js", "../scripts/interactions/workspace.js", "../scripts/interactions/liquid-select.js"], "workspace": true}'></script>
+</body></html>

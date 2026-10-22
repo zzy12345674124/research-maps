@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-workspace-state="loading">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>人工智能教育：文献共被引网络</title>
+  
+  <!-- 功能：首屏先显示加载状态，隐藏原独立演示布局；visibility保留尺寸供SVG布局计算。 -->
+  <style>
+    html[data-workspace-state="loading"] body > :not(#workspace-startup):not(noscript),
+    html[data-workspace-state="error"] body > :not(#workspace-startup):not(noscript){visibility:hidden!important;pointer-events:none!important}
+    #workspace-startup{position:fixed;inset:0;z-index:10000;margin:0;padding:24px;background:#fafcfd;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font:15px/1.8 "Microsoft YaHei",sans-serif;color:#607882;text-align:center;visibility:visible!important}
+    #workspace-startup .startup-mark{width:25px;height:25px;border-radius:50%;background:#267d89;box-shadow:10px -5px 0 -5px #9bc8ac;margin-bottom:10px}
+    #workspace-startup strong{font-size:18px;color:#2e4b58;font-weight:500}#workspace-startup p{max-width:580px;margin:0;overflow-wrap:anywhere}
+    #workspace-startup button{font:inherit;color:#267d89;border:1px solid #bcd7dc;border-radius:4px;background:#edf6f7;padding:7px 18px;cursor:pointer}
+    #workspace-startup button[hidden],html[data-workspace-state="ready"] #workspace-startup{display:none!important}
+  </style>
+  <script src="../scripts/interactions/workspace-startup.js?v=20261021-startup19"></script>
+  <script src="../library/d3/d3.v7.min.js"></script>
+    
+    <link rel="stylesheet" href="../css/common.css?v=20261021-demoentry16">
+  
+<link rel="stylesheet" href="../css/co-citation.css">
+<link rel="stylesheet" href="../css/glass.css?v=20261021-select25">
+</head>
+  <body>
+  <div id="workspace-startup" role="status" aria-live="polite"><span class="startup-mark" aria-hidden="true"></span><strong>正在加载文献计量工作台…</strong><p>正在准备图形和参数，请稍候。</p><button type="button" hidden>重新加载</button></div>
+  <noscript><style>#workspace-startup{display:none!important}</style><p>请启用JavaScript后重新打开工作台。</p></noscript>
+
+    <h2>人工智能教育：文献共被引网络</h2>
+    <div class="note">OpenAlex参考文献关系 · 2020–2026年 · 检索相关性前100篇 article · 教学样本，非完整领域样本</div>
+    <div class="toolbar">
+      <label>样本内最少被引 <input id="min-count" type="number" min="1" step="1" value="2"> 篇</label>
+      <label>最少共被引（筛选边）<input aria-describedby="co-citation-edge-help" id="min-weight" type="number" min="1" step="1" value="1"> 篇</label>
+      <label>最多节点 <input id="max-nodes" type="number" min="1" max="200" value="60"></label>
+      <!-- 功能：边门槛与孤立点显示分别控制，默认聚焦有共被引关系的文献。 -->
+      <span id="co-citation-edge-help" class="note">这是对边（连线）的筛选，不是对节点的筛选：两篇文献被至少指定篇数的样本论文同时引用，才画连线。</span>
+      <label><input id="show-isolates" type="checkbox" style="width:auto!important"> 显示孤立点</label>
+      <button id="filter-button" type="button">应用筛选</button>
+      <button id="reset-view" type="button">显示全图</button>
+      <span id="filter-message"></span>
+    </div>
+    <div class="toolbar"><label><input id="show-all-labels" type="checkbox" style="width:auto!important"> 显示全部标签（可能重叠）</label><span class="note">默认优先显示最多20个高被引标题，并自动避让；标题保留前6词，完整标题可悬停节点查看。所有筛选后的节点仍保留。</span></div>
+    <div class="toolbar">
+      <input id="keyword-search" type="text" placeholder="搜索英文实体，如 education">
+      <button id="search-button" type="button">查找</button>
+      <span id="search-message"></span>
+    </div>
+    <div class="toolbar">
+      <label for="color-mode">节点颜色：</label>
+      <select id="color-mode">
+        <option value="year" selected>文献发表年份</option>
+        <option value="plain">统一蓝色</option>
+      </select>
+      <span id="color-description" class="note"></span>
+    </div>
+    <div id="year-legend" style="max-width: 360px; margin: 10px 0;">
+      <div id="year-gradient" style="height: 12px; border-radius: 4px;"></div>
+      <div style="display: flex; justify-content: space-between; font-size: 13px;">
+        <span id="year-min"></span><span id="year-max"></span>
+      </div>
+    </div>
+    <div id="summary" aria-live="polite"></div>
+    <div id="empty" role="status">当前条件下没有可显示的文献。可降低被引或共被引门槛，或勾选“显示孤立点”。</div>
+    <svg id="network" width="900" height="520" viewBox="0 0 900 520" aria-label="文献共被引网络"></svg>
+    <div id="selection" aria-live="polite"></div>
+    <div id="evidence" class="note"></div>
+    <div class="legend">
+      <div><strong>圆：</strong>被引文献，面积与引用它的样本论文数成正比；不使用全库被引次数。</div>
+      <div><strong>线：</strong>同一篇样本论文一起引用两篇文献；线宽表示这样的样本论文数。无方向，不代表两篇文献互相引用。</div>
+      <div><strong>颜色：</strong>被引文献发表年份（紫早黄晚），灰色为未匹配年份；可切换为统一颜色，尚未按聚类着色。</div>
+      <div><strong>覆盖：</strong>100篇中70篇有参考文献记录，未记录不等于没有参考文献；默认只显示样本内被引至少2次的前60个节点。未匹配标题者以ID显示。</div>
+      <div><strong>位置：</strong>力导向布局，不表示年份或地理位置；筛选后重新计算布局。</div>
+      <div><strong>操作：</strong>悬停查看数值；点击高亮当前直接邻居；点击空白恢复；拖动节点，滚轮缩放，拖动空白平移。</div>
+    </div>
+    
+    
+    <script src="../scripts/analysis/co-citation.js?v=20261020-isolates12"></script>
+    
+  <script src="../scripts/bootstrap.js?v=20261021-select25" data-config='{"data": {"openAlexPapers": "../data/processed/papers.json", "referenceLabels": "../data/processed/reference-labels.json"}, "scripts": ["../scripts/analysis/label-layout.js", "../scripts/interactions/edge-rendering.js", "../scripts/charts/co-citation.js", "../scripts/interactions/workspace.js", "../scripts/interactions/liquid-select.js"], "workspace": true}'></script>
+</body>
+</html>

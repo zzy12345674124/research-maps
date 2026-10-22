@@ -1,0 +1,155 @@
+{
+  "selected": "climate change",
+  "rationale": "三候选中，机构至少两篇门槛的最大连通块与边数最多；地理坐标提供跨地区长边。不是对主题重要性或算法效果的评判。",
+  "candidates": [
+    {
+      "query": "renewable energy",
+      "metrics": {
+        "works": 100,
+        "eligible_works": 100,
+        "excluded_more_than_20_institutions": 0,
+        "unique_institutions": 227,
+        "countries": 51,
+        "institutions_at_least_2_papers": 25,
+        "connected_nodes": 18,
+        "edges": 25,
+        "components": [
+          10,
+          3,
+          3,
+          2
+        ],
+        "density": 0.1634
+      }
+    },
+    {
+      "query": "machine learning medicine",
+      "metrics": {
+        "works": 100,
+        "eligible_works": 100,
+        "excluded_more_than_20_institutions": 0,
+        "unique_institutions": 240,
+        "countries": 28,
+        "institutions_at_least_2_papers": 35,
+        "connected_nodes": 35,
+        "edges": 45,
+        "components": [
+          13,
+          10,
+          4,
+          3,
+          3,
+          2
+        ],
+        "density": 0.0756
+      }
+    },
+    {
+      "query": "climate change",
+      "metrics": {
+        "works": 100,
+        "eligible_works": 92,
+        "excluded_more_than_20_institutions": 8,
+        "unique_institutions": 297,
+        "countries": 42,
+        "institutions_at_least_2_papers": 52,
+        "connected_nodes": 48,
+        "edges": 100,
+        "components": [
+          41,
+          5,
+          2
+        ],
+        "density": 0.0887
+      }
+    }
+  ],
+  "selected_network": {
+    "title": "气候变化研究：机构合作地理网络",
+    "source": "OpenAlex",
+    "license": "CC0",
+    "retrieved_at": "2026-10-21T13:49:50.447396+00:00",
+    "query": {
+      "search": "climate change",
+      "filter": "type:article,publication_year:2018-2025",
+      "per_page": 100,
+      "select": "id,title,publication_year,doi,authorships,referenced_works,primary_topic,cited_by_count"
+    },
+    "request_url": "https://api.openalex.org/works?search=climate+change&filter=type%3Aarticle%2Cpublication_year%3A2018-2025&per_page=100&select=id%2Ctitle%2Cpublication_year%2Cdoi%2Cauthorships%2Creferenced_works%2Cprimary_topic%2Ccited_by_count",
+    "sample_size": 100,
+    "included_papers": 92,
+    "excluded_large_teams": [
+      {
+        "id": "https://openalex.org/W4308325267",
+        "title": "Scientists' warning on climate change and insects",
+        "institutions": 67
+      },
+      {
+        "id": "https://openalex.org/W3006291201",
+        "title": "The 2025 report of the Lancet Countdown on health and climate change: climate change action offers a lifeline",
+        "institutions": 66
+      },
+      {
+        "id": "https://openalex.org/W2950398529",
+        "title": "Tackling Climate Change with Machine Learning",
+        "institutions": 22
+      },
+      {
+        "id": "https://openalex.org/W4402262878",
+        "title": "Climate change exacerbates the environmental impacts of agriculture",
+        "institutions": 22
+      },
+      {
+        "id": "https://openalex.org/W2900106581",
+        "title": "Compositional response of Amazon forests to climate change",
+        "institutions": 75
+      },
+      {
+        "id": "https://openalex.org/W3022524405",
+        "title": "Monsoons Climate Change Assessment",
+        "institutions": 31
+      },
+      {
+        "id": "https://openalex.org/W4210916416",
+        "title": "Tackling Climate Change with Machine Learning",
+        "institutions": 22
+      },
+      {
+        "id": "https://openalex.org/W4220960159",
+        "title": "Climate change in the Baltic Sea region: a summary",
+        "institutions": 24
+      }
+    ],
+    "maximum_institutions_per_paper": 20,
+    "maximum_nodes": 160,
+    "missing_coordinates": [],
+    "hidden_isolates": [
+      "https://openalex.org/I118746106",
+      "https://openalex.org/I103320735",
+      "https://openalex.org/I1118541",
+      "https://openalex.org/I126345244",
+      "https://openalex.org/I1293035123",
+      "https://openalex.org/I133731052",
+      "https://openalex.org/I143302722",
+      "https://openalex.org/I162148367",
+      "https://openalex.org/I168719708",
+      "https://openalex.org/I180670191",
+      "https://openalex.org/I181343428",
+      "https://openalex.org/I223822909",
+      "https://openalex.org/I23946033",
+      "https://openalex.org/I2802326326"
+    ],
+    "node_count": 146,
+    "edge_count": 399,
+    "country_count": 29,
+    "international_edges": 251,
+    "scope_note": "相关性前100篇article，2018–2025；为演示选择，非领域全量或随机样本。单篇超过20机构的论文排除并记录；其余按样本发文数取前160机构，缺坐标和孤立点不显示。",
+    "relationship_note": "无向边表示两机构出现在同一篇样本论文的署名中；同篇同机构去重，边权为共同论文数，不代表直接沟通或因果关系。",
+    "layout_note": "按OpenAlex机构经纬度定位，未做力导向重排；同城市机构可重合，当前机构地址不是历史迁址轨迹。拖动仅供画法演示，可恢复。"
+  },
+  "files": {
+    "dataset": "data\\demo\\openalex-climate-institutions.json",
+    "raw_candidates": "data/raw/openalex-bundling-candidates-20261021.json",
+    "raw_institutions": "data\\raw\\openalex-bundling-institutions-20261021.json"
+  }
+}

@@ -1,0 +1,16 @@
+/* 功能：timeline页面专用样式。 */
+
+    /* 功能：保持关键词行和年份轴清晰，窄屏允许横向滚动。 */
+    body { max-width: 1150px; margin: 24px auto; padding: 0 20px; font-family: "Microsoft YaHei", sans-serif; color: #23394e; }
+    .note, #summary { font-size: 14px; color: #596a79; line-height: 1.9; }
+    .toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 16px 0; }
+    input, button, select { font: inherit; padding: 6px; border: 1px solid #bdcbd6; border-radius: 4px; }
+    input { width: 65px; } button { background: #edf4fa; cursor: pointer; }
+    .chart { overflow-x: auto; border: 1px solid #d8e2eb; background: #fbfdff; }
+    svg { display: block; }
+    #detail { padding: 14px; background: #f1f5f8; line-height: 1.8; margin-top: 14px; }
+  
+/* 功能：拖拽平移使用独立画布手势，空白处显示移动提示。 */
+#timeline { cursor: grab; touch-action: none; }
+#timeline:active { cursor: grabbing; }
+#timeline-zoom-level { min-width: 3.5em; font-variant-numeric: tabular-nums; }
