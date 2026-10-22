@@ -125,3 +125,6 @@ body.workspace,body.glass-demo,body.glass-notes{background:radial-gradient(ellip
 @media(prefers-reduced-motion:reduce){.lg-menu{animation:none}.lg-trigger,.lg-trigger-arrow{transition:none}}
 @supports not (backdrop-filter:blur(1px)){.lg-menu{background:#f3f8fc}}
 @media(prefers-contrast:more){.lg-menu{background:white;border-color:#7a99ae}.lg-option.is-active{outline:1px solid #4d839c}.lg-trigger{background:white}}
+
+/* 大面积图形画布使用静态玻璃底色，避免整块SVG参与背景模糊合成。侧栏及菜单保留玻璃效果。 */
+.workspace .ws-output{-webkit-backdrop-filter:none;backdrop-filter:none}

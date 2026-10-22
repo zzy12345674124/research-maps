@@ -51,17 +51,19 @@
   // 用实际 SVG 字形边界和屏幕矩阵测量，隐藏标签仍参与下一轮；缩放后重新查询。
   function svg(selection,{priority=d=>d?.count||0,eligible=()=>true,all=false,limit=Infinity,padding=2}={}){
     if(!selection)return;
-    const boxes=[];
+    const boxes=[], excluded=[];
+    // 先集中恢复显示，再完成所有测量，最后集中写回，避免读写交错。
     selection.style('display',null).each(function(d,index){
-      if(!eligible(d)){this.style.display='none';return;}
+      if(!eligible(d)){excluded.push(this);return;}
       const b=this.getBBox(),m=this.getScreenCTM();
-      if(!m||!b.width||!b.height){this.style.display='none';return;}
+      if(!m||!b.width||!b.height){excluded.push(this);return;}
       const points=[[b.x,b.y],[b.x+b.width,b.y],[b.x,b.y+b.height],[b.x+b.width,b.y+b.height]]
         .map(([x,y])=>[m.a*x+m.c*y+m.e,m.b*x+m.d*y+m.f]);
       boxes.push({element:this,x0:Math.min(...points.map(p=>p[0]))-padding,y0:Math.min(...points.map(p=>p[1]))-padding,
         x1:Math.max(...points.map(p=>p[0]))+padding,y1:Math.max(...points.map(p=>p[1]))+padding,priority:priority(d,index)});
     });
     const visible=all?new Set(boxes):select(boxes,{limit});
+    excluded.forEach(element=>{element.style.display='none';});
     boxes.forEach(b=>{b.element.style.display=visible.has(b)?'':'none';});
   }
   const pending=new WeakMap();
@@ -84,7 +86,14 @@
   }
   function observe(element,refresh){
     root.addEventListener('resize',refresh);
-    if(root.ResizeObserver)new root.ResizeObserver(refresh).observe(element);
+    if(root.ResizeObserver){
+      let width=null,height=null;
+      new root.ResizeObserver(entries=>{
+        const rect=entries[0]?.contentRect;if(!rect)return;
+        if(width!==null&&Math.abs(rect.width-width)<0.5&&Math.abs(rect.height-height)<0.5)return;
+        width=rect.width;height=rect.height;refresh();
+      }).observe(element);
+    }
     root.document?.fonts?.ready.then(refresh);
   }
   root.LabelLayout={visit2,select,svg,schedule,truncate,fitText,overlaps,observe};

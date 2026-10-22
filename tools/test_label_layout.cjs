@@ -31,7 +31,7 @@ elements[2].getBBox=()=>({x:20,y:0,width:180,height:12});L.svg(selection);assert
 // 屏幕变换变化后从隐藏状态恢复；验证不是沿用上次矩形。
 elements[2].getScreenCTM=()=>({a:2,b:0,c:0,d:2,e:500,f:0});L.svg(selection);assert.equal(elements[1].style.display,'');
 let observed=null,refreshes=0;context.addEventListener=(event,fn)=>{assert.equal(event,'resize');fn();};
-context.ResizeObserver=class{constructor(fn){this.fn=fn;}observe(el){observed=el;this.fn();}};
+context.ResizeObserver=class{constructor(fn){this.fn=fn;}observe(el){observed=el;this.fn([{contentRect:{width:900,height:520}}]);this.fn([{contentRect:{width:900,height:520}}]);}};
 L.observe(parent,()=>refreshes++);assert.equal(observed,parent);assert.equal(refreshes,2);
 const text={textContent:'abcdefghijklmnop',getComputedTextLength(){return this.textContent.length*10;}};
 L.fitText({each(fn){fn.call(text);}},55);assert.equal(text.textContent,'abcd…');

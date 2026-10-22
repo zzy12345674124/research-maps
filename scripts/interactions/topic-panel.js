@@ -1,9 +1,13 @@
 /* 功能：主题模型参数、训练状态、证据展示及关键词配色映射；训练与网络筛选独立。 */
 (function () {
   'use strict';
-  let result = null;
+  let result = null, paletteCache = null;
   const topicOfKeyword = new Map();
-  const colors = () => result ? createClusterPalette(result.topics.length) : [];
+  const colors = () => {
+    if(!result)return [];
+    if(!paletteCache||paletteCache.result!==result)paletteCache={result,values:createClusterPalette(result.topics.length)};
+    return paletteCache.values;
+  };
   const el = id => document.getElementById(id);
 
   // 功能：汇总包含关键词的论文主题相对权重，再选最大者；不把主题词当作网络节点。
@@ -87,13 +91,14 @@
     group:word=>topicOfKeyword.has(word)?topicOfKeyword.get(word):null};
   el('run-topic').addEventListener('click',run);
   // 功能：复用本标签页时间线/网络最近一次相同语料的主题模型，不自动重训。
-  const shared=TopicStore.read(topicCorpus);
+  const skipRestore=new URLSearchParams(location.search).get('diagnose')==='no-topic-restore';
+  const shared=skipRestore?null:TopicStore.read(topicCorpus);
+  if(skipRestore)el('topic-status').textContent='诊断模式：主题面板已启用，本次不自动恢复保存结果；原结果仍保留，可手动运行模型。';
   if(shared){
     result=shared;mapKeywords();showResults();
     el('topic-color-option').disabled=false;el('topic-layout-option').disabled=false;
-    el('color-mode').value='topic';el('layout-mode').value='topic';
-    updateColors();buildSimulation();fitGraph();
-    el('topic-status').textContent=`已复用${result.model||'NMF'}结果：${result.topics.length}个主题、${result.used}篇。当前参数为待运行设置，修改后需点击运行更新。模块度暂时停用。`;
+    // 恢复只装载语义结果和面板；不在启动阶段隐式重算网络布局。
+    el('topic-status').textContent=`已载入${result.model||'NMF'}保存结果：${result.topics.length}个主题、${result.used}篇。当前网络保持默认布局；可手动选择主题配色或主题布局。修改训练参数后需点击运行更新。`;
   }
   // 功能：参数改变只标注结果待更新，不隐式重训；网络门槛、布局与颜色均不触发训练。
   el('topic-panel').querySelectorAll('input').forEach(input=>input.addEventListener('input',()=>{if(result)el('topic-status').textContent='参数已修改，当前仍显示上次结果；点击运行按钮更新。';}));

@@ -10,9 +10,16 @@
       return [name,await response.json()];
     }));
     loaded.forEach(([name,value])=>{window[name]=value;});
-    for(const url of config.scripts)await new Promise((resolve,reject)=>{
+    // 只读诊断：同一图形跳过单个可选模块，不清除主题保存结果或修改数据。
+    const diagnostic=new URLSearchParams(location.search).get('diagnose');
+    const scripts=config.scripts.filter(url=>!(diagnostic==='no-topic'&&url.endsWith('/topic-panel.js')));
+    if(diagnostic==='no-topic'){
+      const panel=document.getElementById('topic-panel');if(panel)panel.hidden=true;
+      console.info('[诊断] 已跳过主题面板；绘图与标签逻辑保持原样。');
+    }
+    for(const url of scripts)await new Promise((resolve,reject)=>{
       // 功能：前端资源使用统一版本标记，避免公共CSS与工作台脚本混用不同缓存版本。
-      const asset=new URL(url,location.href);asset.searchParams.set('v','20261021-select25');
+      const asset=new URL(url,location.href);asset.searchParams.set('v','20261022-restore29');
       const script=document.createElement('script');script.src=asset.href;script.onload=resolve;script.onerror=()=>reject(new Error(`脚本加载失败：${url}`));document.body.append(script);
     });
     // 功能：工作台可能等待DOMContentLoaded，需等其真正组装完成，避免先显示独立页再搬迁。
