@@ -52,4 +52,8 @@ D3 和 d3-forcebundle 原始许可证保留在 `library/`；上游来源和固�
 
 界面右上角“工程说明”读取 `docs/changelog.json`，每次用户可见更新按“日期.当日修订”追加记录。
 
-本仓库不启用 GitHub Pages 或其他线上部署；用于私有保存、协作与本机运行。
+仓库为公开项目，在线预览地址：https://zzy12345674124.github.io/research-maps/ 。
+
+GitHub Actions 在推送到 `codex/main` 后自动生成并发布预览。预览保留图形交互、NMF/LDA，BERTopic只载入保存结果；本机Python服务仍可使用完整训练功能。
+
+手动构建静态预览：`python tools/build_pages.py`，输出到被Git忽略的 `dist-pages/`；已存在输出目录时拒绝覆盖，可使用 `--output` 指定新的目录。

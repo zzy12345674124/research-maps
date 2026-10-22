@@ -1,0 +1,42 @@
+name: Publish online preview
+
+on:
+  push:
+    branches: [codex/main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v6
+      - name: Check source structure
+        run: python3 tools/check_structure.py
+      - name: Check synthetic interactions
+        run: |
+          node tools/test_liquid_select.cjs
+          node tools/test_openalex_demo.cjs
+      - name: Build static preview
+        run: python3 tools/build_pages.py
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload preview only
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist-pages
+      - name: Publish preview
+        id: deployment
+        uses: actions/deploy-pages@v4
