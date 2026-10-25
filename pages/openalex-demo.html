@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN" data-workspace-state="loading">
   <head>
+  <script src="../scripts/interactions/chart-loading.js?v=20261022-redraw48"></script>
+  <script src="../scripts/interactions/workspace-navigation.js?v=20261025-journal88"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>OpenAlex机构合作：边捆绑对照</title>
-  
+
   <!-- 功能：首屏先显示加载状态，隐藏原独立演示布局；visibility保留尺寸供SVG布局计算。 -->
   <style>
     html[data-workspace-state="loading"] body > :not(#workspace-startup):not(noscript),
@@ -17,11 +19,13 @@
   </style>
   <script src="../scripts/interactions/workspace-startup.js?v=20261021-startup19"></script>
   <script src="../library/d3/d3.v7.min.js"></script>
-    
+
     <link rel="stylesheet" href="../css/common.css?v=20261021-demoentry16">
-  
+
 <link rel="stylesheet" href="../css/network.css">
 <link rel="stylesheet" href="../css/glass.css?v=20261022-perf26">
+<link rel="stylesheet" href="../library/vue-primevue/research-maps-ui.css?v=20261025-journal88">
+<script src="../library/vue-primevue/research-maps-ui.js?v=20261025-journal88"></script>
 </head>
   <body data-demo="openalex">
 <div id="workspace-startup" role="status" aria-live="polite"><strong>正在加载 OpenAlex 合作网络…</strong><p>正在准备地理坐标与论文证据。</p><button type="button" hidden>重新加载</button></div>
@@ -48,5 +52,5 @@
 <div><strong>口径：</strong>climate change 检索、2018–2025年 article、相关性前100篇；为避免超大团队的完全图淹没其余关系，排除单篇超过20机构的8篇，保留92篇。按样本发文数取前160机构，隐藏无连接机构。</div>
 <div><strong>来源：</strong><a href="https://help.openalex.org/how-to/api-recipes/" target="_blank" rel="noopener noreferrer">OpenAlex公开元数据</a>；<a href="../docs/openalex-bundling-selection.json" target="_blank" rel="noopener noreferrer">查询、筛选与候选比较记录</a>。样本为演示选择，不能据此推断领域全貌。</div>
 </div>
-<script src="../scripts/bootstrap.js?v=20261022-perf26" data-config='{"data": {"openAlexDemo": "../data/demo/openalex-climate-institutions.json"}, "scripts": ["../scripts/analysis/label-layout.js", "../scripts/interactions/edge-rendering.js", "../scripts/charts/openalex-demo.js", "../scripts/interactions/workspace.js", "../scripts/interactions/liquid-select.js"], "workspace": true}'></script>
+<script src="../scripts/bootstrap.js?v=20261025-journal88" data-config='{"data": {"openAlexDemo": "../data/demo/openalex-climate-institutions.json"}, "scripts": ["../scripts/analysis/node-collision.js", "../scripts/analysis/label-layout.js", "../scripts/interactions/edge-rendering.js", "../scripts/charts/openalex-demo.js", "../scripts/interactions/workspace.js", "../scripts/interactions/liquid-select.js"], "workspace": true}'></script>
 </body></html>

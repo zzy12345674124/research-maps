@@ -9,8 +9,10 @@
     .chart { overflow-x: auto; border: 1px solid #d8e2eb; background: #fbfdff; }
     svg { display: block; }
     #detail { padding: 14px; background: #f1f5f8; line-height: 1.8; margin-top: 14px; }
-  
+
 /* 功能：拖拽平移使用独立画布手势，空白处显示移动提示。 */
 #timeline { cursor: grab; touch-action: none; }
 #timeline:active { cursor: grabbing; }
 #timeline-zoom-level { min-width: 3.5em; font-variant-numeric: tabular-nums; }
+
+#timeline-beeswarm-host{padding:16px;box-sizing:border-box;width:100%;min-height:400px;background:transparent}#timeline-beeswarm-host>svg{max-width:100%;height:auto;display:block;margin:0 auto}#timeline-beeswarm-host[hidden],#timeline[hidden]{display:none!important}

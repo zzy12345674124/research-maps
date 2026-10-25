@@ -70,7 +70,7 @@
       el('topic-status').textContent=useBert?`BERTopic完成：${result.topics.length}个主题，${result.used}篇有效，${result.outliers}篇未归类。成员强度不是主题占比。`:`${result.model}完成：${result.used}/${topicCorpus.length}篇有效，词表${result.vocabularySize}；${result.iterations}轮，种子42。${method==='lda'?'LDA显示平滑后的主题概率估计，不是分类准确率。':'NMF显示相对强度，不是置信度。'}`;
       el('topic-color-option').disabled=false;el('color-mode').value='topic';updateColors();
       // 功能：训练成功自动按主题聚拢；位置仅用于展示主题归属，不代表主题间语义距离。
-      el('topic-layout-option').disabled=false;el('layout-mode').value='topic';
+      el('topic-layout-option').disabled=false;el('topic-bubbles-option').disabled=false;el('layout-mode').value='topic';
       buildSimulation();fitGraph();
     } catch(error) {el('topic-status').textContent=`训练失败：${error.message}。此前成功结果仍保留。`;}
     finally {controls.forEach(c=>{c.disabled=false;});syncMethod();}
@@ -82,6 +82,7 @@
     el('topic-count').disabled=bert;el('topic-iterations').disabled=bert;
     el('run-topic').textContent='运行'+({nmf:'NMF',lda:'LDA',bertopic:'BERTopic'}[el('topic-method').value]);
   }
+  el('topic-layout-option').disabled=false;
   syncMethod();
   el('topic-method').addEventListener('change',()=>{syncMethod();el('topic-status').textContent='已切换待运行模型；已有图形仍对应上次成功结果。';});
   if(location.protocol==='file:'){
@@ -89,14 +90,14 @@
   }
   window.TopicPanel={color:word=>colors()[topicOfKeyword.get(word)] || '#a7adb3',
     group:word=>topicOfKeyword.has(word)?topicOfKeyword.get(word):null};
-  el('run-topic').addEventListener('click',run);
+  el('run-topic').addEventListener('click',()=>window.ChartLoading?ChartLoading.run(run,'run-topic'):run());
   // 功能：复用本标签页时间线/网络最近一次相同语料的主题模型，不自动重训。
   const skipRestore=new URLSearchParams(location.search).get('diagnose')==='no-topic-restore';
   const shared=skipRestore?null:TopicStore.read(topicCorpus);
   if(skipRestore)el('topic-status').textContent='诊断模式：主题面板已启用，本次不自动恢复保存结果；原结果仍保留，可手动运行模型。';
   if(shared){
     result=shared;mapKeywords();showResults();
-    el('topic-color-option').disabled=false;el('topic-layout-option').disabled=false;
+    el('topic-color-option').disabled=false;el('topic-layout-option').disabled=false;el('topic-bubbles-option').disabled=false;
     // 恢复只装载语义结果和面板；不在启动阶段隐式重算网络布局。
     el('topic-status').textContent=`已载入${result.model||'NMF'}保存结果：${result.topics.length}个主题、${result.used}篇。当前网络保持默认布局；可手动选择主题配色或主题布局。修改训练参数后需点击运行更新。`;
   }

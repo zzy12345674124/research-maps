@@ -48,3 +48,13 @@ for(const name of ['network','co-citation','timeline']){
  assert(config.scripts.indexOf('../scripts/analysis/label-layout.js')<config.scripts.indexOf('../scripts/charts/'+name+'.js'));
 }
 console.log(JSON.stringify({passed:true,randomized_rectangles:24000,oracle:'greedy brute-force comparison',long_boxes:true,coincident_leaf_chain:true,selection_priority:true,screen_metrics:true,frame_coalescing:true,title_truncation:true,timeline_startup:true,topic_missing_message:true,gui_verified:false}));
+
+// 仅合成论文；全库/样本内口径不混用，未知不同于0，来源与参考文献去重。
+assert(L.weightPriority(0)>L.weightPriority(null));
+assert(L.weightPriority(null,true)>L.weightPriority(1e12));
+let weights=L.paperWeights([{id:'A',referenced_works:['B','B','A']},{id:'A',referenced_works:['B','B','A']},{id:'B',referenced_works:[]}]);
+assert.equal(weights.values.get('B'),1);assert.equal(weights.values.get('A'),0);assert(weights.scope.includes('样本内'));
+weights=L.paperWeights([{id:'A',cited_by_count:0,referenced_works:['B']},{id:'B'}]);
+assert.equal(weights.values.get('A'),0);assert.equal(weights.values.get('B'),null);assert(weights.scope.includes('总被引'));
+weights=L.paperWeights([{id:'A',referenced_works:[]},{id:'B'}]);assert.equal(weights.values.get('A'),null);assert(weights.scope.includes('缺失'));
+console.log('PASS: node-weight priority, selected priority, citation scope, missing versus zero and deduplication');

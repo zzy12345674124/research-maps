@@ -4,6 +4,7 @@
  function fail(reason){
   if(finished||root.dataset.workspaceState==='error')return;
   clearTimeout(timer);root.dataset.workspaceState='error';
+  window.WorkspaceNavigation?.fail(reason);
   const show=()=>{
    const box=document.getElementById('workspace-startup');if(!box)return;
    box.setAttribute('role','alert');box.querySelector('strong').textContent='工作台加载未完成';

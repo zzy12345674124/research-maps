@@ -25,8 +25,8 @@
       function updateLabels(){
         if(!labels)return;
         const all=d3.select('#show-all-labels').property('checked');
-        LabelLayout.schedule(labels,{all,limit:all?Infinity:20,
-          priority:d=>(d.name===selectedLabel?1e9:0)+d.count});
+        LabelLayout.schedule(labels,{all,
+          priority:d=>LabelLayout.weightPriority(d.count,d.name===selectedLabel)});
       }
 
       // 功能：固定使用整个样本的发表年份范围，筛选不会改变颜色刻度。
@@ -56,6 +56,7 @@
       const zoom = d3.zoom().scaleExtent([0.001, 6])
         .on("zoom", event => { graph.attr("transform", event.transform); updateLabels(); });
       svg.call(zoom);
+      window.WorkspaceZoom={scaleBy:factor=>svg.call(zoom.scaleBy,factor)};
 
       // 功能：利用节点和标签的边界计算全图视角，初次显示及重置时调用。
       function fitGraph() {
@@ -147,7 +148,7 @@
           .force("link", d3.forceLink(links).id(d => d.name).distance(145))
           .force("charge", d3.forceManyBody().strength(-450))
           .force("center", d3.forceCenter(450, 260))
-          .force("collision", d3.forceCollide().radius(d => radius(d.count) + 25));
+          .force("collision", NodeCollision.force(d => radius(d.count) + 25,{gap:0}));
         // 功能：每轮布局计算后同步圆、线和标签位置。
         function updatePositions() {
           edgeView.update();
@@ -168,7 +169,7 @@
           .on("start", (event, d) => {
             if (!event.active) simulation.alphaTarget(0.3).restart();
             d.fx = d.x; d.fy = d.y;
-          }).on("drag", (event, d) => { d.fx = event.x; d.fy = event.y; })
+          }).on("drag", (event, d) => { NodeCollision.move(nodes,d,event.x,event.y,n=>radius(n.count)); d.fx = d.x; d.fy = d.y; })
           .on("end", (event, d) => {
             if (!event.active) simulation.alphaTarget(0);
             d.fx = null; d.fy = null;
@@ -219,4 +220,3 @@
       d3.select("#show-all-labels").on("change",updateLabels);
       LabelLayout.observe(svg.node(),updateLabels);
       applyFilters();
-    

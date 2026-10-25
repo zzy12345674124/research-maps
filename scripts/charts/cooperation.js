@@ -31,6 +31,11 @@
       let nodes = [];
       let links = [];
       let circles, lines, labels;
+      let selectedName=null;
+      function updateLabels(){if(labels)LabelLayout.schedule(labels,{
+        all:d3.select('#show-all-labels').property('checked'),
+        priority:d=>LabelLayout.weightPriority(d.count,d.name===selectedName)
+      });}
       // 功能：统一原始关系权重透明度和后台边捆绑，保留绘图边对象用于证据交互。
       let edgeOpacity=()=>0.35;
       const edgeView=EdgeRendering.create(lineLayer,()=>nodes,()=>links);
@@ -60,8 +65,9 @@
 
       // 功能：让整张网络随滚轮缩放、空白拖动平移。
       const zoom = d3.zoom().scaleExtent([0.001, 6])
-        .on("zoom", event => graph.attr("transform", event.transform));
+        .on("zoom", event => {graph.attr("transform", event.transform);updateLabels();});
       svg.call(zoom);
+      window.WorkspaceZoom={scaleBy:factor=>svg.call(zoom.scaleBy,factor)};
 
       // 功能：利用节点和标签的边界计算全图视角，初次显示及重置时调用。
       function fitGraph() {
@@ -79,6 +85,7 @@
 
       // 功能：清除选择高亮，不改变筛选后的网络。
       function clearSelection() {
+        selectedName=null;updateLabels();
         circles.attr("opacity", 1).attr("stroke", "white").attr("stroke-width", 1.5);
         labels.attr("opacity", 1);
         lines.attr("opacity", d=>edgeOpacity(d));
@@ -98,6 +105,7 @@
 
       // 功能：只按当前可见的连线找邻居，点击和搜索共用此逻辑。
       function selectKeyword(selected) {
+        selectedName=selected.name;updateLabels();
         showEvidence(`${selected.label}的样本论文`,selected.paperIds);
         const neighbors = new Set([selected.name]);
         const connected = link => link.source.name === selected.name ||
@@ -157,6 +165,7 @@
           edgeView.update();
           circles.attr("cx", d => d.x).attr("cy", d => d.y);
           labels.attr("x", d => d.x + radius(d.count) + 5).attr("y", d => d.y + 4);
+          updateLabels();
         }
         simulation.on("tick", updatePositions).stop();
         simulation.tick(300);
@@ -213,5 +222,6 @@
       });
       d3.select("#reset-view").on("click", fitGraph);
       d3.select("#color-mode").on("change", updateColors);
+      LabelLayout.observe(svg.node(),updateLabels);
+      d3.select('#show-all-labels').on('change',updateLabels);
       applyFilters();
-    

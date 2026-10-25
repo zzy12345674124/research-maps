@@ -29,7 +29,7 @@ let randomSeed=42;const random=()=>{randomSeed=(Math.imul(randomSeed,1664525)+10
 const denseNodes=Array.from({length:60},(_,i)=>({name:String(i),x:random()*900,y:random()*900})),denseEdges=[];
 for(let i=0;i<60;i++)for(let j=i+1;j<60;j++)if(random()<0.2)denseEdges.push({source:String(i),target:String(j),weight:1});
 const denseBefore=JSON.stringify({denseNodes,denseEdges}),denseSnapshot=ctx.EdgeRendering.snapshot(denseNodes,denseEdges);
-const oldDense=runWorker(denseSnapshot,'tools/fixtures/edge-bundling-before-scale-fix.js'),newDense=runWorker(denseSnapshot);
+const oldDense=runWorker(denseSnapshot,'docs/backups/2026-10-21-bundling-scale-fix/scripts/analysis/edge-bundling-worker.js'),newDense=runWorker(denseSnapshot);
 function detours(paths,snapshot){return paths.map((points,i)=>{let length=0;for(let j=1;j<points.length;j++)length+=Math.hypot(points[j].x-points[j-1].x,points[j].y-points[j-1].y);const a=snapshot.nodes[snapshot.edges[i].source],b=snapshot.nodes[snapshot.edges[i].target];assert(Math.hypot(points[0].x-a.x,points[0].y-a.y)<1e-8);assert(Math.hypot(points.at(-1).x-b.x,points.at(-1).y-b.y)<1e-8);return length/Math.hypot(a.x-b.x,a.y-b.y);});}
 const oldRatios=detours(oldDense,denseSnapshot),newRatios=detours(newDense,denseSnapshot);
 assert(newRatios.every(r=>Number.isFinite(r)&&r<=1.50000001));assert(Math.max(...newRatios)<Math.max(...oldRatios));assert(newRatios.some(r=>r>1.00001),'应保留实际捆绑，而非所有边变直线');

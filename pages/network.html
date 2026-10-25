@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN" data-workspace-state="loading">
   <head>
+  <script src="../scripts/interactions/chart-loading.js?v=20261022-redraw48"></script>
+  <script src="../scripts/interactions/workspace-navigation.js?v=20261025-journal88"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>人工智能教育：关键词共现网络</title>
-  
+
   <!-- 功能：首屏先显示加载状态，隐藏原独立演示布局；visibility保留尺寸供SVG布局计算。 -->
   <style>
     html[data-workspace-state="loading"] body > :not(#workspace-startup):not(noscript),
@@ -17,11 +19,13 @@
   </style>
   <script src="../scripts/interactions/workspace-startup.js?v=20261021-startup19"></script>
   <script src="../library/d3/d3.v7.min.js"></script>
-    
+
     <link rel="stylesheet" href="../css/common.css?v=20261021-demoentry16">
-  
+
 <link rel="stylesheet" href="../css/network.css">
 <link rel="stylesheet" href="../css/glass.css?v=20261022-perf26">
+<link rel="stylesheet" href="../library/vue-primevue/research-maps-ui.css?v=20261025-journal88">
+<script src="../library/vue-primevue/research-maps-ui.js?v=20261025-journal88"></script>
 </head>
   <body>
   <div id="workspace-startup" role="status" aria-live="polite"><span class="startup-mark" aria-hidden="true"></span><strong>正在加载文献计量工作台…</strong><p>正在准备图形和参数，请稍候。</p><button type="button" hidden>重新加载</button></div>
@@ -55,7 +59,16 @@
     <div class="toolbar">
       <label><input id="show-all-labels" type="checkbox" style="width:auto!important;padding:0;accent-color:#327884"> 显示全部标签（可能重叠）</label>
       <label><input id="show-links" type="checkbox" checked style="width:auto!important;padding:0;accent-color:#327884"> 显示连线</label>
-      <span class="note">默认按词频优先显示不重叠的标签，显示数量随画面自适应；点击节点优先显示所选词，点击空白恢复。</span>
+      <span class="note">默认按节点权重（关键词涉及的论文数）从高到低显示标签，自动隐藏重叠文字；点击节点优先显示所选词。</span>
+    </div>
+    <div class="toolbar" id="size-mapping-controls">
+      <strong>节点调整</strong>
+      <label>调整方式 <select id="node-size-scale"><option value="linear">线性</option><option value="power">非线性</option></select></label>
+      <label>权重与面积关系 <input id="node-size-strength" type="range" min="0" max="100" step="1" value="70"><span id="node-size-value"></span></label>
+      <p class="note" id="node-size-help"></p>
+      <strong>标签调整</strong>
+      <label>标签大小 <input id="label-font-size" type="range" min="10" max="40" step="1" value="24"><span id="label-font-size-value">8–24 px（按节点权重）</span></label>
+      <p class="note">拖动即时生效。节点及标签均依据关键词论文数；权重越大，标签越大。向右拖动提高字号并拉大差异，同权重保持同字号。</p>
     </div>
     <div id="year-legend" style="max-width: 360px; margin: 10px 0;">
       <div id="year-gradient" style="height: 12px; border-radius: 4px;"></div>
@@ -74,6 +87,7 @@
         <option value="force" selected>力导向（整片）</option>
         <option value="community" disabled>按模块度群组分开（暂时停用）</option>
         <option value="topic" id="topic-layout-option" disabled>按论文主题聚拢</option>
+        <option value="bubbles" id="topic-bubbles-option" disabled>主题气泡聚团</option>
       </select></label>
       <label>关联归一化 <select id="weight-mode" aria-describedby="weight-mode-help">
         <option value="strength" selected>关联强度（抵消高频）</option>
@@ -91,6 +105,11 @@
     <div class="toolbar" id="community-controls">
       <label>群落吸引 <input id="community-attraction" type="range" min="0.05" max="1.2" step="0.05" value="0.35"> <span id="community-attraction-value">0.35</span></label>
       <label>群落分离 <input id="community-separation" type="range" min="100" max="4000" step="50" value="900"> <span id="community-separation-value">900</span></label>
+    </div>
+    <div class="toolbar" id="bubble-controls" hidden>
+      <label>组内间距 <input id="bubble-inner-gap" type="range" min="0" max="20" step="1" value="3"> <span id="bubble-inner-gap-value">3</span></label>
+      <label>组间间距 <input id="bubble-outer-gap" type="range" min="20" max="100" step="2" value="28"> <span id="bubble-outer-gap-value">28</span></label>
+      <p class="note">先以packSiblings生成初始位置，再由现有力导向微调。按已有论文主题聚团；连线保留供追踪，但不参与本布局受力。未归类词独立避让。间距为画布单位，不表示语义距离；标签继续使用visit2避让。</p>
     </div>
     <!-- 功能：独立的NMF训练参数；训练使用全样本标题与摘要，网络门槛只筛选显示节点。 -->
     <div class="toolbar" id="topic-panel">
@@ -116,7 +135,7 @@
     </div>
     <div id="summary" aria-live="polite"></div>
     <div id="empty" role="status">没有达到节点门槛的关键词，请降低门槛。</div>
-    <svg id="network" width="900" height="520" viewBox="0 0 900 520" aria-label="关键词共现网络"></svg>
+    <svg id="network" data-workspace-chart width="900" height="520" viewBox="0 0 900 520" aria-label="关键词共现网络"></svg>
     <div id="selection" aria-live="polite"></div>
     <!-- 功能：关键词选择对应的论文证据，由公共工作台放入底部证据抽屉。 -->
     <div id="evidence">选中关键词节点后，这里列出包含该词的样本论文。</div>
@@ -130,16 +149,16 @@
       <div><strong>布局选项：</strong>“关联归一化”把共现次数换成 共现次数/(两端词频相乘)，抵消高频词天然的高共现偏置，让稀疏但真实强关联的词对不被枢纽词淹没；原始共现次数始终用于线宽和悬停提示。“按群组分开”在力导向之外加一层群落引力（本组质心吸引、他组质心排斥），把各群组排成独立的团。</div>
       <div><strong>操作：</strong>悬停查看数值；点击高亮当前直接邻居；点击空白恢复；可拖动单个节点，滚轮缩放，拖动空白平移。</div>
     </div>
-    
-    
+
+
     <script src="../scripts/analysis/topic-store.js?v=20261020-topics5"></script>
 <script src="../scripts/analysis/topic-model.js"></script>
 <script src="../scripts/analysis/lda-model.js?v=20261020-models8"></script>
 <script src="../scripts/analysis/topic-trainer.js?v=20261020-models8"></script>
     <script src="../scripts/analysis/clustering.js"></script>
-    <script src="../scripts/analysis/network-layout.js"></script>
-    
-    
-  <script src="../scripts/bootstrap.js?v=20261022-restore29" data-config='{"data": {"openAlexPapers": "../data/processed/papers.json", "topicCorpus": "../data/processed/topic-corpus.json"}, "scripts": ["../scripts/analysis/label-layout.js", "../scripts/interactions/edge-rendering.js", "../scripts/charts/network.js", "../scripts/interactions/topic-panel.js", "../scripts/interactions/workspace.js", "../scripts/interactions/liquid-select.js"], "workspace": true}'></script>
+    <script src="../scripts/analysis/network-layout.js?v=20261022-pack32"></script>
+
+
+  <script src="../scripts/bootstrap.js?v=20261025-journal88" data-config='{"data": {"openAlexPapers": "../data/processed/papers.json", "topicCorpus": "../data/processed/topic-corpus.json"}, "scripts": ["../scripts/analysis/node-collision.js", "../scripts/analysis/label-layout.js", "../scripts/interactions/edge-rendering.js", "../scripts/charts/network.js", "../scripts/interactions/topic-panel.js", "../scripts/interactions/workspace.js", "../scripts/interactions/liquid-select.js"], "workspace": true}'></script>
 </body>
 </html>

@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>航空数据：捆绑连线对照</title>
+<head>
+  <script src="../scripts/interactions/chart-loading.js?v=20261022-redraw48"></script>
+  <script src="../scripts/interactions/workspace-navigation.js?v=20261025-journal88"></script><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>航空数据：捆绑连线对照</title>
 <script src="../library/d3/d3.v7.min.js"></script>
 <style>
 /* 功能：独立演示页，不继承论文工作台筛选或参数，保留地图坐标方便比较连线。 */
 *{box-sizing:border-box}body{margin:0;height:100vh;display:flex;flex-direction:column;font:14px "Microsoft YaHei",sans-serif;color:#23394e}header{padding:14px 20px;background:#f5f8fa;border-bottom:1px solid #dae3ea}h1{font-size:19px;margin:0 0 8px}a{color:#267d89}.toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:10px 20px;background:#fff}.note{font-size:13px;line-height:1.7;color:#637786}button,select{font:inherit;padding:6px 10px;border:1px solid #c6d3dd;border-radius:4px;background:white;cursor:pointer}.canvas{flex:1;min-height:0;display:flex;flex-direction:column}.canvas svg{flex:1;min-height:0;width:100%;background:#111155;touch-action:none;cursor:grab}#airline-selection{padding:8px 20px;min-height:36px;background:#f5f8fa;line-height:1.6}.airport-label{font-size:9px;fill:#fff;pointer-events:none}
 </style><link rel="stylesheet" href="../css/glass.css?v=20261022-perf26">
+<link rel="stylesheet" href="../library/vue-primevue/research-maps-ui.css?v=20261025-journal88">
+<script src="../library/vue-primevue/research-maps-ui.js?v=20261025-journal88"></script>
 </head>
 <body class="glass-demo">
 <header><h1>航空数据 · 普通连线与捆绑连线对照</h1><div id="airline-stats" class="note">正在读取本地航空数据…</div><div class="note">上游公开演示数据，非实时航线；固定机场空间坐标，不使用力导向重排。所有航线等权；线束不表示新增航线。<a href="network.html">返回论文网络</a></div></header>
 <div class="toolbar"><button id="airline-reset" type="button">恢复原始位置与视图</button><button id="airline-clear" type="button">清除高亮</button><label><input id="airline-labels" type="checkbox">显示机场代码</label><span class="note">滚轮缩放 · 空白拖动平移 · 机场可拖动 · 点击机场或航线查看连接；全量捆绑允许最多60秒。</span></div>
 <div class="canvas"><svg id="airline-chart" viewBox="0 0 1200 650" role="img" aria-label="原项目航空航线连线捆绑对照图"></svg></div>
 <div id="airline-selection">选择“捆绑连线”后，对比路线变化；机场和航线数量保持一致。</div>
-<script src="../scripts/bootstrap.js?v=20261022-perf26" data-config='{"data": {"airlineData": "../data/demo/airlines.json"}, "scripts": ["../scripts/interactions/edge-rendering.js", "../scripts/charts/airline-demo.js", "../scripts/interactions/liquid-select.js"]}'></script>
+<script src="../scripts/bootstrap.js?v=20261025-journal88" data-config='{"data": {"airlineData": "../data/demo/airlines.json"}, "scripts": ["../scripts/analysis/node-collision.js", "../scripts/interactions/edge-rendering.js", "../scripts/charts/airline-demo.js", "../scripts/interactions/liquid-select.js"]}'></script>
 </body></html>

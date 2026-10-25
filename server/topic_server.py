@@ -16,6 +16,10 @@ def validate(options):
     """功能：白名单校验参数，限制训练规模和输入类型。"""
     limits = {'minSize': (2, 30), 'neighbors': (2, 50), 'topWords': (1, 30), 'minDf': (1, 100)}
     clean = {}
+    dataset = options.get('dataset','legacy100')
+    if dataset not in ('legacy100','arxiv-ai-education-1000'):
+        raise ValueError('未知数据集')
+    clean['dataset'] = dataset
     for key, (low, high) in limits.items():
         value = options.get(key)
         if type(value) is not int or not low <= value <= high:
@@ -39,14 +43,8 @@ def train(options, *, corpus=None):
         from hdbscan import HDBSCAN
         # 功能：网页始终读取固定项目语料；内部验证可显式传入内存合成文本，不写入真实数据。
         if corpus is None:
-            raw = json.loads((ROOT / 'data/raw/openalex-ai-education-100.json').read_text(encoding='utf-8-sig'))
-            corpus = []
-            for work in raw['results']:
-                words = {i: word for word, indexes in (work.get('abstract_inverted_index') or {}).items() for i in indexes}
-                title = work.get('title') or work.get('display_name') or ''
-                text = (title + ' ' + ' '.join(words[i] for i in sorted(words))).strip()
-                if text:
-                    corpus.append({'id': work['id'], 'text': text})
+            corpus_path = 'data/datasets/arxiv-ai-education-1000/processed/topic-corpus.json' if options.get('dataset')=='arxiv-ai-education-1000' else 'data/processed/topic-corpus.json'
+            corpus = json.loads((ROOT / corpus_path).read_text(encoding='utf-8-sig'))
         if len(corpus) < 5:
             raise ValueError('至少需要5篇有效文本')
         STATE = {'status': 'running', 'message': '加载本地语义模型缓存…'}

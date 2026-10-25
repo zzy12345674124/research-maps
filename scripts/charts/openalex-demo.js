@@ -19,7 +19,7 @@ function layoutOpenAlexDemo(nodes, links, mode, project, radius) {
       .distance(edge=>145/Math.sqrt(Math.max(1,edge.weight))).strength(strength))
     .force('charge',d3.forceManyBody().strength(-310))
     .force('center',d3.forceCenter(600,325))
-    .force('collision',d3.forceCollide().radius(node=>radius(node.count)+12));
+    .force('collision',NodeCollision.force(node=>radius(node.count)+12,{gap:0}));
   // 先收敛再一次性更新路径，避免捆绑计算与持续运动反复竞争。
   simulation.tick(360);
 }
@@ -55,6 +55,7 @@ const zoom = d3.zoom().scaleExtent([0.5,16]).clickDistance(5).on('zoom',event=>{
   graph.attr('transform',event.transform);updateDemoLabels();
 });
 svg.call(zoom).on('dblclick.zoom',null);
+window.WorkspaceZoom={scaleBy:factor=>svg.call(zoom.scaleBy,factor)};
 LabelLayout.observe(svg.node(),updateDemoLabels);
 
 function showDemoEvidence(title, ids) {
@@ -139,7 +140,7 @@ function renderOpenAlexDemo() {
   circles.append('title').text(node=>`${node.label}\n${node.country||'国家未知'} · ${node.city||'城市未知'} · ${node.count}篇\n经纬度 ${node.longitude}, ${node.latitude}`);
   circles.on('click',(event,node)=>{event.stopPropagation();selectDemoNode(node);});
   circles.call(d3.drag().container(graph.node()).on('drag',(event,node)=>{
-    node.x=event.x;node.y=event.y;updateDemoPositions();
+    NodeCollision.move(nodes,node,event.x,event.y,n=>size(n.count));updateDemoPositions();
   }).on('end',()=>{
     updateDemoPositions();d3.select('#message').text(d3.select('#demo-layout-mode').property('value')==='force'
       ?'节点已手动调整，线束将按新位置更新；可点击“重新计算布局”恢复力导向排列。'

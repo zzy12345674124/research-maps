@@ -1,6 +1,11 @@
 /* 功能：保留原select及事件，使用玻璃按钮和浮层显示；不克隆参数或改变选项值。 */
 (function(){
   'use strict';
+  if(window.ResearchMapsUI){
+    const start=()=>ResearchMapsUI.upgradeControls();
+    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
+    return;
+  }
   const controls=new Map();let active=null,serial=0;
   const make=(tag,className)=>{const el=document.createElement(tag);el.className=className;return el;};
   const textOf=option=>option.label||option.textContent;

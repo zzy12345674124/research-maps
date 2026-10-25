@@ -25,14 +25,15 @@
  }
  function create(layer,getNodes,getEdges,options={}){
   const maximumEdges=options.maximumEdges||2000,maximumMs=options.maximumMs||20000;
-  let paths,worker=null,timer=null,jobTimer=null,cached=null,pending=null,serial=0,lastKey=null,failedKey=null;
+  let paths,worker=null,timer=null,jobTimer=null,cached=null,pending=null,serial=0,lastKey=null,failedKey=null,releaseLoading=null;
   const svg=layer.node().ownerSVGElement,bar=document.createElement('div');bar.className='toolbar';
-  bar.innerHTML='<label>连线画法 <select id="edge-render-mode"><option value="straight">普通连线</option><option value="bundled">捆绑连线</option></select></label><span id="edge-render-status" class="note" role="status">透明度随原始关系次数增加；颜色和线宽保留原规则。</span>';
+  bar.innerHTML='<label>连线画法 <select id="edge-render-mode"><option value="straight">普通连线</option><option value="bundled">捆绑连线</option></select></label><span id="edge-render-status" class="note" role="status"></span>';
   svg.parentElement.insertBefore(bar,svg);
   const select=bar.querySelector('select'),status=bar.querySelector('span');
   const normalMessage=options.description||'普通连线；透明度随原始关系次数增加，不表示数据可信度。';status.textContent=normalMessage;
   const line=d3.line().x(p=>p.x).y(p=>p.y).curve(d3.curveLinear);
-  function cancel(){serial++;clearTimeout(timer);clearTimeout(jobTimer);jobTimer=null;timer=null;if(worker)worker.terminate();worker=null;pending=null;}
+  function finishLoading(){releaseLoading?.();releaseLoading=null;}
+  function cancel(){serial++;clearTimeout(timer);clearTimeout(jobTimer);jobTimer=null;timer=null;if(worker)worker.terminate();worker=null;pending=null;finishLoading();}
   function straight(edge,lookup){
    const name=v=>v&&typeof v==='object'?v.name:v;
    const a=lookup.get(name(edge.source)),b=lookup.get(name(edge.target));
@@ -49,6 +50,7 @@
    if(!snap.edges.length){cached={key:snap.key,paths:[]};status.textContent='当前没有需要捆绑的有效连线。';return;}
    if(snap.edges.length>maximumEdges){failedKey=snap.key;status.textContent=`当前超过${maximumEdges}条连线，保留普通连线；提高关系门槛后可再捆绑。所有关系均保留。`;return;}
    try{
+    releaseLoading=root.ChartLoading?.begin();
     worker=new Worker(new URL('../scripts/analysis/edge-bundling-worker.js?v=20261021-bundlefix14',location.href));pending=snap.key;
     const id=++serial;status.textContent='正在后台整理线束；节点和关系数据保持不变…';
     worker.onmessage=event=>{
@@ -65,7 +67,7 @@
        result[snap.indices[i]]=points.map(p=>({x:p.x*snap.scale+snap.x0,y:p.y*snap.scale+snap.y0}));
       });
       cached={key:snap.key,paths:result};paint();status.textContent='捆绑完成。线束只整理路线，不代表新增关系或主题；点击节点追踪原有连接。'+(event.data.fallbackEdges?` ${event.data.fallbackEdges}条过度绕行的边保留普通线。`:'');
-     }catch(error){failedKey=snap.key;cached=null;paint();status.textContent='捆绑未完成，已保留普通连线：'+error.message;}
+     }catch(error){failedKey=snap.key;cached=null;paint();status.textContent='捆绑未完成，已保留普通连线：'+error.message;}finally{finishLoading();}
     };
     worker.onerror=()=>{if(id!==serial)return;cancel();failedKey=snap.key;status.textContent='后台捆绑不可用，保留普通连线。';};
     // 功能：耗时过长时保留所有普通连线，不让后台任务无限占用资源。
@@ -80,7 +82,8 @@
    paint();
    if(select.value==='bundled'&&cached?.key!==snap.key&&pending!==snap.key&&!timer&&failedKey!==snap.key)timer=setTimeout(()=>start(snap),180);
   }
-  select.addEventListener('change',()=>{cancel();failedKey=null;if(select.value==='straight')status.textContent=normalMessage;update();});
+  const changeMode=()=>{cancel();failedKey=null;if(select.value==='straight')status.textContent=normalMessage;update();};
+  select.addEventListener('change',()=>root.ChartLoading?root.ChartLoading.run(changeMode,'edge-render-mode'):changeMode());
   window.addEventListener('pagehide',cancel);
   return {bind(selection){paths=selection;cached=null;lastKey=null;failedKey=null;cancel();},update};
  }

@@ -111,7 +111,7 @@
         LabelLayout.schedule(labels, {
           all,
           eligible:d=>all||!focus||focus.has(d.name),
-          priority:d=>(d.name===visualFocus?.selected?1e9:0)+d.count
+          priority:d=>LabelLayout.weightPriority(d.count,d.name===visualFocus?.selected)
         });
         lines.attr('opacity', d => edgeOpacity(d,!visualFocus?'normal':visualFocus.connected(d)?'focus':'dim'));
         lineLayer.style('display', densityActive() || !d3.select('#show-links').property('checked') ? 'none' : null);
@@ -239,6 +239,8 @@
 
 
       // 功能：判断当前是否处于密度视图；图例显隐与配色联动都以此为准。
+      // 网络类型直接决定共现/密度，保留原view-mode作为内部兼容接口。
+      d3.select('#view-mode').property('value',new URLSearchParams(location.search).get('view')==='density'?'density':'network');
       function densityActive() {
         return d3.select("#view-mode").property("value") === "density";
       }
@@ -306,6 +308,7 @@
       const zoom = d3.zoom().scaleExtent([0.001, 6])
         .on("zoom", event => { graph.attr("transform", event.transform); if(labels)updateVisualClarity(); });
       svg.call(zoom);
+      window.WorkspaceZoom={scaleBy:factor=>svg.call(zoom.scaleBy,factor)};
 
       // 功能：利用节点和标签的边界计算全图视角，初次显示及重置时调用。
       function fitGraph() {
@@ -342,7 +345,7 @@
         matches.forEach(paper=>{
           const item=list.append('li');
           item.append('span').text(`${Number.isInteger(paper.year)?paper.year:'年份缺失'} · `);
-          if(/^https:\/\/openalex\.org\/W\d+$/i.test(String(paper.id)))
+          if(/^https:\/\/(openalex\.org\/W\d+|arxiv\.org\/abs\/[\w.\/-]+)$/i.test(String(paper.id)))
             item.append('a').attr('href',paper.id).attr('target','_blank').attr('rel','noopener noreferrer').text(paper.title||paper.id);
           else item.append('span').text(paper.title||paper.id||'标题缺失');
         });
@@ -379,6 +382,48 @@
         d3.select("#selection").text(`${selected.name}：出现于 ${selected.count} 篇论文；平均年份 ${Number.isFinite(selected.meanYear) ? selected.meanYear.toFixed(1) : "缺失"}（有年份 ${selected.yearCount} 篇）；当前直接相连关键词 ${neighbors.size - 1} 个。`);
       }
 
+      // 同一面积映射同时供绘制、碰撞、打包与标签偏移使用。
+      let currentRadius=()=>3, sizeFrame=0;
+      function nodeRadius(){
+        const strength=Math.max(0,Math.min(100,Number(document.getElementById('node-size-strength').value)||0))/100;
+        const nonlinear=document.getElementById('node-size-scale').value==='power';
+        const domain=d3.extent(nodes,d=>d.count);
+        const maximum=nonlinear?1800:30+1770*strength;
+        const scale=(nonlinear?d3.scalePow().exponent(.2+2.8*strength):d3.scaleLinear()).domain(domain).range([30,maximum]).clamp(true);
+        const same=!nodes.length||domain[0]===domain[1];
+        currentRadius=count=>Math.sqrt((same?(30+maximum)/2:scale(count))/Math.PI);
+        return count=>currentRadius(count);
+      }
+      function labelFontScale(){
+        const maximum=Math.max(10,Math.min(40,Number(document.getElementById('label-font-size').value)||24));
+        const domain=d3.extent(nodes,d=>d.count);
+        // 使用节点原始权重，不依赖节点面积选项；同权重保持同字号。
+        return !nodes.length||domain[0]===domain[1]?()=> (8+maximum)/2:
+          d3.scaleLinear().domain(domain).range([8,maximum]).clamp(true);
+      }
+      function syncSizeControls(){
+        const nonlinear=document.getElementById('node-size-scale').value==='power';
+        const strength=Number(document.getElementById('node-size-strength').value)/100;
+        document.getElementById('node-size-value').textContent=nonlinear?'指数 '+(.2+2.8*strength).toFixed(2):'差异 '+Math.round(strength*100)+'%';
+        const sizeHelp=document.getElementById('node-size-help');
+        if(sizeHelp)sizeHelp.textContent=nonlinear?'向右拖动强化高权重节点，向左拖动抬高中低权重节点的相对面积。':'向右拖动拉大面积差异，向左拖动减小差异；最左侧节点等大。';
+        document.getElementById('label-font-size-value').textContent='8–'+document.getElementById('label-font-size').value+' px';
+      }
+      function updateSizeMapping(){
+        sizeFrame=0;syncSizeControls();
+        if(!circles||!labels)return;
+        const radius=nodeRadius();
+        circles.attr('r',d=>radius(d.count));
+        const font=labelFontScale();
+        labels.attr('font-size',d=>font(d.count)).attr('x',d=>d.x+radius(d.count)+5).attr('y',d=>d.y+4);
+        const collision=simulation?.force('collision');
+        if(collision)collision.radius(d=>radius(d.count)+(['community','topic'].includes(d3.select('#layout-mode').property('value'))?16:25));
+        // 保留坐标与视角，D3逐tick松弛，不在滑块每次输入时同步预跑300轮。
+        if(nodes.length)simulation?.alpha(.18).alphaTarget(0).restart();
+        updateVisualClarity();
+      }
+      function scheduleSizeMapping(){if(!sizeFrame)sizeFrame=requestAnimationFrame(updateSizeMapping);}
+
       // 功能：按筛选结果重建图形和布局；保留孤立节点，明确显示无结果的情况。
       function renderNetwork(filtered) {
         if (simulation) simulation.stop();
@@ -390,8 +435,9 @@
         d3.select("#search-message").text("");
         d3.select("#summary").text(`教学样本 ${papers.length} 篇 · 原始关键词 ${network.nodes.length} 个 · 当前节点 ${nodes.length} 个 · 当前连线 ${links.length} 条`);
         d3.select("#empty").style("display", nodes.length ? "none" : "block");
-        const radius = d3.scaleSqrt().domain([0, d3.max(nodes, d => d.count) || 1])
-          .range([0, 24]);
+        const radius = nodeRadius();
+        const font = labelFontScale();
+
         edgeOpacity=EdgeRendering.opacityScale(links);
         lines = lineLayer.selectAll("path").data(links).join("path").attr("fill","none")
           // 功能：线宽仍随共现次数增加，采用平方根压缩并限制最大值，避免粗线遮住节点。
@@ -401,7 +447,7 @@
           .attr("r", d => radius(d.count)).attr("fill", "#477fae");
         // 功能：名称放在圆外，并加白色文字轮廓，提高长英文标签的可读性。
         labels = labelLayer.selectAll("text").data(nodes).join("text")
-          .attr("font-size", 12).attr("fill", "#23394e")
+          .attr("font-size", d=>font(d.count)).attr("fill", "#23394e")
           .attr("stroke", "white").attr("stroke-width", 3)
           .attr("paint-order", "stroke").attr("pointer-events", "none")
           .text(d => d.name);
@@ -438,7 +484,7 @@
       // 未进入任何群组的孤立词标记为 null，布局时排到外圈。
       function applyGroupIds() {
         // 功能：主题布局使用与主题颜色相同的关键词映射；缺主题的节点留在外圈。
-        if (d3.select("#layout-mode").property("value") === "topic" && window.TopicPanel) {
+        if (["topic","bubbles"].includes(d3.select("#layout-mode").property("value")) && window.TopicPanel) {
           nodes.forEach(node => { node.groupId = TopicPanel.group(node.name); });
           return;
         }
@@ -463,19 +509,24 @@
 
       // 功能：按当前布局选项建立力模拟；拖动与滚轮缩放由外层控制器保留，不受影响。
       // 布局只改变坐标，“按群组分开”的团块位置不含相似度含义。
-      function buildSimulation() {
+      function buildSimulation({reseed=true}={}) {
         // 功能：每次布局、筛选或重新训练后刷新分组依据，避免沿用旧的模块度/主题编号。
         applyGroupIds();
-        const radius = d3.scaleSqrt().domain([0, d3.max(nodes, d => d.count) || 1]).range([0, 24]);
+        const radius = nodeRadius();
         if (simulation) simulation.stop();
         const prepared = layoutLinks();
+        const bubbles=d3.select("#layout-mode").property("value")==="bubbles";
         const useCommunity = ["community", "topic"].includes(d3.select("#layout-mode").property("value"));
         const attraction = Number(d3.select("#community-attraction").property("value"));
         const separation = Number(d3.select("#community-separation").property("value"));
         d3.select("#community-attraction-value").text(attraction);
         d3.select("#community-separation-value").text(separation);
         d3.select("#community-controls").style("display", useCommunity ? null : "none");
-        if (useCommunity) seedPositionsByCommunity(nodes);
+        d3.select("#bubble-controls").property("hidden",!bubbles);
+        if (reseed&&(useCommunity||bubbles)) seedPackedTopicPositions(nodes,d=>radius(d.count),{
+          innerGap:bubbles?Number(d3.select('#bubble-inner-gap').property('value')):3,
+          outerGap:bubbles?Number(d3.select('#bubble-outer-gap').property('value')):28
+        });
         // 功能：力布局只改写传入连线的 source/target；这里传入的是副本，
         // 所以绘制用的原始 lines 仍需按关键词名找回节点，不能直接读 d.source.x。
         const nodeByName = new Map(nodes.map(node => [node.name, node]));
@@ -496,6 +547,13 @@
         if (useCommunity) {
           simulation.force("communities", forceCommunities({attraction, separation}));
         }
+        if(bubbles){
+          simulation.force('link',null).force('charge',null).force('collision',null)
+            .force('bubble-cluster',forceTopicBubbles(d=>radius(d.count),{
+              innerGap:Number(d3.select('#bubble-inner-gap').property('value')),
+              outerGap:Number(d3.select('#bubble-outer-gap').property('value'))
+            }));
+        }
         // 功能：每轮布局计算后同步圆、线和标签位置。
         const updatePositions = () => {
           edgeView.update();
@@ -504,9 +562,16 @@
           drawDensity();
           updateVisualClarity();
         };
-        simulation.on("tick", updatePositions).stop();
-        simulation.tick(300);
-        updatePositions();
+        simulation.on("tick", updatePositions).on("end",updatePositions);
+        if(useCommunity){
+          // D3定时器逐tick绘制；有限降温，不在主线程预跑到最终位置。
+          updatePositions();
+          simulation.alpha(0.75).alphaTarget(0).restart();
+        }else{
+          simulation.stop();
+          simulation.tick(300);
+          updatePositions();
+        }
       }
 
       // 功能：验证两个正整数门槛，重新筛选和绘图，并自动显示全图。
@@ -548,15 +613,45 @@
       d3.select('#show-links').on('change', updateVisualClarity);
       d3.select("#view-mode").on("change",updateView);
       d3.select("#density-weight").on("change",updateView);
-      d3.select("#bandwidth").on("input",updateView);
+      let densityFramePending=0;
+      d3.select("#bandwidth").on("input",()=>{if(!densityFramePending)densityFramePending=requestAnimationFrame(()=>{densityFramePending=0;drawDensity();});});
       // 功能：切换布局或调整群落参数时保留缩放视角；按钮用于按当前参数重跑一次布局。
       d3.select("#layout-mode").on("change",()=>{if(nodes.length){buildSimulation();fitGraph();}});
       d3.select("#weight-mode").on("change",()=>{if(nodes.length){buildSimulation();fitGraph();}});
-      d3.select("#community-attraction").on("input",()=>{d3.select("#community-attraction-value").text(d3.select("#community-attraction").property("value"));});
-      d3.select("#community-separation").on("input",()=>{d3.select("#community-separation-value").text(d3.select("#community-separation").property("value"));});
-      d3.select("#community-attraction").on("change",()=>{if(nodes.length&&["community","topic"].includes(d3.select("#layout-mode").property("value"))){buildSimulation();fitGraph();}});
-      d3.select("#community-separation").on("change",()=>{if(nodes.length&&["community","topic"].includes(d3.select("#layout-mode").property("value"))){buildSimulation();fitGraph();}});
+      // 布局滑块每帧合并输入；只替换现有模拟受力，不重建、不预跑、不重置视角。
+      let layoutFrame=0;
+      function updateLiveLayoutParameters(){
+        layoutFrame=0;
+        for(const id of ['community-attraction','community-separation','bubble-inner-gap','bubble-outer-gap'])
+          d3.select('#'+id+'-value').text(d3.select('#'+id).property('value'));
+        if(!nodes.length||!simulation)return;
+        const mode=d3.select('#layout-mode').property('value');
+        if(['community','topic'].includes(mode)){
+          simulation.force('communities',forceCommunities({
+            attraction:Number(d3.select('#community-attraction').property('value')),
+            separation:Number(d3.select('#community-separation').property('value'))
+          }));
+        }else if(mode==='bubbles'){
+          const radius=nodeRadius();
+          simulation.force('bubble-cluster',forceTopicBubbles(d=>radius(d.count),{
+            innerGap:Number(d3.select('#bubble-inner-gap').property('value')),
+            outerGap:Number(d3.select('#bubble-outer-gap').property('value'))
+          }));
+        }else return;
+        simulation.alpha(.3).alphaTarget(0).restart();
+      }
+      function scheduleLiveLayoutParameters(){if(!layoutFrame)layoutFrame=requestAnimationFrame(updateLiveLayoutParameters);}
+      for(const id of ['community-attraction','community-separation','bubble-inner-gap','bubble-outer-gap'])
+        d3.select('#'+id).on('input',scheduleLiveLayoutParameters);
       d3.select("#relayout").on("click",()=>{buildSimulation();fitGraph();});
+      window.addEventListener('pagehide',()=>{
+        if(layoutFrame)cancelAnimationFrame(layoutFrame);layoutFrame=0;
+        if(densityFramePending)cancelAnimationFrame(densityFramePending);densityFramePending=0;
+      });
       LabelLayout.observe(svg.node(),()=>{if(labels)updateVisualClarity();});
+      window.addEventListener('pagehide',()=>simulation?.stop());
+      d3.select('#node-size-scale').on('change',scheduleSizeMapping);
+      for(const id of ['node-size-strength','label-font-size'])d3.select('#'+id).on('input',scheduleSizeMapping);
+      window.addEventListener('pagehide',()=>{if(sizeFrame)cancelAnimationFrame(sizeFrame);sizeFrame=0;});
+      syncSizeControls();
       applyFilters();
-    

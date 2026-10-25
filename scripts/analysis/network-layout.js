@@ -170,3 +170,40 @@ function createClusterPalette(count){
  }
  return result;
 }
+
+// 独立实现，思路参考 https://observablehq.com/@d3/clustered-bubbles 。
+// 已有主题决定分组；面积加权质心聚拢与组别间距碰撞只决定位置。
+function forceTopicBubbles(radius,{innerGap=3,outerGap=28,strength=0.12}={}){
+ let nodes=[];
+ const group=n=>n.groupId==null?n:n.groupId; // 未归类节点各自独立，不合成虚假主题。
+ function force(alpha){
+  const centers=new Map();
+  for(const n of nodes){if(n.groupId==null)continue;const k=group(n),w=radius(n)**2||1;
+   const c=centers.get(k)||{x:0,y:0,w:0};c.x+=n.x*w;c.y+=n.y*w;c.w+=w;centers.set(k,c);}
+  for(const n of nodes){const c=centers.get(group(n));if(c){n.vx+=(c.x/c.w-n.x)*strength*alpha;n.vy+=(c.y/c.w-n.y)*strength*alpha;}}
+  NodeCollision.resolve(nodes,null,radius,{gap:innerGap,clusterGap:outerGap,group,alpha:0.2,passes:2});
+ }
+ force.initialize=input=>{nodes=input||[];};return force;
+}
+
+// 两层圆打包仅作主题布局的初始坐标，之后仍由现有力模拟微调。
+// 半径加临时间距，不改变绘制半径；未归类节点各自成组。
+function seedPackedTopicPositions(nodes,radius,{innerGap=3,outerGap=28,offsetX=450,offsetY=260}={}){
+ const groups=new Map();
+ for(const node of nodes){const key=node.groupId==null?node:node.groupId;
+  if(!groups.has(key))groups.set(key,[]);
+  groups.get(key).push({node,r:Math.max(0,Number(radius(node))||0)+innerGap/2});
+ }
+ const clusters=[];
+ for(const members of groups.values()){
+  d3.packSiblings(members);const enclosure=d3.packEnclose(members);
+  clusters.push({members,enclosure,r:enclosure.r+outerGap/2});
+ }
+ d3.packSiblings(clusters);
+ const bounds=d3.packEnclose(clusters);if(!bounds)return;
+ for(const cluster of clusters)for(const circle of cluster.members){
+  circle.node.x=offsetX+cluster.x-bounds.x+circle.x-cluster.enclosure.x;
+  circle.node.y=offsetY+cluster.y-bounds.y+circle.y-cluster.enclosure.y;
+  circle.node.vx=0;circle.node.vy=0;
+ }
+}

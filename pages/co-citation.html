@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN" data-workspace-state="loading">
   <head>
+  <script src="../scripts/interactions/chart-loading.js?v=20261022-redraw48"></script>
+  <script src="../scripts/interactions/workspace-navigation.js?v=20261025-journal88"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>人工智能教育：文献共被引网络</title>
-  
+
   <!-- 功能：首屏先显示加载状态，隐藏原独立演示布局；visibility保留尺寸供SVG布局计算。 -->
   <style>
     html[data-workspace-state="loading"] body > :not(#workspace-startup):not(noscript),
@@ -17,11 +19,13 @@
   </style>
   <script src="../scripts/interactions/workspace-startup.js?v=20261021-startup19"></script>
   <script src="../library/d3/d3.v7.min.js"></script>
-    
+
     <link rel="stylesheet" href="../css/common.css?v=20261021-demoentry16">
-  
+
 <link rel="stylesheet" href="../css/co-citation.css">
 <link rel="stylesheet" href="../css/glass.css?v=20261022-perf26">
+<link rel="stylesheet" href="../library/vue-primevue/research-maps-ui.css?v=20261025-journal88">
+<script src="../library/vue-primevue/research-maps-ui.js?v=20261025-journal88"></script>
 </head>
   <body>
   <div id="workspace-startup" role="status" aria-live="polite"><span class="startup-mark" aria-hidden="true"></span><strong>正在加载文献计量工作台…</strong><p>正在准备图形和参数，请稍候。</p><button type="button" hidden>重新加载</button></div>
@@ -40,7 +44,7 @@
       <button id="reset-view" type="button">显示全图</button>
       <span id="filter-message"></span>
     </div>
-    <div class="toolbar"><label><input id="show-all-labels" type="checkbox" style="width:auto!important"> 显示全部标签（可能重叠）</label><span class="note">默认优先显示最多20个高被引标题，并自动避让；标题保留前6词，完整标题可悬停节点查看。所有筛选后的节点仍保留。</span></div>
+    <div class="toolbar"><label><input id="show-all-labels" type="checkbox" style="width:auto!important"> 显示全部标签（可能重叠）</label><span class="note">默认按节点权重（样本内被引次数，非全库总被引）优先显示最多20个标题，选中优先，并自动避让；标题保留前6词，完整标题可悬停节点查看。所有筛选后的节点仍保留。</span></div>
     <div class="toolbar">
       <input id="keyword-search" type="text" placeholder="搜索英文实体，如 education">
       <button id="search-button" type="button">查找</button>
@@ -73,10 +77,10 @@
       <div><strong>位置：</strong>力导向布局，不表示年份或地理位置；筛选后重新计算布局。</div>
       <div><strong>操作：</strong>悬停查看数值；点击高亮当前直接邻居；点击空白恢复；拖动节点，滚轮缩放，拖动空白平移。</div>
     </div>
-    
-    
+
+
     <script src="../scripts/analysis/co-citation.js?v=20261020-isolates12"></script>
-    
-  <script src="../scripts/bootstrap.js?v=20261022-perf26" data-config='{"data": {"openAlexPapers": "../data/processed/papers.json", "referenceLabels": "../data/processed/reference-labels.json"}, "scripts": ["../scripts/analysis/label-layout.js", "../scripts/interactions/edge-rendering.js", "../scripts/charts/co-citation.js", "../scripts/interactions/workspace.js", "../scripts/interactions/liquid-select.js"], "workspace": true}'></script>
+
+  <script src="../scripts/bootstrap.js?v=20261025-journal88" data-config='{"data": {"openAlexPapers": "../data/processed/papers.json", "referenceLabels": "../data/processed/reference-labels.json"}, "scripts": ["../scripts/analysis/node-collision.js", "../scripts/analysis/label-layout.js", "../scripts/interactions/edge-rendering.js", "../scripts/charts/co-citation.js", "../scripts/interactions/workspace.js", "../scripts/interactions/liquid-select.js"], "workspace": true}'></script>
 </body>
 </html>

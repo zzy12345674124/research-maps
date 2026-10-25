@@ -1,0 +1,9 @@
+{
+  "vue": "3.5.44",
+  "primevue": "4.5.5",
+  "theme": "@primeuix/themes 2.0.3",
+  "license": "MIT",
+  "source_files": "ui/src/",
+  "build": "cd ui && npm ci --ignore-scripts && npm run build",
+  "offline": true
+}

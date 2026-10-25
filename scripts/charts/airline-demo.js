@@ -24,7 +24,7 @@
   d3.select('#airline-selection').text(`${node.label}：该数据中连接${matches.length}条航线；捆绑不会增加或删除连接。`);
  });
  lines.on('click',(event,edge)=>{event.stopPropagation();lines.attr('opacity',e=>e===edge?1:0.025);d3.select('#airline-selection').text(`${byId.get(edge.source).label} — ${byId.get(edge.target).label}；航线编号${edge.id}。`);});
- dots.call(d3.drag().container(graph.node()).on('drag',(event,n)=>{n.x=event.x;n.y=event.y;update();}).on('end',update));
+ dots.call(d3.drag().container(graph.node()).on('drag',(event,n)=>{NodeCollision.move(nodes,n,event.x,event.y,()=>2.5,{gap:1});update();}).on('end',update));
  svg.on('click',clear);d3.select('#airline-clear').on('click',clear);
  d3.select('#airline-reset').on('click',()=>{nodes.forEach(n=>{n.x=n.homeX;n.y=n.homeY;});update();svg.call(zoom.transform,d3.zoomIdentity);clear();});
  d3.select('#airline-labels').on('change',function(){labels.style('display',this.checked?null:'none');});

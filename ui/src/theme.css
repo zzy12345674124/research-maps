@@ -1,0 +1,102 @@
+/* PrimeVue控件共用浅色玻璃设计；图形颜色、尺寸与编码不在此修改。 */
+/* hidden仍可被焦点程序性滚动；外壳使用clip，滚动只交给参数列表和绘图区。 */
+html:has(body.workspace),body.workspace{overflow:clip!important}
+.workspace .ws-sidebar,.workspace .ws-output{overflow:clip!important}
+.workspace .ws-filter-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr)) 54px;gap:6px;align-items:end;min-width:0}
+.workspace .ws-filter-row>label{margin:0;font-size:10px!important;line-height:1.6;min-width:0}
+.workspace .ws-filter-row>.rm-prime-host{margin:0 0 2px;min-width:0}
+.workspace .ws-filter-row .p-inputnumber-stacked .p-inputnumber-button-group{width:22px}
+.workspace .ws-filter-row .p-inputnumber-stacked input.p-inputnumber-input{padding:8px 26px 8px 7px!important}
+.workspace .ws-filter-row .p-button.rm-button{height:42px;min-height:0;padding:6px!important;white-space:nowrap}
+.workspace .ws-header-reset{flex:0 0 auto;margin-left:8px;min-width:0}
+.workspace .ws-header-reset .rm-prime-host{width:auto;margin:0}
+.workspace .ws-header-reset button{border:1px solid #c3dbe5;border-radius:10px;background:#ffffffb5;color:#2d7189;cursor:pointer;font:inherit;padding:6px 10px}
+.workspace .ws-header-reset .p-button.rm-button{width:auto;min-height:30px;padding:6px 10px;white-space:nowrap}
+.workspace .ws-plot-legend{position:absolute;right:18px;bottom:120px;z-index:5;width:245px;max-width:calc(100% - 38px);max-height:45%;overflow:auto;box-sizing:border-box;padding:12px 14px;border:1px solid #ffffffdc;border-radius:15px;background:#f6fbffdf;box-shadow:0 5px 20px #35516b12;backdrop-filter:blur(12px);font-size:11px;color:#4e687b}
+.workspace .ws-plot-legend>strong{display:block;font-size:12px;margin-bottom:8px}
+.workspace .ws-plot-legend #year-legend{margin:8px 0!important;max-width:100%!important}
+.workspace .ws-plot-legend #year-legend span{font-size:10px}
+.workspace .ws-plot-legend #density-legend>div{width:100%!important}
+.workspace .ws-legend-switches{display:flex;flex-wrap:wrap;gap:8px 16px;margin:8px 0}
+.workspace .ws-legend-switches label{display:flex;align-items:center;gap:4px;cursor:pointer}
+.workspace .ws-plot-legend .toolbar{padding:0;margin:8px 0;border:0;gap:4px;background:transparent;box-shadow:none}
+.workspace .ws-legend-explanation{margin-top:8px}.workspace .ws-legend-explanation>summary{cursor:pointer}
+.workspace .ws-node-controls>.toolbar{padding:0;margin:0;border:0;background:transparent;box-shadow:none}
+.workspace .ws-node-controls #size-mapping-controls{gap:8px}
+.workspace .ws-layout-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;align-items:start}
+.workspace .ws-layout-row>label{min-width:0;margin:0}
+@media(max-width:760px){.workspace .ws-plot-legend{right:8px;bottom:100px;width:200px;padding:8px;max-height:35%}}
+.rm-native-control{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:0!important;border:0!important;overflow:hidden!important;clip-path:inset(50%)!important;white-space:nowrap!important;pointer-events:none!important;opacity:0!important}
+.rm-prime-host{display:block;width:100%;min-width:0;margin:5px 0 2px;font:inherit}.rm-prime-host[hidden]{display:none!important}
+/* 侧栏拖窄时，flex子项按可用宽度收缩，不能由长选项撑开整组参数。 */
+.workspace .ws-panel .toolbar,.workspace .ws-panel .toolbar label{min-width:0;max-width:100%;box-sizing:border-box}
+.workspace .ws-panel .toolbar label{overflow-wrap:anywhere}
+.rm-prime-host,.rm-prime-host .p-select,.rm-prime-host .p-inputnumber,.rm-prime-host .p-datepicker{max-width:100%;box-sizing:border-box}
+.rm-prime-host .p-select-dropdown{flex-shrink:0}
+.rm-prime-host .p-component,.rm-prime-overlay,.rm-prime-calendar{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;font-size:12px}
+.rm-prime-host .p-select,.rm-prime-host .p-inputnumber,.rm-prime-host .p-datepicker{display:flex;width:100%;min-width:0}
+.rm-prime-host .p-select,.rm-prime-host input.p-inputtext{border:1px solid rgba(155,185,207,.44)!important;border-radius:12px!important;background:rgba(255,255,255,.72)!important;color:#35516a!important;box-shadow:inset 0 1px 0 white,0 2px 7px #294d6b06;min-height:38px;transition:background .18s,border-color .18s,box-shadow .18s}
+.rm-prime-host input.p-inputtext{font:inherit!important;padding:9px 11px!important;min-width:0;width:100%!important;box-sizing:border-box}
+.rm-prime-host .p-select:not(.p-disabled):hover,.rm-prime-host input.p-inputtext:enabled:hover{border-color:#91b5c8!important;background:#ffffffdc!important}
+.rm-prime-host .p-select:focus-within,.rm-prime-host input.p-inputtext:focus{outline:none!important;border-color:#5a9db4!important;box-shadow:0 0 0 3px #70b4c51a!important}
+.rm-prime-host .p-select-label{padding:9px 11px;line-height:18px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0}
+.rm-prime-host .p-select-dropdown{width:32px;display:flex;align-items:center;justify-content:center;color:#6b91a8}
+.rm-prime-host .p-select{flex-wrap:wrap}
+.rm-prime-host .p-select>.rm-prime-overlay{position:static!important;top:auto!important;left:auto!important;right:auto!important;bottom:auto!important;flex:0 0 100%;width:100%;min-width:0!important;max-width:100%;height:auto!important;margin:2px 0 0;box-sizing:border-box;transform:none!important;box-shadow:inset 0 1px 0 #ffffffed!important;border-radius:0 0 11px 11px!important;backdrop-filter:none;-webkit-backdrop-filter:none}
+.rm-prime-host .p-select>.rm-prime-overlay .p-select-list-container{max-height:220px!important;overflow:auto;overscroll-behavior:contain}
+.rm-prime-overlay,.rm-prime-calendar{background:rgba(247,251,255,.96)!important;border:1px solid #ffffffed!important;border-radius:15px!important;box-shadow:0 14px 45px #35516b24,inset 0 1px 0 white!important;backdrop-filter:blur(24px) saturate(140%);-webkit-backdrop-filter:blur(24px) saturate(140%);overflow:hidden;color:#35516a}
+.rm-prime-overlay .p-select-list{margin:0;padding:6px;list-style:none}.rm-prime-overlay .p-select-option{min-height:34px;padding:8px 11px;border-radius:9px;font-size:12px;line-height:1.5;white-space:normal}
+.rm-prime-overlay .p-select-option.p-focus{background:#dfeef77a}.rm-prime-overlay .p-select-option.p-select-option-selected{background:#d9edf2;color:#236c81}
+.rm-prime-overlay .p-select-filter{font:inherit!important;border-radius:9px!important;padding:8px 10px!important;border:1px solid #bed4df!important;background:#ffffffbd!important}
+/* InputNumber步进键不是.p-button；隔离工具栏通用按钮的最小高度和外边距。 */
+.rm-prime-host .p-inputnumber-stacked{position:relative;height:42px}
+.rm-prime-host .p-inputnumber-stacked input.p-inputnumber-input{height:100%;padding-right:43px!important;border-radius:12px!important}
+.rm-prime-host .p-inputnumber-stacked .p-inputnumber-button-group{position:absolute;inset:1px 1px 1px auto;width:32px;display:grid;grid-template-rows:repeat(2,minmax(0,1fr));overflow:hidden;border-radius:0 11px 11px 0}
+.rm-prime-host .p-inputnumber-button-group .p-inputnumber-button{display:flex!important;align-items:center;justify-content:center;width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;max-height:100%;padding:0!important;margin:0!important;border:0!important;border-radius:0!important;background:#e9f3f7!important;color:#578096!important;box-shadow:none!important;line-height:1!important;transform:none!important;box-sizing:border-box}
+.rm-prime-host .p-inputnumber-button-group .p-inputnumber-button:not(:disabled):hover{background:#d8ebf3!important}
+.rm-prime-host .p-inputnumber-button .p-icon{width:11px;height:11px}
+.rm-prime-host .p-button.rm-button{width:100%;min-height:35px;border:1px solid #ffffffdd;border-radius:11px;background:linear-gradient(180deg,#ffffffdc,#f2f8fbbd);color:#2d7189;font:inherit;font-size:12px;font-weight:500;box-shadow:inset 0 1px 0 white,0 3px 10px #315b7010;padding:8px 12px;transition:background .16s,transform .16s}
+.rm-prime-host .p-button.rm-button:not(:disabled):hover{background:#e7f4f7;transform:translateY(-1px)}
+.rm-prime-host .p-button.rm-button:not(:disabled):active{transform:translateY(0)}
+.rm-kind-checkbox{display:inline-flex!important;width:auto;vertical-align:middle;margin:0 7px 0 0}.rm-prime-host .p-checkbox{width:17px;height:17px}.rm-prime-host .p-checkbox-box{width:17px;height:17px;border-radius:5px;border:1px solid #9bb9c9}.rm-prime-host .p-checkbox-checked .p-checkbox-box{background:#35899f;border-color:#35899f}
+.rm-prime-host .p-checkbox input.p-checkbox-input{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;margin:0!important;padding:0!important;opacity:0!important;cursor:pointer}
+.rm-kind-range{padding:10px 5px 11px;box-sizing:border-box}.rm-prime-host .p-slider{height:5px;background:#ccdde8;border-radius:99px}.rm-prime-host .p-slider-range{background:#5b9fb2;border-radius:99px}.rm-prime-host .p-slider-handle{width:17px;height:17px;background:white;border:1px solid #bad2e0;box-shadow:0 2px 7px #3b617530}
+.rm-prime-host .p-slider-handle:focus-visible{outline:3px solid #88c2d24d}
+.rm-prime-host .p-datepicker-dropdown{background:#edf5fa;border:1px solid #bed3e1;color:#527f97;border-radius:0 12px 12px 0}.rm-prime-calendar .p-datepicker-month,.rm-prime-calendar .p-datepicker-year{font-size:12px;border-radius:9px}
+.rm-prime-host .p-disabled,.rm-prime-host button:disabled{opacity:.5;cursor:not-allowed}
+.workspace .ws-tabs .p-button.ws-tab{display:flex;align-items:center;justify-content:center;box-shadow:none;font:inherit;font-size:12px;min-height:38px;border:0;border-radius:12px;background:transparent;transition:background .16s,color .16s}
+.workspace .ws-tabs .p-button.ws-tab[aria-selected="true"]{background:#ffffffcf;color:#28778e;box-shadow:0 2px 9px #466b7b0d,inset 0 1px white}
+.workspace .ws-header .p-button.ws-demo-button{padding:7px 11px;font-size:11px;font-weight:500;border-radius:11px;background:#ffffff8c;border:1px solid #ffffffcf;color:#39778c;text-decoration:none;box-shadow:0 2px 8px #315b7010}
+@media(prefers-reduced-motion:reduce){.rm-prime-host *,.rm-prime-overlay{transition:none!important;animation:none!important}}
+
+/* 演示区嵌入图例与顶栏搜索 */
+.workspace .ws-viewport{position:relative}
+.workspace .ws-plot-legend{top:12px;right:68px;bottom:auto;width:220px;max-height:38%;padding:4px 8px;border:0;border-radius:0;background:transparent;box-shadow:none;backdrop-filter:none;overflow-x:hidden}
+.workspace .ws-date-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(64px,.6fr);gap:6px;width:100%}
+.workspace .ws-date-row label{min-width:0}
+.workspace .ws-date-row .p-datepicker-input{min-width:0;width:100%;padding-left:6px;padding-right:2px}
+.workspace .ws-date-row .p-datepicker{min-width:0;width:100%}
+.workspace .ws-date-row .p-datepicker-dropdown{width:26px;min-width:26px}
+.workspace .ws-header{position:relative}
+.workspace .ws-top-search{position:absolute;left:50%;transform:translateX(-50%);width:min(32vw,460px);z-index:2}
+.workspace .ws-top-search .toolbar{display:flex;align-items:center;gap:6px;margin:0;padding:0;background:transparent;border:0;box-shadow:none}
+.workspace .ws-top-search input{min-width:0;flex:1}
+.workspace .ws-top-search .note{display:none}
+.workspace .ws-top-search [data-rm-prime-host]{min-width:0}
+.workspace .ws-top-search .rm-kind-text{flex:1}
+.workspace .ws-tabs[hidden],.workspace [hidden]{display:none!important}
+
+.workspace .ws-header{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,32vw) minmax(0,1fr);gap:16px}
+.workspace .ws-header .ws-brand{grid-column:1;grid-row:1;min-width:0;overflow:hidden;white-space:nowrap}
+.workspace .ws-header .ws-header-actions{grid-column:3;grid-row:1;justify-self:end;min-width:0}
+.workspace .ws-header .ws-top-search{grid-column:2;grid-row:1;position:static;transform:none;width:100%;min-width:0}
+.workspace .ws-top-search input{box-sizing:border-box;width:100%;height:36px;border:1px solid #bed4df;border-radius:11px;padding:7px 11px;background:#ffffffb5;color:#35516a;font:inherit}
+.workspace .ws-top-search .toolbar input{flex:1;width:0}
+.workspace .ws-plot-legend{top:65px;-webkit-backdrop-filter:none}
+@media(max-width:1000px){.workspace .ws-header .ws-brand small{display:none}.workspace .ws-header-actions .ws-demo-button{display:none}}
+
+/* 搜索行必须覆写参数工具栏的column方向。 */
+.workspace .ws-top-search.ws-search-row,.workspace .ws-top-search .ws-search-row{display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;gap:8px;min-width:0;margin:0;padding:0}
+.workspace .ws-top-search.ws-search-row input,.workspace .ws-top-search .ws-search-row input{flex:1 1 0;width:0;min-width:0;height:36px;margin:0}
+.workspace .ws-top-search.ws-search-row button,.workspace .ws-top-search .ws-search-row button{flex:0 0 auto;width:auto;min-width:52px;height:36px;min-height:36px;margin:0;padding:6px 12px;border:1px solid #c3dbe5;border-radius:10px;background:#ffffffb5;color:#2d7189;font:inherit;cursor:pointer;white-space:nowrap}
+.workspace .ws-top-search #search-message{position:absolute;top:100%;left:0;max-width:100%;font-size:11px;background:#f6fbff;z-index:3}

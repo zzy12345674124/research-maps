@@ -1,59 +1,58 @@
 # Research Maps · 文献计量可视化工作台
 
-原生 HTML/CSS/JavaScript + 本地 D3 的交互式文献计量工具。采用浅色液态玻璃界面和 VOSviewer 风格两栏布局。
+当前工程版本：**2026.10.25.1**（2026-10-25）。版本入口：`docs/project-guide.html`，完整记录：`docs/changelog.json`。
 
-## 功能
+## 当前能力
 
-- 关键词共现、年份叠加和密度图；作者/机构合作、文献共被引。
-- 论文引用、关键词共现关系及数量时间线；期刊双图叠加。
-- NMF、LDA 在浏览器执行；BERTopic 可选本机 Python 服务执行。
-- 权重透明度、普通/捆绑路线、节点拖动和缩放；visit2 四叉树标签防重叠。
-- OpenAlex 气候变化机构合作地理/力导向对照，航空航线捆绑演示。
-- 玻璃下拉浮层、按图形隐藏无关参数、可调整宽度的侧栏和论文证据。
+- 关键词共现与密度、作者/机构合作、文献共被引；普通与捆绑连线。
+- 论文引用、关键词关系与数量、论文主题等时间线，采用蜂群布局和动态力模拟；arXiv按月定位并局部横向避让。
+- 跨缩放级别标签遮挡计算：按选中状态与权重确定优先级，缩放后改变可见标签；不是固定显示数量。
+- 期刊双图：论文标题/可用摘要进行内容嵌入，汇总为期刊画像，再经UMAP生成二维位置。节点是期刊，位置近表示内容表示相似，不等于引用更强。
+- NMF、LDA浏览器主题建模，本机BERTopic；OpenAlex合作及航空捆绑独立演示。
+- 顶部搜索、右上嵌入图例、画布缩放，参数按图形显示，滑块实时更新。
+
+## 前端、后端与AI的分工
+
+| 部分 | 当前工具 | 职责 |
+|---|---|---|
+| 前端 | Vue 3.5.44、PrimeVue 4.5.5 | 页面状态、参数与控件 |
+| 绘图 | D3 7、本地分析与布局代码 | 网络、时间线、交互、碰撞和标签 |
+| 前端构建 | esbuild 0.28.2 | 将Vue/PrimeVue打包为本地浏览器资源 |
+| 后端 | Python标准库HTTP服务 | 静态资源、主题建模接口；不是FastAPI服务 |
+| 内容模型 | 本地MiniLM、BERTopic相关工具 | 内容向量、主题与语义布局预处理 |
+| 数据 | 本地JSON及派生文件 | 论文元数据、关系和绘图输入 |
+
+Vue管理页面与状态，D3负责把数据画成图。嵌入模型把文本转换为数字向量，UMAP再把向量降为二维位置。当前没有完成大语言模型驱动的指标推荐与计算闭环，也没有完成论文图片资产探索模块。FastAPI、PostgreSQL、pgvector等属于后续候选，不是现有运行依赖。
 
 ## 本机启动
 
-普通图形和 NMF/LDA 仅需现有 Python 3。Windows 双击 `启动可视化.cmd`，或运行：
+Windows双击 `启动可视化.cmd`，或运行 `python server/topic_server.py`，打开 http://127.0.0.1:8765/ 。应通过HTTP访问，不直接双击页面HTML。
 
-```sh
-python server/topic_server.py
-```
+普通图形及NMF/LDA不依赖远程AI服务。BERTopic需要已有Python环境和本地模型缓存；运行环境与模型不纳入仓库，服务不隐式下载模型。
 
-打开 http://127.0.0.1:8765/ 。页面读取 JSON，请通过本机服务访问，不直接双击 HTML。
+修改Vue控件后，在 `ui/` 使用现有依赖运行 `npm run build`；仓库保留浏览器产物与许可证。未安装依赖的机器须另行准备环境。
 
-BERTopic 需要单独创建环境并按 `server/requirements-bertopic.txt` 安装依赖、准备 all-MiniLM-L6-v2 缓存；环境与模型不纳入仓库。`docs/当前主题结果快照.json` 是保存的结果资料，本机页面不会自动把它当作新训练结果。
+## 数据与解释边界
 
-## 数据与范围
+OpenAlex教学样本不代表领域全量；arXiv缺失引用和机构信息时不能将其解释为零。期刊语义双图当前基于1900篇本地论文元数据，仅68篇含摘要，852个唯一期刊，左右分别57与827个期刊；多数内容画像依赖标题。二维距离只能辅助观察，不能替代原文判断。
 
-`data/raw/` 保留 OpenAlex 公开元数据和查询记录；`data/processed/` 为绘图输入；`data/demo/` 为独立演示。
-人工智能教育100篇按检索相关性选择，不代表领域全量。气候变化合作演示保留146机构、399关系、29国家；详细筛选口径见 `docs/openalex-bundling-selection.json`。同篇多机构按机构对计合作，不代表直接沟通。
+`data/raw/`保存原始公开元数据；`data/processed/`是派生绘图输入；`data/demo/`是独立演示。已取消新生成的一万篇测试集入口。
 
-## 目录
+## 版本与验证
 
-`pages/` 页面；`css/` 样式；`scripts/analysis/` 算法；`scripts/charts/` 绘图；`scripts/interactions/` 交互；`library/` 第三方代码；`tools/` 数据准备和合成验证；`server/` 本机服务。`src/charts/` 仅保留旧入口跳转。
+- 本机工程与GitHub按本版同步；`双击查看示例.html`依用户要求保留旧版，不代表当前代码。
+- GitHub Pages为静态预览；BERTopic载入保存示例，不在线重新训练。NMF/LDA仍在浏览器执行。
+- 自动检查使用合成数据，真实图形外观、缩放和交互需人工验收；通过静态检查不等于所有界面已验收。
+- 原始设计方案仍在本地项目资料目录，说明两个目标模块与阶段差距；不把工作台已有图形等同于完整产品。
 
-## 验证
+## 工程目录
 
-```sh
-python tools/check_structure.py
-node tools/test_topic_model.cjs
-node tools/test_label_layout.cjs
-node tools/test_liquid_select.cjs
-node tools/test_workspace_startup.cjs
-node tools/test_openalex_demo.cjs
-node tools/test_edge_rendering.cjs
-```
+`pages/`页面；`ui/src/`Vue控件源码；`css/`样式；`scripts/analysis/`算法；`scripts/charts/`绘图；`scripts/interactions/`交互；`library/`第三方浏览器资源；`tools/`预处理与合成验证；`server/`本机服务；`docs/`版本与交接记录。
 
-测试使用合成数据；真实数据的视觉效果需人工确认。源码不包含机器上的 Python 环境、模型缓存、运行日志或开发备份。
+第三方许可证及固定版本记录保留在`library/`。许可未明确的独立实验代码不纳入公开发布。环境、模型缓存、开发备份和离线大文件不纳入同步。
 
-## 第三方与更新
+GitHub仓库：https://github.com/zzy12345674124/research-maps
 
-D3 和 d3-forcebundle 原始许可证保留在 `library/`；上游来源和固定版本见相应目录。OpenAlex 元数据为公开资料，样本仅用于教学与方法演示。捆绑只改变路线，不改变连接。
+在线预览：https://zzy12345674124.github.io/research-maps/
 
-界面右上角“工程说明”读取 `docs/changelog.json`，每次用户可见更新按“日期.当日修订”追加记录。
-
-仓库为公开项目，在线预览地址：https://zzy12345674124.github.io/research-maps/ 。
-
-GitHub Actions 在推送到 `codex/main` 后自动生成并发布预览。预览保留图形交互、NMF/LDA，BERTopic只载入保存结果；本机Python服务仍可使用完整训练功能。
-
-手动构建静态预览：`python tools/build_pages.py`，输出到被Git忽略的 `dist-pages/`；已存在输出目录时拒绝覆盖，可使用 `--output` 指定新的目录。
+推送`codex/main`触发Pages工作流；`python tools/build_pages.py --output <新目录>`可生成独立静态预览，拒绝覆盖已有目录。

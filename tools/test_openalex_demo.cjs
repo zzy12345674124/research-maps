@@ -1,7 +1,7 @@
 // 只用合成合作数据验证筛选和源代码语法，不加载真实论文或运行真实网络捆绑。
 const fs=require('fs'),path=require('path'),vm=require('vm'),assert=require('assert/strict');
 const root=path.resolve(__dirname,'..'),source=fs.readFileSync(path.join(root,'scripts/charts/openalex-demo.js'),'utf8');
-const context={setTimeout,clearTimeout,setInterval,clearInterval,performance};vm.createContext(context);vm.runInContext(fs.readFileSync(path.join(root,'library/d3/d3.v7.min.js'),'utf8'),context);vm.runInContext(source.slice(0,source.indexOf('const demoData')),context);
+const context={setTimeout,clearTimeout,setInterval,clearInterval,performance};vm.createContext(context);vm.runInContext(fs.readFileSync(path.join(root,'library/d3/d3.v7.min.js'),'utf8'),context);vm.runInContext(fs.readFileSync(path.join(root,'scripts/analysis/node-collision.js'),'utf8'),context);vm.runInContext(source.slice(0,source.indexOf('const demoData')),context);
 const data={nodes:[{name:'a',longitude:1,latitude:2},{name:'b',longitude:3,latitude:4},{name:'c',longitude:5,latitude:6}],edges:[{source:'a',target:'b',weight:2,paperIds:['one','two']},{source:'b',target:'c',weight:1,paperIds:['one']}]};
 const before=JSON.stringify(data),filtered=context.filterOpenAlexDemo(data,2);
 assert.equal(filtered.nodes.length,2);assert.equal(filtered.links.length,1);assert.equal(filtered.links[0].weight,2);assert.deepEqual(filtered.links[0].paperIds,['one','two']);

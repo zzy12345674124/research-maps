@@ -87,6 +87,11 @@
       return [...new Set([...d3.range(periodStart,periodEnd+1,step),periodEnd])];
     }
     function timeDomain(){return periodStart===periodEnd?[periodStart-0.5,periodEnd+0.5]:[periodStart,periodEnd];}
+    function swarmOptions(x,options){
+      if(window.DatasetInfo?.source!=='arXiv')return options;
+      const periodWidth=Math.abs(x(periodStart+1)-x(periodStart));
+      return {...options,spreadX:Math.min(30,periodWidth*.42),xMin:365,xMax:1030};
+    }
     function paperDate(paper){return `${paper.publicationDate}${paper.dateNeedsReview?'（日期精度待核实）':''}`;}
 
     const svg = d3.select("#timeline");
@@ -96,7 +101,10 @@
     function updateTimelineLabels(){
       if(!timelineLayer)return;
       LabelLayout.schedule(timelineLayer.selectAll('.timeline-label'),{
-        priority:d=>(d?.name===timelineSelectedLabel?1e9:0)+(d?.count||0)
+        priority:d=>LabelLayout.weightPriority(d?.count??d?.papers?.length,d?.name===timelineSelectedLabel)
+      });
+      LabelLayout.schedule(timelineLayer.selectAll('.paper-title-label'),{
+        priority:d=>LabelLayout.weightPriority(d.labelWeight,d.paper.id===timelineSelectedLabel)
       });
     }
     LabelLayout.observe(svg.node(),updateTimelineLabels);
@@ -107,8 +115,12 @@
         d3.select('#timeline-zoom-level').text(`${Math.round(event.transform.k*100)}%`);
       });
     svg.call(timelineZoom).on('dblclick.zoom',null);
+    window.WorkspaceZoom={scaleBy:factor=>svg.call(timelineZoom.scaleBy,factor)};
     // 功能：重绘时清理旧画布与变换，避免切换模式后内容留在视野之外。
     function beginTimeline(height){
+      globalThis.TimelineExperimentalBeeswarm?.stop();
+      globalThis.TimelineCountBeeswarm?.stop();
+      globalThis.TimelineCountBeeswarm?.stop();
       svg.interrupt().attr('height',height).selectAll('*').remove();
       timelineSelectedLabel=null;
       timelineLayer=svg.append('g').attr('class','timeline-viewport');
@@ -150,26 +162,16 @@
       const relationOpacity=EdgeRendering.opacityScale(data.edges);
       let relationFocus=null;
       const relationEdgeOpacity=edge=>relationOpacity(edge,relationFocus?(relationFocus(edge)?'focus':'dim'):'normal');
-      const x=d3.scaleLinear().domain(timeDomain()).range([365,1010]);
+      const x=d3.scaleLinear().domain(timeDomain()).range([385,1010]);
       const color=d3.scaleSequential(d3.interpolateYlOrBr).domain([periodEnd+0.01,periodStart]);
       const radius=d3.scaleSqrt().domain([0,d3.max(data.nodes,d=>d.count)||1]).range([0,16]);
-      let nextY=120;
-      const bands=data.groups.map(group=>{
-        const members=data.nodes.filter(node=>node.group===group.name);
-        const byYear=new Map();
-        members.forEach(node=>{
-          if(!byYear.has(node.firstYear))byYear.set(node.firstYear,[]);
-          byYear.get(node.firstYear).push(node);
-        });
-        const height=Math.max(80, Math.max(...[...byYear.values()].map(items=>items.length),1)*36+24);
-        const center=nextY+height/2;
-        byYear.forEach(items=>items.forEach((node,i)=>{
-          node.x=x(node.firstYear); node.y=center+(i-(items.length-1)/2)*36;
-        }));
-        const band={group,center,height,top:nextY};nextY+=height;
-        return band;
-      });
-      const height=Math.max(250,nextY+35);
+      // 关键词关系图同样使用逐行蜂群避让；圆半径计入行高及轴边界。
+      const packed=TimelineCountBeeswarm.layout(data.groups.flatMap(group=>
+        data.nodes.filter(node=>node.group===group.name).map(node=>({key:group.name,d:node,x:x(node.firstYear),y:0,r:radius(node.count)}))
+      ),swarmOptions(x,{stackRows:true,top:60,rowGap:24,minRowHeight:80}));
+      for(const point of packed.points){point.d.x=point.x;point.d.y=point.y;}
+      const bands=data.groups.map(group=>({group,center:packed.centers.get(group.name)||100}));
+      const height=Math.max(250,packed.bottom+35);
       beginTimeline(height);
       d3.select("#summary").text(`${periodNote} · ${formatPeriod(periodStart)} 至 ${formatPeriod(periodEnd)} · ${data.groups.length}组 · ${data.nodes.length}个关键词节点 · ${data.edges.length}条共现弧线`);
       d3.select("#detail").text(data.nodes.length ? "圆表示关键词，首次时间以当前筛选窗口为准。悬停查看，点击节点或弧线查看对应论文。" : "没有达到门槛的关键词，请降低门槛。");
@@ -219,6 +221,11 @@
         .attr("x",d=>d.x+radius(d.count)+4).attr("y",d=>d.y+3).attr("font-size",10)
         .attr("stroke","white").attr("stroke-width",3).attr("paint-order","stroke").attr("pointer-events","none")
         .text(d=>d.name.length>27 ? d.name.slice(0,25)+"…" : d.name);
+      TimelineCountBeeswarm.animate(packed,()=>{
+        dots.attr('cx',d=>d.x).attr('cy',d=>d.y);
+        labels.attr('x',d=>d.x+radius(d.count)+4).attr('y',d=>d.y+3);
+        arcs.attr('d',arcPath);updateTimelineLabels();
+      });
       dots.on("click",(event,d)=>{
         event.stopPropagation();
         timelineSelectedLabel=d.name;updateTimelineLabels();
@@ -235,21 +242,19 @@
 
     // 功能：每圆一篇论文；按原始发表年月定位，引用弧线有方向，不使用共现关系代替。
     function renderPaperCitations(minimum,top) {
+      const paperRadius=new Map(activePapers.map((p,i)=>[p.id,i%2?7:4]));
       const grouped=d3.select('#paper-row-type').property('value')==='cluster';
       const definitions=(grouped?buildClusterTimeline(activePapers,minimum):buildTimeline(activePapers).filter(d=>d.count>=minimum)).slice(0,top);
       const result=buildPaperCitationTimeline(activePapers,definitions);
-      const x=d3.scaleLinear().domain(timeDomain()).range([365,1010]);
-      let nextY=110;
-      // 功能：同一期同一行的论文纵向排开，保持横坐标准确，不用月份抖动假装日期不同。
-      result.rows.forEach((row,index)=>{
-        const items=result.nodes.filter(n=>n.row===index),byTime=new Map();
-        items.forEach(n=>{const time=n.paper.periodIndex;if(!byTime.has(time))byTime.set(time,[]);byTime.get(time).push(n);});
-        const height=Math.max(70,Math.max(1,...[...byTime.values()].map(v=>v.length))*19+28);
-        row.center=nextY+height/2;row.top=nextY;row.height=height;
-        byTime.forEach(values=>values.forEach((n,i)=>{n.x=x(n.paper.periodIndex);n.y=row.center+(i-(values.length-1)/2)*19;}));
-        nextY+=height;
-      });
-      const height=Math.max(260,nextY+35);beginTimeline(height);
+      const labelWeights=LabelLayout.paperWeights(openAlexPapers);
+      result.nodes.forEach(node=>{node.labelWeight=labelWeights.values.get(node.paper.id)??null;});
+      const x=d3.scaleLinear().domain(timeDomain()).range([385,1010]);
+      const packed=TimelineCountBeeswarm.layout(result.rows.flatMap((row,index)=>
+        result.nodes.filter(n=>n.row===index).map(n=>({key:index,d:n,x:x(n.paper.periodIndex),y:0,r:paperRadius.get(n.paper.id)}))
+      ),swarmOptions(x,{stackRows:true,top:65,rowGap:24,minRowHeight:80}));
+      for(const p of packed.points){p.d.x=p.x;p.d.y=p.y;}
+      result.rows.forEach((row,index)=>{row.center=packed.centers.get(index)||100;});
+      const height=Math.max(260,packed.bottom+35);beginTimeline(height);
       svg.on('click',null);
       d3.select('#summary').text(`${periodNote} · 展示${result.uniquePapers}篇不同论文 / ${result.nodes.length}个显示节点 · ${result.uniqueEdges.length}条唯一引用 / ${result.edges.length}条显示弧线 · ${result.withReferences}篇有参考文献记录`);
       d3.select('#detail').text(result.nodes.length
@@ -285,9 +290,19 @@
       arcs.append('title').text(d=>`${d.source.paper.title} → 引用 → ${d.target.paper.title}`);
       const fill=d3.scaleSequential(d3.interpolateViridis).domain([periodStart,periodEnd+0.01]);
       const dots=timelineLayer.append('g').selectAll('circle').data(result.nodes,n=>n.key).join('circle')
-        .attr('cx',n=>n.x).attr('cy',n=>n.y).attr('r',6).attr('fill',n=>fill(n.paper.periodIndex))
+        .attr('cx',n=>n.x).attr('cy',n=>n.y).attr('r',n=>paperRadius.get(n.paper.id)).attr('fill',n=>fill(n.paper.periodIndex))
         .attr('stroke','white').attr('stroke-width',1).style('cursor','pointer');
-      dots.append('title').text(n=>`${paperDate(n.paper)} · ${n.paper.title} · ${result.rows[n.row].name}`);
+      dots.append('title').text(n=>`${paperDate(n.paper)} · ${n.paper.title} · ${result.rows[n.row].name} · ${labelWeights.scope}：${n.labelWeight??"未知"}`);
+      const seenTitles=new Set();
+      const titleNodes=result.nodes.filter(n=>{if(seenTitles.has(n.paper.id))return false;seenTitles.add(n.paper.id);return true;});
+      // 同一论文跨行的显示副本只保留一份标题，权重由全数据集计算，不随筛选变口径。
+      const paperTitles=timelineLayer.append('g').selectAll('text').data(titleNodes).join('text')
+        .attr('class','paper-title-label').attr('font-size',10).attr('fill','#35516a')
+        .attr('stroke','white').attr('stroke-width',3).attr('paint-order','stroke').attr('pointer-events','none')
+        .text(n=>LabelLayout.truncate(n.paper.title||n.paper.id,6));
+      function updatePaperTitles(){paperTitles.attr('x',n=>n.x+paperRadius.get(n.paper.id)+4).attr('y',n=>n.y+3);updateTimelineLabels();}
+      updatePaperTitles();
+      d3.select('#detail').append('p').text(`标题优先级：${labelWeights.scope}；默认最多20个不重叠标题，选中论文优先。缺失权重排在已知权重之后；全部缺失时沿用稳定的行/日期顺序，不代表影响力。`);
       // 功能：列出论文实际ID与原始日期，不将引用方向解释为时间先后或因果。
       function showPaper(panel,paper,label){
         const item=panel.append('p');item.append('strong').text(label+'：');
@@ -303,20 +318,28 @@
         });
       dots.on('click',(event,node)=>{
         event.stopPropagation();const id=node.paper.id;
+        timelineSelectedLabel=id;updateTimelineLabels();
         // 功能：详情计数和论文列表按唯一引用统计，避免跨行显示副本造成重复。
         const related=result.uniqueEdges.filter(d=>d.sourceId===id||d.targetId===id);
         const ids=new Set([id]);related.forEach(d=>{ids.add(d.sourceId);ids.add(d.targetId);});
         dots.attr('opacity',n=>ids.has(n.paper.id)?1:0.15);
         arcs.attr('opacity',d=>d.sourceId===id||d.targetId===id?0.9:0.03);
         const panel=d3.select('#detail');panel.selectAll('*').remove();panel.text('');showPaper(panel,node.paper,'选中论文');
+        panel.append('p').text(`${labelWeights.scope}：${node.labelWeight??'未知'}；此权重用于标题优先级。`);
         panel.append('p').text(`当前显示范围内：引用了${related.filter(d=>d.sourceId===id).length}篇，收到${related.filter(d=>d.targetId===id).length}篇引用。同一论文的所有行副本一并高亮。`);
         related.forEach(d=>showPaper(panel,d.sourceId===id?d.target.paper:d.source.paper,d.sourceId===id?'它引用的论文':'引用它的论文'));
       });
-      svg.on('click',()=>{dots.attr('opacity',1);arcs.attr('opacity',0.26);});
+      svg.on('click',()=>{timelineSelectedLabel=null;updateTimelineLabels();dots.attr('opacity',1);arcs.attr('opacity',0.26);});
+      d3.select('#mode-explanation').text('一圆一篇论文；各行独立X方向蜂群避让，连线与标题随节点移动。准确日期见悬停。');
+      TimelineCountBeeswarm.animate(packed,()=>{
+        dots.attr('cx',d=>d.x).attr('cy',d=>d.y);arcs.attr('d',pathFor);updatePaperTitles();
+      });
     }
 
     // 功能：根据模式切换数量、关键词关系和论文引用时间线。
     function renderTimeline() {
+      globalThis.TimelineExperimentalBeeswarm?.stop();
+      globalThis.TimelineCountBeeswarm?.stop();
       // 功能：主题分行必须先有有效模型；不静默退回模块度或自动训练。
       const needsTopics=d3.select('#mode').property('value')!=='keyword'&&(d3.select('#mode').property('value')!=='papers'||d3.select('#paper-row-type').property('value')==='cluster');
       if(needsTopics&&!TopicStore.read(topicCorpus)){
@@ -342,7 +365,7 @@
       } catch(error){d3.select('#message').text(error.message);return;}
       activePapers=selection.papers;periodStart=selection.start;periodEnd=selection.end;
       rows=buildTimeline(activePapers);
-      periodNote=`100篇中选中${activePapers.length}篇；${selection.suspect}篇为1月1日记录（已排除${selection.excluded}篇），缺失/无效日期${selection.missing}篇`;
+      periodNote=`${openAlexPapers.length}篇中选中${activePapers.length}篇；${selection.suspect}篇为1月1日记录（已排除${selection.excluded}篇），缺失/无效日期${selection.missing}篇`;
       const relationMode=d3.select("#mode").property("value")==="relations";
       // 功能：图名与一句话解释同步切换，明确“关系节点”与“数量汇总节点”的区别。
       const descriptions={
@@ -375,14 +398,17 @@
         groupPanel.append("strong").text("主题映射关键词（行名为模型代表词）：");
         selected.forEach(row => groupPanel.append("div").text(`${row.name} — ${row.members.join(" / ")}`));
       }
-      const height = Math.max(180, selected.length * 48 + 90);
+      // 先避让再确定行高；时间轴两端预留最大圆半径，日期仍严格映射同一比例尺。
+      const x = d3.scaleLinear().domain(timeDomain()).range([385, 1010]);
+      const points = selected.flatMap(row => [...row.years].map(([year, papers]) => ({ name: row.name, year, count: papers.length, papers })));
+      const radius = d3.scaleSqrt().domain([0, d3.max(points, d => d.count) || 1]).range([0, 17]);
+      const packed=TimelineCountBeeswarm.layout(points.map(d=>({key:d.name,d,x:x(d.year),y:0,r:radius(d.count)})),swarmOptions(x,{stackRows:true,top:48,rowGap:16,minRowHeight:48}));
+      for(const p of packed.points){p.d.x=p.x;p.d.y=p.y;}
+      const y=name=>packed.centers.get(name)||72;
+      const height=Math.max(180,packed.bottom+25);
       beginTimeline(height);
       d3.select("#summary").text(`${periodNote} · 当前 ${selected.length} 行（${clustered ? "论文主主题" : "关键词"}） · 时间范围 ${formatPeriod(periodStart)} 至 ${formatPeriod(periodEnd)}`);
       d3.select("#detail").text(selected.length ? "悬停圆查看数值；点击圆查看对应论文。" : "没有达到门槛的关键词，请降低门槛。");
-      const x = d3.scaleLinear().domain(timeDomain()).range([365, 1030]);
-      const y = d3.scalePoint().domain(selected.map(d => d.name)).range([55, 55 + Math.max(0, selected.length - 1) * 48]);
-      const points = selected.flatMap(row => [...row.years].map(([year, papers]) => ({ name: row.name, year, count: papers.length, papers })));
-      const radius = d3.scaleSqrt().domain([0, d3.max(points, d => d.count) || 1]).range([0, 17]);
       // 功能：固定年度刻度与网格，筛选后仍能比较同一时间范围。
       timelineLayer.append("g").attr("transform", "translate(0,30)")
         .call(d3.axisTop(x).tickValues(timeTicks()).tickFormat(formatPeriod));
@@ -397,8 +423,9 @@
       });
       // 功能：圆面积编码当前周期篇数；悬停显示计数，点击列出可溯源的论文。
       const dots = timelineLayer.append("g").selectAll("circle").data(points).join("circle")
-        .attr("cx", d => x(d.year)).attr("cy", d => y(d.name)).attr("r", d => radius(d.count))
+        .attr("cx", d => d.x).attr("cy", d => d.y).attr("r", d => radius(d.count))
         .attr("fill", d => clustered ? colors(d.name) : "#477fae").attr("stroke", "white").attr("stroke-width", 1.5).style("cursor", "pointer");
+      TimelineCountBeeswarm.animate(packed,()=>dots.attr('cx',d=>d.x).attr('cy',d=>d.y));
       dots.append("title").text(d => `${d.name} · ${formatPeriod(d.year)} · ${d.count}篇`);
       dots.on("click", (event, d) => {
         const panel = d3.select("#detail"); panel.selectAll("*").remove(); panel.text("");
@@ -414,6 +441,7 @@
     d3.select("#apply").on("click", renderTimeline);
     d3.select("#mode").on("change", renderTimeline);
     d3.select("#paper-row-type").on("change", renderTimeline);
+    d3.select('#paper-layout').on('change',renderTimeline);
     // 功能：一键恢复样本完整日期范围，保留其他图形参数。
     d3.select('#reset-period').on('click',()=>{
       d3.select('#start-month').property('value',firstMonth);
@@ -424,7 +452,7 @@
     // 首次进入无主题缓存时，先显示无需训练的关键词分行；后续显式选择主题时仍提示训练。
     if(!TopicStore.read(topicCorpus))d3.select('#paper-row-type').property('value','keyword');
     renderTimeline();
-  
+
 
 // 功能：三种模型共用训练入口；训练成功才更新共享结果，失败保留前次结果。
 function syncTimelineMethod(){
