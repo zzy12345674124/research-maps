@@ -200,3 +200,61 @@ test('dense count timeline rows stay below axis with nonoverlapping row bands an
   for(const row of [a,b])for(let i=0;i<row.length;i++)for(let j=i+1;j<row.length;j++)assert(Math.hypot(row[i].x-row[j].x,row[i].y-row[j].y)>=row[i].r+row[j].r+.98);
  }finally{f.win.close();}
 });
+
+
+test('cooperation author/institution initialize and retain legend label toggle',async()=>{
+ for(const mode of ['author','institution']){
+  const f=fixture('cooperation.html?type='+mode);try{
+   const html=await readFile(new URL('../../pages/cooperation.html',import.meta.url),'utf8');
+   f.document.body.innerHTML=html.match(/<body>([\s\S]*)<\/body>/)[1];
+   f.win.SVGElement.prototype.getBBox=()=>({x:0,y:0,width:800,height:450});
+   f.win.eval(await readFile(new URL('../../library/d3/d3.v7.min.js',import.meta.url),'utf8'));
+   f.win.openAlexPapers=[{id:'fixture-paper',year:2025,title:'Synthetic',authors:[
+    {author:{id:'a1',display_name:'Author One'},institutions:[{id:'i1',display_name:'Institute One'}]},
+    {author:{id:'a2',display_name:'Author Two'},institutions:[{id:'i2',display_name:'Institute Two'}]}]}];
+   const all=[];f.win.LabelLayout={schedule:(labels,options)=>all.push(options.all),weightPriority:n=>n,observe:()=>{}};
+   f.win.EdgeRendering={create:()=>({bind(){},update(){}}),opacityScale:()=>()=>.3};
+   f.win.eval(await readFile(new URL('../../scripts/analysis/cooperation.js',import.meta.url),'utf8'));
+   f.win.eval(await readFile(new URL('../../scripts/charts/cooperation.js',import.meta.url),'utf8'));
+   assert.equal(f.document.querySelectorAll('#network circle').length,2);
+   assert(f.document.getElementById('summary').textContent.includes(mode==='author'?'作者':'机构'));
+   const toggle=f.document.getElementById('show-all-labels');assert(toggle);assert.equal(all.at(-1),false);
+   toggle.checked=true;toggle.dispatchEvent(new f.win.Event('change'));assert.equal(all.at(-1),true);
+   f.win.eval(await readFile(new URL('../../scripts/interactions/workspace.js',import.meta.url),'utf8'));await flush(f);
+   if(!f.document.body.dataset.workspaceReady){f.document.dispatchEvent(new f.win.Event('DOMContentLoaded'));await flush(f);}
+   assert(f.document.querySelector('#workspace-chart').value.includes('type='+mode));
+   assert(f.document.querySelector('.ws-plot-legend #show-all-labels'));
+   toggle.remove();assert.doesNotThrow(()=>f.document.getElementById('reset-view').click());
+   assert.deepEqual(f.errors,[]);
+  }finally{f.win.close();}
+ }
+});
+
+
+test('dual map classic variant boots actual chart and switches back with dataset preserved',async()=>{
+ const f=fixture('dual-map.html?layout=classic&dataset=legacy100');try{
+  const html=await readFile(new URL('../../pages/dual-map.html',import.meta.url),'utf8');
+  f.document.body.innerHTML=html.match(/<body>([\s\S]*)<\/body>/)[1];
+  const template=f.document.getElementById('journal-classic-template');assert(template);
+  const content=template.content.cloneNode(true);f.document.body.replaceChildren(content);
+  f.win.SVGElement.prototype.getBBox=()=>({x:0,y:0,width:1200,height:740});
+  f.win.eval(await readFile(new URL('../../library/d3/d3.v7.min.js',import.meta.url),'utf8'));
+  f.win.LabelLayout={schedule(){},observe(){},weightPriority:n=>n};
+  f.win.dualMapData={left:[{id:'f1',label:'Field One',journals:1,journalIds:['j1']}],right:[{id:'f2',label:'Field Two',journals:1,journalIds:['j2']}],journalMapping:[{id:'j1',label:'Journal One',field:'f1',fieldLabel:'Field One'},{id:'j2',label:'Journal Two',field:'f2',fieldLabel:'Field Two'}],paths:[{source:'f1',target:'f2',value:1,evidence:[]}],stats:{sample_works:1,failed_batches:[]}};
+  const cfg=JSON.parse(html.match(/data-config='([^']+)'/)[1]);
+  const original=JSON.stringify(f.win.dualMapData);
+  for(const script of cfg.variants.classic.scripts){
+   if(script.includes('/label-layout.js'))continue;
+   f.win.eval(await readFile(new URL('../../'+script.replace('../',''),import.meta.url),'utf8'));
+  }
+  await flush(f);if(!f.document.body.dataset.workspaceReady){f.document.dispatchEvent(new f.win.Event('DOMContentLoaded'));await flush(f);}
+  assert(f.document.querySelector('#dual-map .dual-map-viewport'));
+  assert.equal(f.document.querySelector('#journal-semantic-map'),null);
+  const local=f.document.getElementById('dual-layout');local.value='scatter';local.dispatchEvent(new f.win.Event('change'));assert(f.document.querySelector('#dual-map circle'));local.value='areas';local.dispatchEvent(new f.win.Event('change'));
+  assert.equal(typeof f.win.WorkspaceZoom.scaleBy,'function');
+  const select=f.document.getElementById('journal-layout-choice');assert.equal(select.value,'classic');
+  let destination;f.win.WorkspaceNavigation={navigate:url=>destination=url};select.value='semantic';select.dispatchEvent(new f.win.Event('change'));
+  const url=new URL(destination);assert.equal(url.searchParams.get('layout'),'semantic');assert.equal(url.searchParams.get('dataset'),'legacy100');
+  assert.equal(JSON.stringify(f.win.dualMapData),original);assert.deepEqual(f.errors,[]);
+ }finally{f.win.close();}
+});

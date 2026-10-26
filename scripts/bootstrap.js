@@ -4,6 +4,17 @@
   let config;
   try{
     config=JSON.parse(configText);
+    // 期刊双图在独立页面上下文中切换布局，避免两套全局绘图状态混用。
+    const variant=config.variants?.[new URLSearchParams(location.search).get('layout')];
+    if(variant){
+      const template=document.getElementById(variant.templateId);
+      if(!template)throw Error('缺少期刊布局模板');
+      const content=template.content.cloneNode(true);
+      for(const child of [...document.body.children])if(child.id!=='workspace-startup'&&!['SCRIPT','STYLE'].includes(child.tagName))child.remove();
+      document.body.append(content);
+      config={...config,data:variant.data,scripts:variant.scripts};
+    }
+
     if(location.protocol==='file:')throw new Error('JSON数据需要本机网页服务。请启动项目根目录“启动可视化.cmd”，再打开 http://127.0.0.1:8765/');
     // arXiv支持摘要、日期和姓名合作；缺失机构/引文的页面明确沿用旧样本。
     if(config.data.openAlexPapers||config.data.dualMapData){
@@ -45,7 +56,7 @@
     }
     for(const url of scripts)await new Promise((resolve,reject)=>{
       // 功能：前端资源使用统一版本标记，避免公共CSS与工作台脚本混用不同缓存版本。
-      const asset=new URL(url,location.href);asset.searchParams.set('v','20261025-journal88');
+      const asset=new URL(url,location.href);asset.searchParams.set('v','20261026-dual90');
       const script=document.createElement('script');script.src=asset.href;script.onload=resolve;script.onerror=()=>reject(new Error(`脚本加载失败：${url}`));document.body.append(script);
     });
     await window.ResearchMapsUI?.ready();

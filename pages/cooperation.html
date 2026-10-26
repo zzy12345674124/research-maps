@@ -2,7 +2,7 @@
 <html lang="zh-CN" data-workspace-state="loading">
   <head>
   <script src="../scripts/interactions/chart-loading.js?v=20261022-redraw48"></script>
-  <script src="../scripts/interactions/workspace-navigation.js?v=20261025-journal88"></script>
+  <script src="../scripts/interactions/workspace-navigation.js?v=20261026-cooperation89"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>人工智能教育：作者与机构合作网络</title>
@@ -24,8 +24,8 @@
 
 <link rel="stylesheet" href="../css/cooperation.css">
 <link rel="stylesheet" href="../css/glass.css?v=20261022-perf26">
-<link rel="stylesheet" href="../library/vue-primevue/research-maps-ui.css?v=20261025-journal88">
-<script src="../library/vue-primevue/research-maps-ui.js?v=20261025-journal88"></script>
+<link rel="stylesheet" href="../library/vue-primevue/research-maps-ui.css?v=20261026-cooperation89">
+<script src="../library/vue-primevue/research-maps-ui.js?v=20261026-cooperation89"></script>
 </head>
   <body>
   <div id="workspace-startup" role="status" aria-live="polite"><span class="startup-mark" aria-hidden="true"></span><strong>正在加载文献计量工作台…</strong><p>正在准备图形和参数，请稍候。</p><button type="button" hidden>重新加载</button></div>
@@ -54,6 +54,7 @@
       </select>
       <span id="color-description" class="note"></span>
     </div>
+    <div class="toolbar"><label><input id="show-all-labels" type="checkbox"> 全部标签</label></div>
     <div id="year-legend" style="max-width: 360px; margin: 10px 0;">
       <div id="year-gradient" style="height: 12px; border-radius: 4px;"></div>
       <div style="display: flex; justify-content: space-between; font-size: 13px;">
@@ -76,6 +77,6 @@
 
     <script src="../scripts/analysis/cooperation.js"></script>
 
-  <script src="../scripts/bootstrap.js?v=20261025-journal88" data-config='{"data": {"openAlexPapers": "../data/processed/papers.json"}, "scripts": ["../scripts/analysis/label-layout.js", "../scripts/interactions/edge-rendering.js", "../scripts/charts/cooperation.js", "../scripts/interactions/workspace.js", "../scripts/interactions/liquid-select.js"], "workspace": true}'></script>
+  <script src="../scripts/bootstrap.js?v=20261026-cooperation89" data-config='{"data": {"openAlexPapers": "../data/processed/papers.json"}, "scripts": ["../scripts/analysis/label-layout.js", "../scripts/interactions/edge-rendering.js", "../scripts/charts/cooperation.js", "../scripts/interactions/workspace.js", "../scripts/interactions/liquid-select.js"], "workspace": true}'></script>
 </body>
 </html>

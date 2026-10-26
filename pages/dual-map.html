@@ -2,7 +2,7 @@
 <html lang="zh-CN" data-workspace-state="loading">
 <head>
   <script src="../scripts/interactions/chart-loading.js?v=20261022-redraw48"></script>
-  <script src="../scripts/interactions/workspace-navigation.js?v=20261025-journal88"></script>
+  <script src="../scripts/interactions/workspace-navigation.js?v=20261026-dual90"></script>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>期刊双图叠加：语义嵌入布局</title>
 
@@ -23,13 +23,14 @@
 
 <link rel="stylesheet" href="../css/dual-map.css?v=20261022-cellcool40">
 <link rel="stylesheet" href="../css/glass.css?v=20261022-perf26">
-<link rel="stylesheet" href="../library/vue-primevue/research-maps-ui.css?v=20261025-journal88">
-<script src="../library/vue-primevue/research-maps-ui.js?v=20261025-journal88"></script>
+<link rel="stylesheet" href="../library/vue-primevue/research-maps-ui.css?v=20261026-dual90">
+<script src="../library/vue-primevue/research-maps-ui.js?v=20261026-dual90"></script>
 </head>
 <body>
   <div id="workspace-startup" role="status" aria-live="polite"><span class="startup-mark" aria-hidden="true"></span><strong>正在加载文献计量工作台…</strong><p>正在准备图形和参数，请稍候。</p><button type="button" hidden>重新加载</button></div>
   <noscript><style>#workspace-startup{display:none!important}</style><p>请启用JavaScript后重新打开工作台。</p></noscript>
 
+<div class="toolbar"><label>布局分类 <select id="journal-layout-choice"><option value="classic">非嵌入布局</option><option value="semantic" selected>嵌入降维布局</option></select></label></div>
 <h2>期刊双图叠加：语义嵌入布局</h2>
 <div class="note">左侧引用方期刊，右侧被引方期刊。基于当前样本及缓存参考文献汇总论文嵌入，再统一UMAP降维；每个圆代表期刊，连线表示已记录引用。左右面板间隔不表达语义距离。</div>
 <div class="toolbar"><label>节点大小 <input id="journal-node-size" type="range" min="0.5" max="2" step="0.1" value="1"></label><label>突出前几条路径 <input id="major-paths" type="number" min="1" max="100" value="5"></label></div>
@@ -41,5 +42,51 @@
 <div id="summary" aria-live="polite"></div><div id="selection" aria-live="polite"></div>
 <svg id="journal-semantic-map" data-workspace-chart width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-label="期刊语义双图：两侧期刊共享嵌入降维坐标，连线从引用方指向被引方。"></svg>
 <div id="evidence">点击期刊查看内容画像依据；点击路径查看论文引用证据。</div>
-<script src="../scripts/bootstrap.js?v=20261025-journal88" data-config='{"data": {"dualMapData": "../data/processed/dual-map.json", "journalSemanticMap": "../data/processed/journal-semantic-map.json"}, "scripts": ["../scripts/analysis/label-layout.js", "../scripts/analysis/journal-semantic-graph.js", "../scripts/charts/journal-semantic-map.js", "../scripts/interactions/workspace.js", "../scripts/interactions/liquid-select.js"], "workspace": true}'></script>
+<template id="journal-classic-template"><div class="toolbar"><label>布局分类 <select id="journal-layout-choice"><option value="classic">非嵌入布局</option><option value="semantic" selected>嵌入降维布局</option></select></label></div>
+
+
+
+
+<h2>人工智能教育：期刊双图叠加：非嵌入布局（学科分区原型）</h2>
+<div class="note">左侧：引用方期刊学科 · 右侧：被引用方期刊学科 · 曲线：从左向右的引用路径</div>
+<div class="warning">期刊分类改用OpenAlex期刊自身的主题画像：按API返回主题的计数汇总到学科，取最高者。同一期刊两侧归类一致；不是官方期刊单标签或CiteSpace原始底图。多学科期刊的单一归类仍有局限。</div>
+<div class="toolbar">
+<label>布局 <select id="dual-layout"><option value="areas">学科椭圆分区</option><option value="scatter">学科聚团散点</option></select></label>
+<label id="dual-hulls-control" hidden><input id="dual-show-hulls" type="checkbox" checked> 显示柔性包围区域</label>
+<label>突出前几条路径 <input id="major-paths" type="number" min="1" max="50" value="5"></label>
+<label>期刊排斥强度 <input id="journal-charge" type="range" min="0.1" max="3" step="0.1" value="0.7"></label>
+<button id="relayout" type="button">重新排布期刊</button>
+<label>最少引用 <input id="minimum" type="number" min="1" step="1" value="1"> 次</label>
+<label>引用方学科 <select id="left-filter"></select></label>
+<label>被引方学科 <select id="right-filter"></select></label>
+<button id="apply">应用筛选</button><button id="reset">恢复全部</button>
+</div>
+<div class="toolbar" id="original-cell-controls" hidden><button id="updateButton" type="button">Toggle Cells · 散开 / 聚合</button><span class="note" id="original-cell-info"></span></div>
+<div id="stats"></div><div id="message" class="note"></div>
+<!-- 功能：双图视图操作独立于筛选与期刊重新排布。 -->
+<div class="toolbar" aria-label="期刊双图视图缩放">
+<button id="dual-map-zoom-in" type="button" aria-label="放大期刊双图">放大 ＋</button>
+<button id="dual-map-zoom-out" type="button" aria-label="缩小期刊双图">缩小 −</button>
+<button id="dual-map-reset-view" type="button">重置视图</button>
+<span id="dual-map-zoom-level" aria-live="polite">100%</span>
+
+</div>
+<div class="chart"><svg id="dual-map" width="1200" role="img" aria-label="期刊学科引用路径"></svg><div id="journal-cells-host" hidden></div></div>
+<div hidden id="dual-area-description" class="note">粗实线突出当前引用量最高的路径，细淡线保留背景关系；颜色区分引用方学科，不表示年份。椭圆中的每个点代表一个真实期刊，点位由受椭圆边界约束的力导向排布，不表示相似度；椭圆越大表示涉及期刊越多。点击学科可查看期刊与分类依据。点击椭圆高亮路径，点击曲线查看论文证据，点击空白清除高亮。学科区域采用受约束的错落排版，距离不表示学科相似度；筛选不改变底图位置。</div>
+<div id="details">点击曲线查看真实引用论文对。</div>
+
+
+
+
+
+
+
+
+
+
+<div hidden id="dual-layout-help" class="note">学科聚团散点：可显示随期刊点位生成的柔性包围区域，仅辅助辨识学科范围，不代表置信区间或学科交叉关系。每点为期刊，同一学科在左右两侧使用同色；按已有OpenAlex期刊学科归类聚团，非LDA/BERTopic结果。引用曲线仍按学科汇总，连接学科质心，不表示某两个期刊的直接引用。点位不是带数值坐标轴的统计散点，不表示语义距离。</div>
+
+
+</template>
+<script src="../scripts/bootstrap.js?v=20261026-dual90" data-config='{"data": {"dualMapData": "../data/processed/dual-map.json", "journalSemanticMap": "../data/processed/journal-semantic-map.json"}, "scripts": ["../scripts/analysis/label-layout.js", "../scripts/analysis/journal-semantic-graph.js", "../scripts/charts/journal-semantic-map.js", "../scripts/interactions/journal-layout-choice.js", "../scripts/interactions/workspace.js", "../scripts/interactions/liquid-select.js"], "workspace": true, "variants": {"classic": {"templateId": "journal-classic-template", "data": {"dualMapData": "../data/processed/dual-map.json"}, "scripts": ["../scripts/analysis/constrained-journal-layout.js", "../scripts/analysis/discipline-layout.js", "../scripts/analysis/network-layout.js", "../scripts/analysis/region-motion.js", "../scripts/analysis/flexible-hull.js", "../scripts/analysis/dual-scatter-layout.js", "../scripts/analysis/node-collision.js", "../scripts/analysis/label-layout.js", "../scripts/interactions/edge-rendering.js", "../scripts/charts/dual-map.js", "../scripts/interactions/journal-layout-choice.js", "../scripts/interactions/workspace.js", "../scripts/interactions/liquid-select.js"]}}}'></script>
 </body></html>

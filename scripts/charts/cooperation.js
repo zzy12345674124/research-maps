@@ -33,7 +33,7 @@
       let circles, lines, labels;
       let selectedName=null;
       function updateLabels(){if(labels)LabelLayout.schedule(labels,{
-        all:d3.select('#show-all-labels').property('checked'),
+        all:document.getElementById('show-all-labels')?.checked ?? false,
         priority:d=>LabelLayout.weightPriority(d.count,d.name===selectedName)
       });}
       // 功能：统一原始关系权重透明度和后台边捆绑，保留绘图边对象用于证据交互。
